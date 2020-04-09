@@ -1,5 +1,6 @@
 //At the top of the file
 let _csrf;
+let pageList = false;
 
 const handleDomo = (e) => {
     e.preventDefault();
@@ -34,6 +35,7 @@ const handleDelete = (e) => {
   }
 
 const DomoForm = (props) => {
+    
     return ( 
     <form id="domoForm"
             onSubmit={handleDomo}
@@ -54,6 +56,10 @@ const DomoForm = (props) => {
 };
 
 const DomoList = function(props) {
+    
+    // Do we need to show deletion or not?
+    let deleteButton;
+
     if(props.domos.length === 0) {
         return (
             <div className="domoList">
@@ -62,13 +68,21 @@ const DomoList = function(props) {
         );
     }
 
+
     const domoNodes = props.domos.map(function(domo) {
+        // https://react-cn.github.io/react/tips/if-else-in-JSX.html
+        if(pageList) {
+            deleteButton = <button value={domo._id} onClick={handleDelete}>Delete Item</button>;
+        } else {
+            deleteButton = null;
+        }
+
         return (
             <div key = {domo._id} className="domo">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
                 <h3 className="domoName">Name: {domo.name} </h3>
                 <h3 className="domoAge">Age: {domo.age}</h3>
-                <button value={domo._id} onClick={handleDelete}>Delete Item</button>
+                {deleteButton}
             </div>
         );
     });
@@ -81,6 +95,7 @@ const DomoList = function(props) {
 };
 
 const loadDomosFromServer = () => {
+    pageList = true;
     sendAjax('GET', '/getDomos', null, (data) => {
         ReactDOM.render(
             <DomoList domos={data.domos} />, document.querySelector("#domos")
@@ -90,6 +105,7 @@ const loadDomosFromServer = () => {
 
 // Display all domos for home page
 const loadAllDomosFromServer = () => {
+    pageList = false;
     sendAjax('GET', '/getAllDomos', null, (data) => {
         ReactDOM.render(
             <DomoList domos={data.domos} />, document.querySelector("#domos")

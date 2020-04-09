@@ -3,6 +3,8 @@
 //At the top of the file
 var _csrf;
 
+var pageList = false;
+
 var handleDomo = function handleDomo(e) {
   e.preventDefault();
   $("#domoMessage").animate({
@@ -67,6 +69,9 @@ var DomoForm = function DomoForm(props) {
 };
 
 var DomoList = function DomoList(props) {
+  // Do we need to show deletion or not?
+  var deleteButton;
+
   if (props.domos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
       className: "domoList"
@@ -76,6 +81,16 @@ var DomoList = function DomoList(props) {
   }
 
   var domoNodes = props.domos.map(function (domo) {
+    // https://react-cn.github.io/react/tips/if-else-in-JSX.html
+    if (pageList) {
+      deleteButton = /*#__PURE__*/React.createElement("button", {
+        value: domo._id,
+        onClick: handleDelete
+      }, "Delete Item");
+    } else {
+      deleteButton = null;
+    }
+
     return /*#__PURE__*/React.createElement("div", {
       key: domo._id,
       className: "domo"
@@ -87,10 +102,7 @@ var DomoList = function DomoList(props) {
       className: "domoName"
     }, "Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
       className: "domoAge"
-    }, "Age: ", domo.age), /*#__PURE__*/React.createElement("button", {
-      value: domo._id,
-      onClick: handleDelete
-    }, "Delete Item"));
+    }, "Age: ", domo.age), deleteButton);
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "domoList"
@@ -98,6 +110,7 @@ var DomoList = function DomoList(props) {
 };
 
 var loadDomosFromServer = function loadDomosFromServer() {
+  pageList = true;
   sendAjax('GET', '/getDomos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
@@ -107,6 +120,7 @@ var loadDomosFromServer = function loadDomosFromServer() {
 
 
 var loadAllDomosFromServer = function loadAllDomosFromServer() {
+  pageList = false;
   sendAjax('GET', '/getAllDomos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
