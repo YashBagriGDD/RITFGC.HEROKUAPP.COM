@@ -34,6 +34,28 @@ const handleDelete = (e) => {
     return false;
   }
 
+// Handling password change
+const handleChange = (e) => {
+    e.preventDefault();
+
+    $("#domoMessage").animate({width: 'hide'}, 350);
+
+    if($("#pass").val() == '' || $("#pass2").val() =='') {
+        handleError("RAWR! All fields are required!");
+        return false;
+    }
+
+    if($("#pass").val() === $("#pass2").val()) {
+        handleError("RAWR! Passwords cannot match!");
+        return false;
+    }
+
+    sendAjax('POST', $("#changeForm").attr("action"), $("#changeForm").serialize(), redirect);
+
+    return false;
+};
+
+/// FORM TO SUBMIT NEW DATA
 const DomoForm = (props) => {
     
     return ( 
@@ -55,6 +77,30 @@ const DomoForm = (props) => {
     );
 };
 
+
+/// CHANGE PASSWORD WINDOW
+const ChangeWindow = (props) => {
+    return ( 
+    <form id="changeForm" name="changeForm"
+            onSubmit={handleChange}
+            action="/passChange"
+            method="POST"
+            className="mainForm"
+        >
+        <label htmlFor="pass">Password: </label>
+        <input id="pass" type="password" name="pass" placeholder="old password"/>
+        <label htmlFor="pass2">Password: </label>
+        <input id="pass2" type="password" name="pass2" placeholder="new password"/>
+        <input type="hidden" name="_csrf" value={props.csrf}/>
+        <input className="formSubmit" type="submit" value="Change Password"/>
+
+    </form>
+    );
+};
+
+
+/// RENDERING THE LIST
+/// Render the list depending on if it's a page list or the full list
 const DomoList = function(props) {
     
     // Do we need to show deletion or not?
@@ -70,6 +116,7 @@ const DomoList = function(props) {
 
 
     const domoNodes = props.domos.map(function(domo) {
+
         // https://react-cn.github.io/react/tips/if-else-in-JSX.html
         if(pageList) {
             deleteButton = <button value={domo._id} onClick={handleDelete}>Delete Item</button>;
@@ -113,9 +160,23 @@ const loadAllDomosFromServer = () => {
     });
 };
 
+const createPassChangeWindow = (csrf) => {
+    ReactDOM.render(
+        <ChangeWindow csrf={csrf} />,
+        document.querySelector("#content")
+    );
+};
+
 const setup = function(csrf) {
     const homeButton = document.querySelector("#home");
     const pageButton = document.querySelector("#myPage");
+    const passChangeButton = document.querySelector("#passChangeButton");
+
+    passChangeButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        createPassChangeWindow(csrf);
+        return false;
+    });
 
     ReactDOM.render(
         <DomoForm csrf={csrf}/>, document.querySelector("#makeDomo")

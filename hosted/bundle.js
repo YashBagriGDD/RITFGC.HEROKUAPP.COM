@@ -33,7 +33,29 @@ var handleDelete = function handleDelete(e) {
     loadDomosFromServer();
   });
   return false;
-};
+}; // Handling password change
+
+
+var handleChange = function handleChange(e) {
+  e.preventDefault();
+  $("#domoMessage").animate({
+    width: 'hide'
+  }, 350);
+
+  if ($("#pass").val() == '' || $("#pass2").val() == '') {
+    handleError("RAWR! All fields are required!");
+    return false;
+  }
+
+  if ($("#pass").val() === $("#pass2").val()) {
+    handleError("RAWR! Passwords cannot match!");
+    return false;
+  }
+
+  sendAjax('POST', $("#changeForm").attr("action"), $("#changeForm").serialize(), redirect);
+  return false;
+}; /// FORM TO SUBMIT NEW DATA
+
 
 var DomoForm = function DomoForm(props) {
   return /*#__PURE__*/React.createElement("form", {
@@ -66,7 +88,43 @@ var DomoForm = function DomoForm(props) {
     type: "submit",
     value: "Make Domo"
   }));
-};
+}; /// CHANGE PASSWORD WINDOW
+
+
+var ChangeWindow = function ChangeWindow(props) {
+  return /*#__PURE__*/React.createElement("form", {
+    id: "changeForm",
+    name: "changeForm",
+    onSubmit: handleChange,
+    action: "/passChange",
+    method: "POST",
+    className: "mainForm"
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "pass"
+  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+    id: "pass",
+    type: "password",
+    name: "pass",
+    placeholder: "old password"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "pass2"
+  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+    id: "pass2",
+    type: "password",
+    name: "pass2",
+    placeholder: "new password"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_csrf",
+    value: props.csrf
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "formSubmit",
+    type: "submit",
+    value: "Change Password"
+  }));
+}; /// RENDERING THE LIST
+/// Render the list depending on if it's a page list or the full list
+
 
 var DomoList = function DomoList(props) {
   // Do we need to show deletion or not?
@@ -128,9 +186,21 @@ var loadAllDomosFromServer = function loadAllDomosFromServer() {
   });
 };
 
+var createPassChangeWindow = function createPassChangeWindow(csrf) {
+  ReactDOM.render( /*#__PURE__*/React.createElement(ChangeWindow, {
+    csrf: csrf
+  }), document.querySelector("#content"));
+};
+
 var setup = function setup(csrf) {
   var homeButton = document.querySelector("#home");
   var pageButton = document.querySelector("#myPage");
+  var passChangeButton = document.querySelector("#passChangeButton");
+  passChangeButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    createPassChangeWindow(csrf);
+    return false;
+  });
   ReactDOM.render( /*#__PURE__*/React.createElement(DomoForm, {
     csrf: csrf
   }), document.querySelector("#makeDomo"));
