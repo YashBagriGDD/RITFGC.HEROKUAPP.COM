@@ -1,25 +1,55 @@
 "use strict";
 
 //At the top of the file
-var _csrf;
+var _csrf; // Values to help not repeat methods
+
 
 var pageList = false;
+var loopNumber = 1;
+var videoKey = 0;
+var modValue = 0;
 
-var handleDomo = function handleDomo(e) {
+var handleVideo = function handleVideo(e) {
   e.preventDefault();
+  videoKey = 0;
+  modValue = 0;
+  var videoObj = {};
+  console.dir(loopNumber);
+
+  for (var i = 0; i < loopNumber; i++) {
+    var newObject = {};
+    videoObj[i] = newObject;
+  }
+
   $("#domoMessage").animate({
     width: 'hide'
   }, 350);
 
-  if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
+  if ($("#videoName").val() == '' || $("#videoAge").val() == '') {
     handleError("RAWR! All fields are required!");
     return false;
-  }
+  } // Comment this out if you need to send data
 
-  console.log($("input[name=_csrf]").val());
-  sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
-    loadDomosFromServer();
+
+  $('#videoForm').find('section > input').each(function () {
+    console.log(this.value);
+    console.log(modValue);
+
+    if (modValue % 2 === 0 || modValue === 0) {
+      videoObj[videoKey].name = this.value;
+      modValue++;
+    } else {
+      videoObj[videoKey].age = this.value;
+      modValue++;
+      videoKey++;
+    }
   });
+  console.log(videoObj); // Uncomment this to send data
+
+  /*sendAjax('POST', $("#videoForm").attr("action"), $("#videoForm").serialize(), function() {
+      loadVideosFromServer();
+  });*/
+
   return false;
 };
 
@@ -30,7 +60,7 @@ var handleDelete = function handleDelete(e) {
     _csrf: _csrf
   };
   sendAjax('POST', '/delete', data, function () {
-    loadDomosFromServer();
+    loadVideosFromServer();
   });
   return false;
 }; // Handling password change
@@ -57,37 +87,48 @@ var handleChange = function handleChange(e) {
 }; /// FORM TO SUBMIT NEW DATA
 
 
-var DomoForm = function DomoForm(props) {
+var VideoForm = function VideoForm(props) {
+  // Rows to dynamically add more matches
+  // https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
+  var rows = [];
+
+  for (var i = 0; i < loopNumber; i++) {
+    rows.push( /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("label", {
+      htmlFor: "username"
+    }, "Name: "), /*#__PURE__*/React.createElement("input", {
+      id: "videoName",
+      type: "text",
+      name: "name",
+      placeholder: "Video Name"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "age"
+    }, "Age: "), /*#__PURE__*/React.createElement("input", {
+      id: "videoAge",
+      type: "text",
+      name: "age",
+      placeholder: "Video Age"
+    })));
+  }
+
   return /*#__PURE__*/React.createElement("form", {
-    id: "domoForm",
-    onSubmit: handleDomo,
-    name: "domoForm",
+    id: "videoForm",
+    onSubmit: handleVideo,
+    name: "videoForm",
     action: "/maker",
     method: "POST",
-    className: "domoForm"
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "username"
-  }, "Name: "), /*#__PURE__*/React.createElement("input", {
-    id: "domoName",
-    type: "text",
-    name: "name",
-    placeholder: "Domo Name"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "age"
-  }, "Age: "), /*#__PURE__*/React.createElement("input", {
-    id: "domoAge",
-    type: "text",
-    name: "age",
-    placeholder: "Domo Age"
+    className: "videoForm"
+  }, rows, /*#__PURE__*/React.createElement("input", {
+    className: "makeVideoSubmit",
+    type: "submit",
+    value: "Make Video"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
-  }), /*#__PURE__*/React.createElement("input", {
-    className: "makeDomoSubmit",
-    type: "submit",
-    value: "Make Domo"
-  }));
+  }), /*#__PURE__*/React.createElement("button", {
+    id: "addMatchButton",
+    type: "button"
+  }, "Add Match"));
 }; /// CHANGE PASSWORD WINDOW
 
 
@@ -126,23 +167,23 @@ var ChangeWindow = function ChangeWindow(props) {
 /// Render the list depending on if it's a page list or the full list
 
 
-var DomoList = function DomoList(props) {
-  // Do we need to show deletion or not?
+var VideoList = function VideoList(props) {
+  // Do we need to show deletion or not
   var deleteButton;
 
-  if (props.domos.length === 0) {
+  if (props.videos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
-      className: "domoList"
+      className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
-      className: "emptyDomo"
-    }, "No Domos Yet"));
+      className: "emptyVideo"
+    }, "No Videos Yet"));
   }
 
-  var domoNodes = props.domos.map(function (domo) {
+  var videoNodes = props.videos.map(function (video) {
     // https://react-cn.github.io/react/tips/if-else-in-JSX.html
     if (pageList) {
       deleteButton = /*#__PURE__*/React.createElement("button", {
-        value: domo._id,
+        value: video._id,
         onClick: handleDelete
       }, "Delete Item");
     } else {
@@ -150,52 +191,66 @@ var DomoList = function DomoList(props) {
     }
 
     return /*#__PURE__*/React.createElement("div", {
-      key: domo._id,
-      className: "domo"
+      key: video._id,
+      className: "video"
     }, /*#__PURE__*/React.createElement("img", {
       src: "/assets/img/domoface.jpeg",
       alt: "domo face",
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "domoName"
-    }, "Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "domoAge"
-    }, "Age: ", domo.age), deleteButton);
+      className: "videoName"
+    }, "Name: ", video.name, " "), /*#__PURE__*/React.createElement("h3", {
+      className: "videoAge"
+    }, "Age: ", video.age), deleteButton);
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "domoList"
-  }, domoNodes);
+    className: "videoList"
+  }, videoNodes);
 };
 
-var loadDomosFromServer = function loadDomosFromServer() {
+var loadVideosFromServer = function loadVideosFromServer() {
+  loopNumber = 1;
   pageList = true;
-  sendAjax('GET', '/getDomos', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-      domos: data.domos
+  sendAjax('GET', '/getVideos', null, function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+      videos: data.videos
     }), document.querySelector("#content"));
   });
-}; // Display all domos for home page
+}; // Display all videos for home page
 
 
-var loadAllDomosFromServer = function loadAllDomosFromServer() {
+var loadAllVideosFromServer = function loadAllVideosFromServer() {
+  loopNumber = 1;
   pageList = false;
-  sendAjax('GET', '/getAllDomos', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-      domos: data.domos
+  sendAjax('GET', '/getAllVideos', null, function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+      videos: data.videos
     }), document.querySelector("#content"));
   });
 };
 
 var createPassChangeWindow = function createPassChangeWindow(csrf) {
+  loopNumber = 1;
   ReactDOM.render( /*#__PURE__*/React.createElement(ChangeWindow, {
     csrf: csrf
   }), document.querySelector("#content"));
 };
 
 var createAddWindow = function createAddWindow(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement(DomoForm, {
+  ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
     csrf: csrf
-  }), document.querySelector("#content"));
+  }), document.querySelector("#content")); // Get the button that was made in the videoForm
+
+  var addMatchButton = document.querySelector("#addMatchButton");
+  addMatchButton.addEventListener("click", function (e) {
+    loopNumber++; //If it's clicked, just re-render
+
+    var videoForm = document.querySelector("#videoForm"); //console.dir(videoForm.elements);
+
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
+      csrf: csrf
+    }), document.querySelector("#content"));
+  });
 };
 
 var setup = function setup(csrf) {
@@ -213,20 +268,20 @@ var setup = function setup(csrf) {
     createAddWindow(csrf);
     return false;
   });
-  ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-    domos: []
+  ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+    videos: []
   }), document.querySelector("#content"));
   homeButton.addEventListener("click", function (e) {
     e.preventDefault();
-    loadAllDomosFromServer();
+    loadAllVideosFromServer();
     return false;
   });
   pageButton.addEventListener("click", function (e) {
     e.preventDefault();
-    loadDomosFromServer();
+    loadVideosFromServer();
     return false;
   });
-  loadDomosFromServer();
+  loadVideosFromServer();
 }; //And set it in getToken
 
 
