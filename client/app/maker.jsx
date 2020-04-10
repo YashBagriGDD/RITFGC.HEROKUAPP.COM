@@ -145,7 +145,7 @@ const loadDomosFromServer = () => {
     pageList = true;
     sendAjax('GET', '/getDomos', null, (data) => {
         ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#domos")
+            <DomoList domos={data.domos} />, document.querySelector("#content")
         );
     });
 };
@@ -155,7 +155,7 @@ const loadAllDomosFromServer = () => {
     pageList = false;
     sendAjax('GET', '/getAllDomos', null, (data) => {
         ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#domos")
+            <DomoList domos={data.domos} />, document.querySelector("#content")
         );
     });
 };
@@ -167,9 +167,17 @@ const createPassChangeWindow = (csrf) => {
     );
 };
 
+const createAddWindow = (csrf) => {
+    ReactDOM.render(
+        <DomoForm csrf={csrf} />,
+        document.querySelector("#content")
+    );
+};
+
 const setup = function(csrf) {
     const homeButton = document.querySelector("#home");
     const pageButton = document.querySelector("#myPage");
+    const addButton = document.querySelector("#addVideo");
     const passChangeButton = document.querySelector("#passChangeButton");
 
     passChangeButton.addEventListener("click", (e) => {
@@ -178,12 +186,14 @@ const setup = function(csrf) {
         return false;
     });
 
-    ReactDOM.render(
-        <DomoForm csrf={csrf}/>, document.querySelector("#makeDomo")
-    );
+    addButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        createAddWindow(csrf);
+        return false;
+    });
 
     ReactDOM.render(
-        <DomoList domos={[]} />, document.querySelector("#domos")
+        <DomoList domos={[]} />, document.querySelector("#content")
     );
 
     homeButton.addEventListener("click", (e) => {

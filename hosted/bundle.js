@@ -172,7 +172,7 @@ var loadDomosFromServer = function loadDomosFromServer() {
   sendAjax('GET', '/getDomos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
-    }), document.querySelector("#domos"));
+    }), document.querySelector("#content"));
   });
 }; // Display all domos for home page
 
@@ -182,7 +182,7 @@ var loadAllDomosFromServer = function loadAllDomosFromServer() {
   sendAjax('GET', '/getAllDomos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
-    }), document.querySelector("#domos"));
+    }), document.querySelector("#content"));
   });
 };
 
@@ -192,21 +192,30 @@ var createPassChangeWindow = function createPassChangeWindow(csrf) {
   }), document.querySelector("#content"));
 };
 
+var createAddWindow = function createAddWindow(csrf) {
+  ReactDOM.render( /*#__PURE__*/React.createElement(DomoForm, {
+    csrf: csrf
+  }), document.querySelector("#content"));
+};
+
 var setup = function setup(csrf) {
   var homeButton = document.querySelector("#home");
   var pageButton = document.querySelector("#myPage");
+  var addButton = document.querySelector("#addVideo");
   var passChangeButton = document.querySelector("#passChangeButton");
   passChangeButton.addEventListener("click", function (e) {
     e.preventDefault();
     createPassChangeWindow(csrf);
     return false;
   });
-  ReactDOM.render( /*#__PURE__*/React.createElement(DomoForm, {
-    csrf: csrf
-  }), document.querySelector("#makeDomo"));
+  addButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    createAddWindow(csrf);
+    return false;
+  });
   ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
     domos: []
-  }), document.querySelector("#domos"));
+  }), document.querySelector("#content"));
   homeButton.addEventListener("click", function (e) {
     e.preventDefault();
     loadAllDomosFromServer();
