@@ -75,37 +75,37 @@ const SignupWindow = (props) => {
     );
 };
 
-//#region Home Domo Code
-const DomoList = function(props) {
-    if(props.domos.length === 0) {
+//#region Home Video Code
+const VideoList = function(props) {
+    if(props.videos.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Domos Yet</h3>
+            <div className="videoList">
+                <h3 className="emptyVideo">No Videos Yet</h3>
             </div>
         );
     }
 
-    const domoNodes = props.domos.map(function(domo) {
+    const videoNodes = props.videos.map(function(video) {
         return (
-            <div key = {domo._id} className="domo">
+            <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
-                <h3 className="domoName">Name: {domo.name} </h3>
-                <h3 className="domoAge">Age: {domo.age}</h3>
+                <h3 className="videoName">Name: {video.name} </h3>
+                <h3 className="videoAge">Age: {video.age}</h3>
             </div>
         );
     });
     
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="videoList">
+            {videoNodes}
         </div>
     );
 };
 
-const loadAllDomosFromServer = () => {
-    sendAjax('GET', '/getAllDomos', null, (data) => {
+const loadAllVideosFromServer = () => {
+    sendAjax('GET', '/getAllVideos', null, (data) => {
         ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#domos")
+            <VideoList videos={data.videos} />, document.querySelector("#videos")
         );
     });
 
@@ -119,7 +119,7 @@ const createLoginWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    ReactDOM.unmountComponentAtNode(document.querySelector("#domos"));
+    ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 const createSignupWindow = (csrf) => {
@@ -128,7 +128,7 @@ const createSignupWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    ReactDOM.unmountComponentAtNode(document.querySelector("#domos"));
+    ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 const setup = (csrf) => {
@@ -150,12 +150,12 @@ const setup = (csrf) => {
 
     homeButton.addEventListener("click", (e) => {
         e.preventDefault();
-        loadAllDomosFromServer();
+        loadAllVideosFromServer();
         return false;
     });
 
-    loadAllDomosFromServer() //Default window
-    //Default loads all domos on the server 
+    loadAllVideosFromServer() //Default window
+    //Default loads all Videos on the server 
 };
 
 const getToken = () => {

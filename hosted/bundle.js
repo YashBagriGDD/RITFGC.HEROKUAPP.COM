@@ -32,9 +32,8 @@ var handleVideo = function handleVideo(e) {
 
 
   $('#videoForm').find('section > input').each(function () {
-    console.log(this.value);
-    console.log(modValue);
-
+    //console.log(this.value);
+    //console.log(modValue);
     if (modValue % 2 === 0 || modValue === 0) {
       videoObj[videoKey].name = this.value;
       modValue++;
@@ -44,12 +43,16 @@ var handleVideo = function handleVideo(e) {
       videoKey++;
     }
   });
+  $('#videoForm').find('input').each(function () {
+    if (this.type === 'hidden') {
+      videoObj._csrf = this.value;
+    }
+  });
   console.log(videoObj); // Uncomment this to send data
 
-  /*sendAjax('POST', $("#videoForm").attr("action"), $("#videoForm").serialize(), function() {
-      loadVideosFromServer();
-  });*/
-
+  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
+    loadVideosFromServer();
+  });
   return false;
 };
 
@@ -245,8 +248,6 @@ var createAddWindow = function createAddWindow(csrf) {
   addMatchButton.addEventListener("click", function (e) {
     loopNumber++; //If it's clicked, just re-render
 
-    var videoForm = document.querySelector("#videoForm"); //console.dir(videoForm.elements);
-
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
       csrf: csrf
     }), document.querySelector("#content"));
@@ -268,9 +269,6 @@ var setup = function setup(csrf) {
     createAddWindow(csrf);
     return false;
   });
-  ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
-    videos: []
-  }), document.querySelector("#content"));
   homeButton.addEventListener("click", function (e) {
     e.preventDefault();
     loadAllVideosFromServer();
@@ -281,7 +279,7 @@ var setup = function setup(csrf) {
     loadVideosFromServer();
     return false;
   });
-  loadVideosFromServer();
+  loadAllVideosFromServer();
 }; //And set it in getToken
 
 

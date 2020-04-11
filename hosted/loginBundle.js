@@ -107,42 +107,42 @@ var SignupWindow = function SignupWindow(props) {
     type: "submit",
     value: "Sign Up"
   }));
-}; //#region Home Domo Code
+}; //#region Home Video Code
 
 
-var DomoList = function DomoList(props) {
-  if (props.domos.length === 0) {
+var VideoList = function VideoList(props) {
+  if (props.videos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
-      className: "domoList"
+      className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
-      className: "emptyDomo"
-    }, "No Domos Yet"));
+      className: "emptyVideo"
+    }, "No Videos Yet"));
   }
 
-  var domoNodes = props.domos.map(function (domo) {
+  var videoNodes = props.videos.map(function (video) {
     return /*#__PURE__*/React.createElement("div", {
-      key: domo._id,
-      className: "domo"
+      key: video._id,
+      className: "video"
     }, /*#__PURE__*/React.createElement("img", {
       src: "/assets/img/domoface.jpeg",
       alt: "domo face",
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "domoName"
-    }, "Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "domoAge"
-    }, "Age: ", domo.age));
+      className: "videoName"
+    }, "Name: ", video.name, " "), /*#__PURE__*/React.createElement("h3", {
+      className: "videoAge"
+    }, "Age: ", video.age));
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "domoList"
-  }, domoNodes);
+    className: "videoList"
+  }, videoNodes);
 };
 
-var loadAllDomosFromServer = function loadAllDomosFromServer() {
-  sendAjax('GET', '/getAllDomos', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-      domos: data.domos
-    }), document.querySelector("#domos"));
+var loadAllVideosFromServer = function loadAllVideosFromServer() {
+  sendAjax('GET', '/getAllVideos', null, function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+      videos: data.videos
+    }), document.querySelector("#videos"));
   });
   ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 }; //#endregion
@@ -152,14 +152,14 @@ var createLoginWindow = function createLoginWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(LoginWindow, {
     csrf: csrf
   }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#domos"));
+  ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(SignupWindow, {
     csrf: csrf
   }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#domos"));
+  ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 var setup = function setup(csrf) {
@@ -178,11 +178,11 @@ var setup = function setup(csrf) {
   });
   homeButton.addEventListener("click", function (e) {
     e.preventDefault();
-    loadAllDomosFromServer();
+    loadAllVideosFromServer();
     return false;
   });
-  loadAllDomosFromServer(); //Default window
-  //Default loads all domos on the server 
+  loadAllVideosFromServer(); //Default window
+  //Default loads all Videos on the server 
 };
 
 var getToken = function getToken() {

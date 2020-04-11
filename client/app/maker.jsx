@@ -29,10 +29,10 @@ const handleVideo = (e) => {
         return false;
     }
 
-    // Comment this out if you need to send data
-    $('#videoForm').find('section > input').each(function(){
-        console.log(this.value);
-        console.log(modValue);
+     // Comment this out if you need to send data
+     $('#videoForm').find('section > input').each(function(){
+        //console.log(this.value);
+        //console.log(modValue);
 
        if(modValue%2===0 || modValue ===0) {
             videoObj[videoKey].name =this.value;
@@ -44,13 +44,19 @@ const handleVideo = (e) => {
         }
     });
 
+    $('#videoForm').find('input').each(function(){
+        if(this.type === 'hidden') {
+            videoObj._csrf = this.value;
+        }
+    });
+
     console.log(videoObj);
 
 
     // Uncomment this to send data
-    /*sendAjax('POST', $("#videoForm").attr("action"), $("#videoForm").serialize(), function() {
+    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });*/
+    });
 
     return false;
 };
@@ -227,8 +233,6 @@ const createAddWindow = (csrf) => {
     addMatchButton.addEventListener("click", (e) => {
         loopNumber++;
         //If it's clicked, just re-render
-    const videoForm = document.querySelector("#videoForm");
-        //console.dir(videoForm.elements);
         ReactDOM.render(
             <VideoForm csrf={csrf} />,
             document.querySelector("#content")
@@ -254,10 +258,6 @@ const setup = function(csrf) {
         return false;
     });
 
-    ReactDOM.render(
-        <VideoList videos={[]} />, document.querySelector("#content")
-    );
-
     homeButton.addEventListener("click", (e) => {
         e.preventDefault();
         loadAllVideosFromServer();
@@ -270,7 +270,7 @@ const setup = function(csrf) {
         return false;
     })
 
-    loadVideosFromServer();
+    loadAllVideosFromServer();
 };
 
 //And set it in getToken
