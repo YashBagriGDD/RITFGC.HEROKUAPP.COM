@@ -4,46 +4,71 @@ let _csrf;
 // Values to help not repeat methods
 let pageList = false;
 let loopNumber = 1;
-let videoKey = 0;
-let modValue = 0;
+
 
 const handleVideo = (e) => {
+    let videoKey = 0;
+    let modValue = 0;
     e.preventDefault();
-    videoKey = 0;
-    modValue = 0;
 
-
+    // Create a video object to send to the server
     const videoObj = { }
 
-    console.dir(loopNumber);
+    // For each match a user wants to add, push the object
     for(let i = 0; i < loopNumber; i++) {
         let newObject = {
          }
         videoObj[i] = newObject;
     }
 
+    // Find the overall link the user inputted
+    $('#videoForm').find('input').each(function(){
+        if(this.name === 'videoLink') {
+            videoObj.videoLink = this.value;
+        }
+    });
+
     $("#domoMessage").animate({width: 'hide'}, 350);
 
-    if($("#videoName").val() == '' || $("#videoAge").val() == '') {
+    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#characterOne").val() == ''
+    || $("#characterTwo").val() == '' || $("#videoLink").val() == '') {
         handleError("RAWR! All fields are required!");
         return false;
     }
 
      // Comment this out if you need to send data
+     ///
+     /// Putting each input into its own object to send to the server 
+     ///
      $('#videoForm').find('section > input').each(function(){
-        //console.log(this.value);
-        //console.log(modValue);
 
-       if(modValue%2===0 || modValue ===0) {
-            videoObj[videoKey].name =this.value;
-            modValue++;
-        } else {
-            videoObj[videoKey].age =this.value;
-            modValue++;
-            videoKey++;
+        if(modValue===0) {
+            // Each match will have a specific timestamp, so put that here with concatenation
+            videoObj[videoKey].link = `${videoObj.videoLink}&t=${this.value}`;
+        } 
+        if(modValue===1) {
+            videoObj[videoKey].player1 = this.value;
         }
+        if(modValue===2) {
+            videoObj[videoKey].char1 = this.value;
+        } 
+        if(modValue===3) {
+            videoObj[videoKey].char2 = this.value;
+        } 
+        if(modValue===4) {
+            
+            // Once the end is reached, add the game from the selection
+            // and iterate the videoKey and reset the modification value
+            videoObj[videoKey].player2 = this.value;
+            videoObj[videoKey].game = $('#videoForm').find('select').find(":selected").text();
+            videoKey++;
+            modValue=-1;
+        } 
+
+        modValue++;
     });
 
+    // CSRF is associated with a user, so add a token to the overall object to send to the server
     $('#videoForm').find('input').each(function(){
         if(this.type === 'hidden') {
             videoObj._csrf = this.value;
@@ -54,6 +79,7 @@ const handleVideo = (e) => {
 
 
     // Uncomment this to send data
+    // Send the object! :diaYay:
     sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
     });
@@ -105,10 +131,17 @@ const VideoForm = (props) => {
     for(let i = 0; i < loopNumber; i++) {
         rows.push(
         <section>
-            <label htmlFor="username">Name: </label>
-            <input id="videoName" type="text" name="name" placeholder="Video Name"/>
-            <label htmlFor="age">Age: </label>
-            <input id="videoAge" type="text" name="age" placeholder="Video Age"/>
+            <label htmlFor="timestamp">timestamp: </label>
+            <input id="timestamp" type="text" name="timestamp" placeholder="00h00m00s"/>
+            <label htmlFor="playerOne">Player 1: </label>
+            <input id="playerOne" type="text" name="playerOne" placeholder="Player 1"/>
+            <label htmlFor="characterOne">Character 1: </label>
+            <input id="characterOne" type="text" name="characterOne" placeholder="Character 1"/>
+
+            <label htmlFor="characterTwo">Character 2: </label>
+            <input id="characterTwo" type="text" name="characterTwo" placeholder="Character 2"/>
+            <label htmlFor="playerTwo">Player 2: </label>
+            <input id="playerTwo" type="text" name="playerTwo" placeholder="Player 2"/>        
         </section>
         )
     }
@@ -122,6 +155,13 @@ const VideoForm = (props) => {
         method="POST"
         className="videoForm"
     >
+        <label htmlFor="videoLink">Video Link: </label>
+        <input id="videoLink" type="text" name="videoLink" placeholder="Video Name"/>
+        <label htmlFor="game">Game: </label>
+        <select id="Game">
+            <option value="gbvs">GBVS</option>
+            <option value="bbcf">BBCF</option>
+        </select>
         {rows}
         <input className="makeVideoSubmit" type="submit" value="Make Video"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
@@ -179,8 +219,11 @@ const VideoList = function(props) {
         return (
             <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
-                <h3 className="videoName">Name: {video.name} </h3>
-                <h3 className="videoAge">Age: {video.age}</h3>
+                <h3 className="videoLink"><a href={video.link}>Link</a></h3>
+                <h3 className="videoPlayerOne">Player One: {video.player1}</h3>
+                <h3 className="videoCharacterOne">Character One: {video.char1}</h3>
+                <h3 className="videoCharacterTwo">Character Two: {video.char2}</h3>
+                <h3 className="videoPlayerTwo">Player Two: {video.player2}</h3>
                 {deleteButton}
             </div>
         );

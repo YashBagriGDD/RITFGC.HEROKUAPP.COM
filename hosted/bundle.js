@@ -6,49 +6,75 @@ var _csrf; // Values to help not repeat methods
 
 var pageList = false;
 var loopNumber = 1;
-var videoKey = 0;
-var modValue = 0;
 
 var handleVideo = function handleVideo(e) {
-  e.preventDefault();
-  videoKey = 0;
-  modValue = 0;
-  var videoObj = {};
-  console.dir(loopNumber);
+  var videoKey = 0;
+  var modValue = 0;
+  e.preventDefault(); // Create a video object to send to the server
+
+  var videoObj = {}; // For each match a user wants to add, push the object
 
   for (var i = 0; i < loopNumber; i++) {
     var newObject = {};
     videoObj[i] = newObject;
-  }
+  } // Find the overall link the user inputted
 
+
+  $('#videoForm').find('input').each(function () {
+    if (this.name === 'videoLink') {
+      videoObj.videoLink = this.value;
+    }
+  });
   $("#domoMessage").animate({
     width: 'hide'
   }, 350);
 
-  if ($("#videoName").val() == '' || $("#videoAge").val() == '') {
+  if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#characterOne").val() == '' || $("#characterTwo").val() == '' || $("#videoLink").val() == '') {
     handleError("RAWR! All fields are required!");
     return false;
   } // Comment this out if you need to send data
+  ///
+  /// Putting each input into its own object to send to the server 
+  ///
 
 
   $('#videoForm').find('section > input').each(function () {
-    //console.log(this.value);
-    //console.log(modValue);
-    if (modValue % 2 === 0 || modValue === 0) {
-      videoObj[videoKey].name = this.value;
-      modValue++;
-    } else {
-      videoObj[videoKey].age = this.value;
-      modValue++;
-      videoKey++;
+    if (modValue === 0) {
+      // Each match will have a specific timestamp, so put that here with concatenation
+      videoObj[videoKey].link = "".concat(videoObj.videoLink, "&t=").concat(this.value);
     }
-  });
+
+    if (modValue === 1) {
+      videoObj[videoKey].player1 = this.value;
+    }
+
+    if (modValue === 2) {
+      videoObj[videoKey].char1 = this.value;
+    }
+
+    if (modValue === 3) {
+      videoObj[videoKey].char2 = this.value;
+    }
+
+    if (modValue === 4) {
+      // Once the end is reached, add the game from the selection
+      // and iterate the videoKey and reset the modification value
+      videoObj[videoKey].player2 = this.value;
+      videoObj[videoKey].game = $('#videoForm').find('select').find(":selected").text();
+      videoKey++;
+      modValue = -1;
+    }
+
+    modValue++;
+  }); // CSRF is associated with a user, so add a token to the overall object to send to the server
+
   $('#videoForm').find('input').each(function () {
     if (this.type === 'hidden') {
       videoObj._csrf = this.value;
     }
   });
   console.log(videoObj); // Uncomment this to send data
+  // Send the object! :diaYay:
 
   sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
     loadVideosFromServer();
@@ -97,19 +123,40 @@ var VideoForm = function VideoForm(props) {
 
   for (var i = 0; i < loopNumber; i++) {
     rows.push( /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("label", {
-      htmlFor: "username"
-    }, "Name: "), /*#__PURE__*/React.createElement("input", {
-      id: "videoName",
+      htmlFor: "timestamp"
+    }, "timestamp: "), /*#__PURE__*/React.createElement("input", {
+      id: "timestamp",
       type: "text",
-      name: "name",
-      placeholder: "Video Name"
+      name: "timestamp",
+      placeholder: "00h00m00s"
     }), /*#__PURE__*/React.createElement("label", {
-      htmlFor: "age"
-    }, "Age: "), /*#__PURE__*/React.createElement("input", {
-      id: "videoAge",
+      htmlFor: "playerOne"
+    }, "Player 1: "), /*#__PURE__*/React.createElement("input", {
+      id: "playerOne",
       type: "text",
-      name: "age",
-      placeholder: "Video Age"
+      name: "playerOne",
+      placeholder: "Player 1"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "characterOne"
+    }, "Character 1: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterOne",
+      type: "text",
+      name: "characterOne",
+      placeholder: "Character 1"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "characterTwo"
+    }, "Character 2: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterTwo",
+      type: "text",
+      name: "characterTwo",
+      placeholder: "Character 2"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "playerTwo"
+    }, "Player 2: "), /*#__PURE__*/React.createElement("input", {
+      id: "playerTwo",
+      type: "text",
+      name: "playerTwo",
+      placeholder: "Player 2"
     })));
   }
 
@@ -120,7 +167,22 @@ var VideoForm = function VideoForm(props) {
     action: "/maker",
     method: "POST",
     className: "videoForm"
-  }, rows, /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "videoLink"
+  }, "Video Link: "), /*#__PURE__*/React.createElement("input", {
+    id: "videoLink",
+    type: "text",
+    name: "videoLink",
+    placeholder: "Video Name"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "game"
+  }, "Game: "), /*#__PURE__*/React.createElement("select", {
+    id: "Game"
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "gbvs"
+  }, "GBVS"), /*#__PURE__*/React.createElement("option", {
+    value: "bbcf"
+  }, "BBCF")), rows, /*#__PURE__*/React.createElement("input", {
     className: "makeVideoSubmit",
     type: "submit",
     value: "Make Video"
@@ -201,10 +263,18 @@ var VideoList = function VideoList(props) {
       alt: "domo face",
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoName"
-    }, "Name: ", video.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "videoAge"
-    }, "Age: ", video.age), deleteButton);
+      className: "videoLink"
+    }, /*#__PURE__*/React.createElement("a", {
+      href: video.link
+    }, "Link")), /*#__PURE__*/React.createElement("h3", {
+      className: "videoPlayerOne"
+    }, "Player One: ", video.player1), /*#__PURE__*/React.createElement("h3", {
+      className: "videoCharacterOne"
+    }, "Character One: ", video.char1), /*#__PURE__*/React.createElement("h3", {
+      className: "videoCharacterTwo"
+    }, "Character Two: ", video.char2), /*#__PURE__*/React.createElement("h3", {
+      className: "videoPlayerTwo"
+    }, "Player Two: ", video.player2), deleteButton);
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "videoList"

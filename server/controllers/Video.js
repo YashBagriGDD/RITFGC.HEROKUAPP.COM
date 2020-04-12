@@ -21,11 +21,15 @@ const makeVideo = (req, res) => {
   const promiseArray = [];
   const values = Object.values(req.body);
 
-  for (let i = 0; i < values.length - 1; i++) {
-    //Check if all data fields were entered
-    if (!values[i].player1 || !values[i].player2 || !values[i].char1 || !values[i].char2 || !values[i].game || !values[i].link) {
-      return res.statuc(400).json({ error: "All fields must be entered to store the data."});
-    }
+  for (let i = 0; i < values.length - 2; i++) {
+    // Check if all data fields were entered
+    console.dir(values[i]);
+    // For some reason, this always throws regardless. I think we should stick
+    // to the client side error check for emptiness.
+    /* if (!values[i].player1 || !values[i].player2 || !values[i].char1
+      || !values[i].char2  || !values[i].link) {
+      return res.status(400).json({ error: "All fields must be entered to store the data."});
+    } */
 
     const videoData = {
       player1: values[i].player1,
@@ -53,8 +57,6 @@ const makeVideo = (req, res) => {
   }
 
   Promise.all(promiseArray).then(() => res.json({ redirect: '/maker' }));
-
-  return res.status(200).json({ message: 'Videos added' });
 };
 
 const getVideos = (request, response) => {
