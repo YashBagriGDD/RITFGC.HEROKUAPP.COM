@@ -11,17 +11,45 @@ const convertId = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
 
 const VideoSchema = new mongoose.Schema({
-  name: {
+  player1: {
     type: String,
     required: true,
     trim: true,
     set: setName,
   },
 
-  age: {
-    type: Number,
-    min: 0,
+  player2: {
+    type: String,
     required: true,
+    trim: true,
+    set: setName,
+  },
+
+  char1: {
+    type: String,
+    required: true,
+    trim: true,
+    set: setName,
+  },
+
+  char2: {
+    type: String,
+    required: true,
+    trim: true,
+    set: setName,
+  },
+
+  game: {
+    type: String,
+    required: true,
+    trim: true,
+    set: setName,
+  },
+
+  link: {
+    type: String,
+    required: true,
+    trim: true,
   },
 
   owner: {
@@ -37,8 +65,12 @@ const VideoSchema = new mongoose.Schema({
 });
 
 VideoSchema.statics.toAPI = (doc) => ({
-  name: doc.name,
-  age: doc.age,
+  player1: doc.player1,
+  player2: doc.player2,
+  char1: doc.char1,
+  char2: doc.char2,
+  game: doc.game,
+  link: doc.link,
 });
 
 VideoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -46,10 +78,10 @@ VideoSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
 
-  return VideoModel.find(search).select('name age').lean().exec(callback);
+  return VideoModel.find(search).select('player1 player2 char1 char2 game link').lean().exec(callback);
 };
 
-VideoSchema.statics.findAll = (callback) => VideoModel.find().select('name age').lean().exec(callback);
+VideoSchema.statics.findAll = (callback) => VideoModel.find().select('player1 player2 char1 char2 game link').lean().exec(callback);
 
 VideoSchema.statics.deleteItem = (uid, callback) => {
   const search = {

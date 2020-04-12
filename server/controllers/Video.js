@@ -22,9 +22,18 @@ const makeVideo = (req, res) => {
   const values = Object.values(req.body);
 
   for (let i = 0; i < values.length - 1; i++) {
+    //Check if all data fields were entered
+    if (!values[i].player1 || !values[i].player2 || !values[i].char1 || !values[i].char2 || !values[i].game || !values[i].link) {
+      return res.statuc(400).json({ error: "All fields must be entered to store the data."});
+    }
+
     const videoData = {
-      name: values[i].name,
-      age: values[i].age,
+      player1: values[i].player1,
+      player2: values[i].player2,
+      char1: values[i].char1,
+      char2: values[i].char2,
+      game: values[i].game,
+      link: values[i].link,
       owner: req.session.account._id,
     };
 
