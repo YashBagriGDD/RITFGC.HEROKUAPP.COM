@@ -89,8 +89,11 @@ const VideoList = function(props) {
         return (
             <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
-                <h3 className="videoName">Name: {video.name} </h3>
-                <h3 className="videoAge">Age: {video.age}</h3>
+                <h3 className="videoLink"><a href={video.link}>Link</a></h3>
+                <h3 className="videoPlayerOne">Player One: {video.player1}</h3>
+                <h3 className="videoCharacterOne">Character One: {video.char1}</h3>
+                <h3 className="videoCharacterTwo">Character Two: {video.char2}</h3>
+                <h3 className="videoPlayerTwo">Player Two: {video.player2}</h3>
             </div>
         );
     });

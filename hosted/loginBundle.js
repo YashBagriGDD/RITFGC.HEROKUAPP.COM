@@ -128,10 +128,18 @@ var VideoList = function VideoList(props) {
       alt: "domo face",
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoName"
-    }, "Name: ", video.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "videoAge"
-    }, "Age: ", video.age));
+      className: "videoLink"
+    }, /*#__PURE__*/React.createElement("a", {
+      href: video.link
+    }, "Link")), /*#__PURE__*/React.createElement("h3", {
+      className: "videoPlayerOne"
+    }, "Player One: ", video.player1), /*#__PURE__*/React.createElement("h3", {
+      className: "videoCharacterOne"
+    }, "Character One: ", video.char1), /*#__PURE__*/React.createElement("h3", {
+      className: "videoCharacterTwo"
+    }, "Character Two: ", video.char2), /*#__PURE__*/React.createElement("h3", {
+      className: "videoPlayerTwo"
+    }, "Player Two: ", video.player2));
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "videoList"
