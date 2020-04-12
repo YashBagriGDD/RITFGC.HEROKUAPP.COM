@@ -13,42 +13,42 @@ const setName = (name) => _.escape(name).trim();
 const VideoSchema = new mongoose.Schema({
   player1: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
     set: setName,
   },
 
   player2: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
     set: setName,
   },
 
   char1: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
     set: setName,
   },
 
   char2: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
     set: setName,
   },
 
   game: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
     set: setName,
   },
 
   link: {
     type: String,
-    required: false,
+    required: true,
     trim: true,
   },
 
