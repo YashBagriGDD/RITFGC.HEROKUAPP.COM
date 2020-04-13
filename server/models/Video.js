@@ -83,6 +83,8 @@ VideoSchema.statics.findByOwner = (ownerId, callback) => {
 
 VideoSchema.statics.findAll = (callback) => VideoModel.find().select('player1 player2 char1 char2 game link').lean().exec(callback);
 
+VideoSchema.statics.findSearch = (search, callback) => VideoModel.find(search).select('player1 player2 char1 char2 game link').lean().exec(callback);
+
 VideoSchema.statics.deleteItem = (uid, callback) => {
   const search = {
     _id: uid,

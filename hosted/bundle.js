@@ -113,6 +113,73 @@ var handleChange = function handleChange(e) {
 
   sendAjax('POST', $("#changeForm").attr("action"), $("#changeForm").serialize(), redirect);
   return false;
+}; // Handle the search
+
+
+var handleSearch = function handleSearch(e) {
+  e.preventDefault();
+  $("#domoMessage").animate({
+    width: 'hide'
+  }, 350);
+  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+      videos: data.videos
+    }), document.querySelector("#content"));
+  });
+}; // Search form
+
+
+var SearchForm = function SearchForm() {
+  return /*#__PURE__*/React.createElement("form", {
+    id: "searchForm",
+    onSubmit: handleSearch,
+    name: "searchForm",
+    action: "/search",
+    method: "GET",
+    className: "searchForm"
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "player1"
+  }, "Player 1: "), /*#__PURE__*/React.createElement("input", {
+    id: "player1Search",
+    type: "text",
+    name: "player1",
+    placeholder: "Player 1"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "player2"
+  }, "Player 2: "), /*#__PURE__*/React.createElement("input", {
+    id: "player2Search",
+    type: "text",
+    name: "player2",
+    placeholder: "Player 2"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "char1"
+  }, "Character 1: "), /*#__PURE__*/React.createElement("input", {
+    id: "char1Search",
+    type: "text",
+    name: "char1",
+    placeholder: "Character 1"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "char2"
+  }, "Character 2: "), /*#__PURE__*/React.createElement("input", {
+    id: "char2Search",
+    type: "text",
+    name: "char2",
+    placeholder: "Character 2"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "game"
+  }, "Game: "), /*#__PURE__*/React.createElement("select", {
+    id: "gameSearch"
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "gbvs"
+  }, "GBVS"), /*#__PURE__*/React.createElement("option", {
+    value: "bbcf"
+  }, "BBCF"), /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "All")), /*#__PURE__*/React.createElement("input", {
+    id: "formSubmit",
+    type: "submit",
+    value: "Search"
+  }));
 }; /// FORM TO SUBMIT NEW DATA
 
 
@@ -324,11 +391,16 @@ var createAddWindow = function createAddWindow(csrf) {
   });
 };
 
+var createSearchForm = function createSearchForm() {
+  ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#content"));
+};
+
 var setup = function setup(csrf) {
   var homeButton = document.querySelector("#home");
   var pageButton = document.querySelector("#myPage");
   var addButton = document.querySelector("#addVideo");
   var passChangeButton = document.querySelector("#passChangeButton");
+  var searchButton = document.querySelector("#searchButton");
   passChangeButton.addEventListener("click", function (e) {
     e.preventDefault();
     createPassChangeWindow(csrf);
@@ -347,6 +419,11 @@ var setup = function setup(csrf) {
   pageButton.addEventListener("click", function (e) {
     e.preventDefault();
     loadVideosFromServer();
+    return false;
+  });
+  searchButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    createSearchForm();
     return false;
   });
   loadAllVideosFromServer();

@@ -121,6 +121,49 @@ const handleChange = (e) => {
     return false;
 };
 
+// Handle the search
+const handleSearch = (e) => {
+    e.preventDefault();
+
+    $("#domoMessage").animate({width: 'hide'}, 350);
+
+    sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), (data) =>{
+        ReactDOM.render(
+            <VideoList videos={data.videos} />, document.querySelector("#content")
+        );
+    });
+};
+
+// Search form
+const SearchForm = () => {
+    return(
+        <form
+            id="searchForm"
+            onSubmit={handleSearch}
+            name="searchForm"
+            action="/search"
+            method="GET"
+            className="searchForm"
+        >
+            <label htmlFor="player1">Player 1: </label>
+            <input id="player1Search" type="text" name="player1" placeholder="Player 1"/>
+            <label htmlFor="player2">Player 2: </label>
+            <input id="player2Search" type="text" name="player2" placeholder="Player 2"/>
+            <label htmlFor="char1">Character 1: </label>
+            <input id="char1Search" type="text" name="char1" placeholder="Character 1"/>
+            <label htmlFor="char2">Character 2: </label>
+            <input id="char2Search" type="text" name="char2" placeholder="Character 2"/>
+            <label htmlFor="game">Game: </label>
+            <select id="gameSearch">
+                <option value="gbvs">GBVS</option>
+                <option value="bbcf">BBCF</option>
+                <option value="">All</option>
+            </select>
+            <input id="formSubmit" type="submit" value="Search"/>
+        </form>
+    )
+};
+
 /// FORM TO SUBMIT NEW DATA
 const VideoForm = (props) => {
 
@@ -283,11 +326,18 @@ const createAddWindow = (csrf) => {
     });
 };
 
+const createSearchForm = () => {
+    ReactDOM.render(
+        <SearchForm />, document.querySelector("#content")  
+    );
+}
+
 const setup = function(csrf) {
     const homeButton = document.querySelector("#home");
     const pageButton = document.querySelector("#myPage");
     const addButton = document.querySelector("#addVideo");
     const passChangeButton = document.querySelector("#passChangeButton");
+    const searchButton = document.querySelector("#searchButton");
 
     passChangeButton.addEventListener("click", (e) => {
         e.preventDefault();
@@ -311,7 +361,13 @@ const setup = function(csrf) {
         e.preventDefault();
         loadVideosFromServer();
         return false;
-    })
+    });
+
+    searchButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        createSearchForm();
+        return false;
+    });
 
     loadAllVideosFromServer();
 };
