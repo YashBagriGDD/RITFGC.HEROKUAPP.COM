@@ -103,13 +103,13 @@ const deleteEntry = (request, response) => {
 const searchVideos = (request, response) => {
   const req = request;
   const res = response;
-  
+
   const search = {
-    player1: req.body.player1,
-    player2: req.body.player2,
-    char1: req.body.char1,
-    char2: req.body.char2,
-    game: req.body.game,
+    player1: `${req.body.player1}`,
+    player2: `${req.body.player2}`,
+    char1: `${req.body.char1}`,
+    char2: `${req.body.char2}`,
+    game: `${req.body.game}`,
   };
 
   return Video.VideoModel.findSearch(search, (err, docs) => {
