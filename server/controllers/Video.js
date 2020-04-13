@@ -100,8 +100,23 @@ const deleteEntry = (request, response) => {
   });
 };
 
+const searchVideos = (request, response) => {
+  const req = request;
+  const res = response;
+
+  return Video.VideoModel.findSearch(req.body, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+
+    return res.json({ videos: docs });
+  });
+};
+
 module.exports.makerPage = makerPage;
 module.exports.getVideos = getVideos;
 module.exports.getAllVideos = getAllVideos;
 module.exports.make = makeVideo;
 module.exports.delete = deleteEntry;
+module.exports.searchVideos = searchVideos;
