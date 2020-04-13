@@ -127,7 +127,15 @@ const handleSearch = (e) => {
 
     $("#domoMessage").animate({width: 'hide'}, 350);
 
-    sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), (data) =>{
+    let params = {
+        player1: $("#player1Search").val(),
+        player2: $("#player2Search").val(),
+        char1: $("#char1Search").val(),
+        char2: $("#char2Search").val(),
+        game: $("#gameSearch").val(),
+    }
+
+    sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
         ReactDOM.render(
             <VideoList videos={data.videos} />, document.querySelector("#content")
         );
