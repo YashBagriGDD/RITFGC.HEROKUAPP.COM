@@ -103,14 +103,14 @@ const deleteEntry = (request, response) => {
 const searchVideos = (request, response) => {
   const req = request;
   const res = response;
-  const search = {}; // object to hold search params
-
-  // Check whether the search field is null. If not add it to the search param
-  if (req.body.player1) search.player1 = `${req.body.player1}`;
-  if (req.body.player1) search.player2 = `${req.body.player2}`;
-  if (req.body.char1) search.char1 = `${req.body.char1}`;
-  if (req.body.char2) search.char2 = `${req.body.char2}`;
-  if (req.body.game) search.game = `${req.body.game}`;
+  
+  const search = {
+    player1: req.body.player1,
+    player2: req.body.player2,
+    char1: req.body.char1,
+    char2: req.body.char2,
+    game: req.body.game,
+  };
 
   return Video.VideoModel.findSearch(search, (err, docs) => {
     if (err) {
