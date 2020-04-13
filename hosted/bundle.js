@@ -120,6 +120,7 @@ var VideoForm = function VideoForm(props) {
   // Rows to dynamically add more matches
   // https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
   var rows = [];
+  var rowing;
 
   for (var i = 0; i < loopNumber; i++) {
     rows.push( /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("label", {
@@ -160,6 +161,14 @@ var VideoForm = function VideoForm(props) {
     })));
   }
 
+  if ($('#videoForm').find('select').find(":selected").text() == 'BBCF') {
+    rowing = /*#__PURE__*/React.createElement("input", {
+      className: "makeVideoSubmit",
+      type: "submit",
+      value: "Make Video"
+    });
+  }
+
   return /*#__PURE__*/React.createElement("form", {
     id: "videoForm",
     onSubmit: handleVideo,
@@ -182,7 +191,7 @@ var VideoForm = function VideoForm(props) {
     value: "gbvs"
   }, "GBVS"), /*#__PURE__*/React.createElement("option", {
     value: "bbcf"
-  }, "BBCF")), rows, /*#__PURE__*/React.createElement("input", {
+  }, "BBCF")), rows, rowing, /*#__PURE__*/React.createElement("input", {
     className: "makeVideoSubmit",
     type: "submit",
     value: "Make Video"
@@ -268,13 +277,19 @@ var VideoList = function VideoList(props) {
       href: video.link
     }, "Link")), /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerOne"
-    }, "Player One: ", video.player1), /*#__PURE__*/React.createElement("h3", {
+    }, video.player1), /*#__PURE__*/React.createElement("h3", {
       className: "videoCharacterOne"
-    }, "Character One: ", video.char1), /*#__PURE__*/React.createElement("h3", {
+    }, "(", video.char1, ")"), /*#__PURE__*/React.createElement("h3", {
+      className: "vs"
+    }, "vs"), /*#__PURE__*/React.createElement("img", {
+      id: "char2Img",
+      src: "/assets/img/CF/Mai.png",
+      alt: "domo face"
+    }), /*#__PURE__*/React.createElement("h3", {
       className: "videoCharacterTwo"
-    }, "Character Two: ", video.char2), /*#__PURE__*/React.createElement("h3", {
+    }, "(", video.char2, ")"), /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerTwo"
-    }, "Player Two: ", video.player2), deleteButton);
+    }, video.player2), deleteButton);
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "videoList"

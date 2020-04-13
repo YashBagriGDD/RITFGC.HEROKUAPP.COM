@@ -127,6 +127,7 @@ const VideoForm = (props) => {
     // Rows to dynamically add more matches
     // https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
     let rows = [];
+    let rowing;
 
     for(let i = 0; i < loopNumber; i++) {
         rows.push(
@@ -146,6 +147,11 @@ const VideoForm = (props) => {
         )
     }
 
+    if($('#videoForm').find('select').find(":selected").text() == 'BBCF')
+    {
+        rowing = <input className="makeVideoSubmit" type="submit" value="Make Video"/>;
+    } 
+
     return ( 
     <form 
         id="videoForm"
@@ -163,6 +169,7 @@ const VideoForm = (props) => {
             <option value="bbcf">BBCF</option>
         </select>
         {rows}
+        {rowing}
         <input className="makeVideoSubmit" type="submit" value="Make Video"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
         <button id="addMatchButton" type="button">Add Match</button>
@@ -220,10 +227,13 @@ const VideoList = function(props) {
             <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
                 <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-                <h3 className="videoPlayerOne">Player One: {video.player1}</h3>
-                <h3 className="videoCharacterOne">Character One: {video.char1}</h3>
-                <h3 className="videoCharacterTwo">Character Two: {video.char2}</h3>
-                <h3 className="videoPlayerTwo">Player Two: {video.player2}</h3>
+                <h3 className="videoPlayerOne">{video.player1}</h3>
+                <h3 className="videoCharacterOne">({video.char1})</h3>
+                <h3 className="vs">vs</h3>
+                <img id="char2Img" src="/assets/img/CF/Mai.png" alt="domo face" />
+
+                <h3 className="videoCharacterTwo">({video.char2})</h3>
+                <h3 className="videoPlayerTwo">{video.player2}</h3>
                 {deleteButton}
             </div>
         );
