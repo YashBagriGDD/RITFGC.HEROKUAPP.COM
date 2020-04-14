@@ -452,10 +452,11 @@ var VideoForm = function VideoForm(props) {
     className: "videoForm"
   }, /*#__PURE__*/React.createElement("div", {
     id: "static"
-  }, /*#__PURE__*/React.createElement("label", {
+  }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "videoLink"
   }, "Video Link: "), /*#__PURE__*/React.createElement("input", {
     id: "videoLink",
+    "class": "form-control",
     type: "text",
     name: "videoLink",
     placeholder: "YouTube Link"
@@ -469,7 +470,7 @@ var VideoForm = function VideoForm(props) {
     value: "bbcf"
   }, "BBCF"), /*#__PURE__*/React.createElement("option", {
     value: "gbvs"
-  }, "GBVS"))), rows, /*#__PURE__*/React.createElement("input", {
+  }, "GBVS")), rows, /*#__PURE__*/React.createElement("input", {
     className: "makeVideoSubmit",
     type: "submit",
     value: "Make Video"
@@ -534,11 +535,13 @@ var VideoList = function VideoList(props) {
   var videoNodes = props.videos.map(function (video) {
     // https://react-cn.github.io/react/tips/if-else-in-JSX.html
     if (pageList) {
-      deleteButton = /*#__PURE__*/React.createElement("button", {
-        className: "delete",
+      deleteButton = /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("button", {
+        className: "delete btn",
         value: video._id,
         onClick: handleDelete
-      }, "Delete Item");
+      }, /*#__PURE__*/React.createElement("i", {
+        className: "fas fa-trash"
+      })));
     } else {
       deleteButton = null;
     }
@@ -557,40 +560,54 @@ var VideoList = function VideoList(props) {
       gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
     }
 
-    return /*#__PURE__*/React.createElement("div", {
-      key: video._id,
-      className: "video"
+    var formatter = function formatter(value, row, index) {
+      return "<a href=".concat(video.link, ">").concat(value, "</a>");
+    };
+
+    return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+      scope: "row"
     }, /*#__PURE__*/React.createElement("img", {
+      id: "gameLogo",
+      className: "img-responsive",
       src: gameSrc,
-      alt: video.game,
-      className: "gameLogo"
-    }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoLink"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: video.link
-    }, "Link")), /*#__PURE__*/React.createElement("div", {
-      id: "vidDiv1"
-    }, /*#__PURE__*/React.createElement("h3", {
-      className: "videoPlayerOne"
-    }, video.player1), /*#__PURE__*/React.createElement("img", {
+      alt: video.gameSrc
+    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
       id: "char1Img",
       src: char1Src,
       alt: video.char1
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "vs"
-    }, /*#__PURE__*/React.createElement("h3", null, "vs")), /*#__PURE__*/React.createElement("div", {
-      id: "vidDiv2"
-    }, /*#__PURE__*/React.createElement("img", {
+    })), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
       id: "char2Img",
       src: char2Src,
       alt: video.char2
-    }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoPlayerTwo"
-    }, video.player2)), deleteButton);
+    })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+      href: video.link,
+      className: "icons-sm yt-ic"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fab fa-youtube fa-2x"
+    }, " "))), deleteButton))
+    /*<div key = {video._id} className="video">
+        <img src={gameSrc} alt={video.game} className="gameLogo"/>
+        <h3 className="videoLink"><a href={video.link}>Link</a></h3>
+        <div id = 'vidDiv1'>
+            <h3 className="videoPlayerOne">{video.player1}</h3>
+            <img id="char1Img" src={char1Src} alt={video.char1} />
+        </div>
+        <div className="vs">
+            <h3>vs</h3>
+        </div>
+        <div id = 'vidDiv2'>
+            <img id="char2Img" src={char2Src} alt={video.char2} />
+            <h3 className="videoPlayerTwo">{video.player2}</h3>
+        </div>
+        {deleteButton}
+    </div>*/
+    ;
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "videoList"
-  }, videoNodes);
+    id: "pageContainer"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "table table-sm"
+  }, videoNodes));
 };
 
 var loadVideosFromServer = function loadVideosFromServer() {

@@ -190,63 +190,23 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#videos {
-    width: 40%;
-    min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
+
+
+.img-responsive {
+    width: 50%;
+}
+
+.table {
+    width: 40%; 
     margin: 0 auto;
-    margin-top: 100px;
 }
 
-.video {
-    width: 65%;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 2px;
-    border: 2px solid red;
-    border-radius: 4px;
-    background-color: #55acee;
-    padding: 10px;
-    min-height:60px;
-    overflow: hidden;
-    text-align: center;
+.table > tbody > tr > td{
+    vertical-align: middle;
 }
 
-#vidDiv1 {
-    margin-left: 10%;
-    display: inline-block;
-    float: left;
-}
-
-#vidDiv2 {
-    display: inline-block;
-
-}
-
-.vs {
-    display:inline-block;
-    float:left;
-    margin-left: 5%;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-.video:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
-}
-
-img.gameLogo {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 7%;
-    width: 7%;
-    border-radius: 4px;
-    float:left;
+.table > tbody > tr > .td{
+    vertical-align: middle;
 }
 
 h3.emptyDomo {
@@ -257,19 +217,6 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.videoPlayerOne, h3.videoCharacterOne, h3.vs, h3.videoCharacterTwo, h3.videoPlayerTwo {
-    display:inline;
-    font-weight: bold;
-    padding-top: 20px;
-    padding-left: 25px;
-    font-size: 1.5em;
-    line-height: 60px;
-
-}
-
-#char2Img, #char1Img {
-    display: inline-block;
-}
 
 h3.videoLink{
     float:right;

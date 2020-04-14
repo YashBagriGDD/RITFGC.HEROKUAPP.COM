@@ -324,16 +324,15 @@ const VideoForm = (props) => {
         method="POST"
         className="videoForm"
     >
-        <div id ="static">
-            <label htmlFor="videoLink">Video Link: </label>
-            <input id="videoLink" type="text" name="videoLink" placeholder="YouTube Link"/>
-            <label htmlFor="game">Game: </label>
-            <select id="Game">
-                <option value=""></option>
-                <option value="bbcf">BBCF</option>
-                <option value="gbvs">GBVS</option>
-            </select>
-        </div>
+        <div id ="static"></div>
+        <label htmlFor="videoLink">Video Link: </label>
+        <input id="videoLink" class='form-control' type="text" name="videoLink" placeholder="YouTube Link"/>
+        <label htmlFor="game">Game: </label>
+        <select id="Game">
+            <option value=""></option>
+            <option value="bbcf">BBCF</option>
+            <option value="gbvs">GBVS</option>
+        </select>
         {rows}
         <input className="makeVideoSubmit" type="submit" value="Make Video"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
@@ -383,7 +382,11 @@ const VideoList = function(props) {
 
         // https://react-cn.github.io/react/tips/if-else-in-JSX.html
         if(pageList) {
-            deleteButton = <button className="delete" value={video._id} onClick={handleDelete}>Delete Item</button>;
+            deleteButton = <td>
+                            <button className="delete btn" value={video._id} onClick={handleDelete}>
+                                <i className="fas fa-trash"></i>
+                            </button>
+                           </td>;
         } else {
             deleteButton = null;
         }
@@ -400,8 +403,27 @@ const VideoList = function(props) {
             char2Src = `/assets/img/GBVS/${video.char2}.png`;
             gameSrc = `/assets/img/GBVS/${video.game}.png`;
         }
+
+        const formatter = (value, row, index) => {
+            return `<a href=${video.link}>${value}</a>`
+        }
         return (
-            <div key = {video._id} className="video">
+                <tbody>
+                    <tr>
+                        <th scope="row"><img id="gameLogo" className="img-responsive" src={gameSrc} alt={video.gameSrc} /></th>
+                        <td>{video.player1}</td>
+                        <td><img id="char1Img" src={char1Src} alt={video.char1} /></td>
+                        <td>vs</td>
+                        <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
+                        <td>{video.player2}</td>
+                        <td>
+                            <a href={video.link} className="icons-sm yt-ic"><i className="fab fa-youtube fa-2x"> </i></a>
+                        </td>
+                        {deleteButton}
+                    </tr>
+                </tbody>
+
+            /*<div key = {video._id} className="video">
                 <img src={gameSrc} alt={video.game} className="gameLogo"/>
                 <h3 className="videoLink"><a href={video.link}>Link</a></h3>
                 <div id = 'vidDiv1'>
@@ -416,14 +438,16 @@ const VideoList = function(props) {
                     <h3 className="videoPlayerTwo">{video.player2}</h3>
                 </div>
                 {deleteButton}
-            </div>
+            </div>*/
             
         );
     });
     
     return (
-        <div className="videoList">
-            {videoNodes}
+        <div id="pageContainer">
+            <table className="table table-sm">
+                {videoNodes}
+            </table>
         </div>
     );
 };
