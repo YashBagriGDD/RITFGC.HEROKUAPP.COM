@@ -324,14 +324,16 @@ const VideoForm = (props) => {
         method="POST"
         className="videoForm"
     >
-        <label htmlFor="videoLink">Video Link: </label>
-        <input id="videoLink" type="text" name="videoLink" placeholder="YouTube Link"/>
-        <label htmlFor="game">Game: </label>
-        <select id="Game">
-            <option value=""></option>
-            <option value="bbcf">BBCF</option>
-            <option value="gbvs">GBVS</option>
-        </select>
+        <div id ="static">
+            <label htmlFor="videoLink">Video Link: </label>
+            <input id="videoLink" type="text" name="videoLink" placeholder="YouTube Link"/>
+            <label htmlFor="game">Game: </label>
+            <select id="Game">
+                <option value=""></option>
+                <option value="bbcf">BBCF</option>
+                <option value="gbvs">GBVS</option>
+            </select>
+        </div>
         {rows}
         <input className="makeVideoSubmit" type="submit" value="Make Video"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>

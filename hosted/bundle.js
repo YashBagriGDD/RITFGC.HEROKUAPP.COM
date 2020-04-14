@@ -450,6 +450,8 @@ var VideoForm = function VideoForm(props) {
     action: "/maker",
     method: "POST",
     className: "videoForm"
+  }, /*#__PURE__*/React.createElement("div", {
+    id: "static"
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "videoLink"
   }, "Video Link: "), /*#__PURE__*/React.createElement("input", {
@@ -467,7 +469,7 @@ var VideoForm = function VideoForm(props) {
     value: "bbcf"
   }, "BBCF"), /*#__PURE__*/React.createElement("option", {
     value: "gbvs"
-  }, "GBVS")), rows, /*#__PURE__*/React.createElement("input", {
+  }, "GBVS"))), rows, /*#__PURE__*/React.createElement("input", {
     className: "makeVideoSubmit",
     type: "submit",
     value: "Make Video"
