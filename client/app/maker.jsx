@@ -325,7 +325,7 @@ const VideoForm = (props) => {
         className="videoForm"
     >
         <label htmlFor="videoLink">Video Link: </label>
-        <input id="videoLink" type="text" name="videoLink" placeholder="Video Name"/>
+        <input id="videoLink" type="text" name="videoLink" placeholder="YouTube Link"/>
         <label htmlFor="game">Game: </label>
         <select id="Game">
             <option value=""></option>

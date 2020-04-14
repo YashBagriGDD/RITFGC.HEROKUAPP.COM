@@ -456,7 +456,7 @@ var VideoForm = function VideoForm(props) {
     id: "videoLink",
     type: "text",
     name: "videoLink",
-    placeholder: "Video Name"
+    placeholder: "YouTube Link"
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "game"
   }, "Game: "), /*#__PURE__*/React.createElement("select", {
