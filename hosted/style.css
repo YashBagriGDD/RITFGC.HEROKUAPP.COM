@@ -203,13 +203,33 @@ nav:nth-child(1) {
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 2px;
-    border: 2px solid #55acee;
+    border: 2px solid red;
     border-radius: 4px;
     background-color: #55acee;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
     text-align: center;
+}
+
+#vidDiv1 {
+    margin-left: 10%;
+    display: inline-block;
+    float: left;
+}
+
+#vidDiv2 {
+    display: inline-block;
+
+}
+
+.vs {
+    display:inline-block;
+    float:left;
+    margin-left: 5%;
+    font-weight: bold;
+    padding-right: 40px;
+    font-size: 1.5em;
 }
 
 .video:hover {
@@ -247,16 +267,16 @@ h3.videoPlayerOne, h3.videoCharacterOne, h3.vs, h3.videoCharacterTwo, h3.videoPl
 
 }
 
-#char2Img {
+#char2Img, #char1Img {
     display: inline-block;
 }
 
 h3.videoLink {
     float:right;
     text-align: left;
-    width: 100px;
+    width: 50px;
     font-weight: bold;
-    padding-right: 40px;
+    padding-right: 20px;
     font-size: 1.5em;
 }
 

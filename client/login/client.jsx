@@ -86,15 +86,25 @@ const VideoList = function(props) {
     }
 
     const videoNodes = props.videos.map(function(video) {
+        let char1src = `/assets/img/CF/${video.char1}.png`;
+        let char2src = `/assets/img/CF/${video.char2}.png`;
         return (
             <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
                 <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-                <h3 className="videoPlayerOne">Player One: {video.player1}</h3>
-                <h3 className="videoCharacterOne">Character One: {video.char1}</h3>
-                <h3 className="videoCharacterTwo">Character Two: {video.char2}</h3>
-                <h3 className="videoPlayerTwo">Player Two: {video.player2}</h3>
+                <div id = 'vidDiv1'>
+                    <h3 className="videoPlayerOne">{video.player1}</h3>
+                    <img id="char1Img" src={char1src} alt={video.char1} />
+                </div>
+                <div className="vs">
+                    <h3>vs</h3>
+                </div>
+                <div id = 'vidDiv2'>
+                    <img id="char2Img" src={char2src} alt={video.char2} />
+                    <h3 className="videoPlayerTwo">{video.player2}</h3>
+                </div>
             </div>
+            
         );
     });
     
@@ -108,7 +118,7 @@ const VideoList = function(props) {
 const loadAllVideosFromServer = () => {
     sendAjax('GET', '/getAllVideos', null, (data) => {
         ReactDOM.render(
-            <VideoList videos={data.videos} />, document.querySelector("#videos")
+            <VideoList videos={data.videos} />, document.querySelector("#content")
         );
     });
 

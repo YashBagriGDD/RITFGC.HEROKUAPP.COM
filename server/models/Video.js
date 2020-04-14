@@ -90,7 +90,7 @@ VideoSchema.statics.findSearch = (search, callback) => {
     char1: search.char1,
     char2: search.char2,
     game: search.game,
-  }
+  };
 
   return VideoModel.find(params).select('player1 player2 char1 char2 game link').lean().exec(callback);
 };

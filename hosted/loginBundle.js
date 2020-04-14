@@ -120,6 +120,8 @@ var VideoList = function VideoList(props) {
   }
 
   var videoNodes = props.videos.map(function (video) {
+    var char1src = "/assets/img/CF/".concat(video.char1, ".png");
+    var char2src = "/assets/img/CF/".concat(video.char2, ".png");
     return /*#__PURE__*/React.createElement("div", {
       key: video._id,
       className: "video"
@@ -131,15 +133,25 @@ var VideoList = function VideoList(props) {
       className: "videoLink"
     }, /*#__PURE__*/React.createElement("a", {
       href: video.link
-    }, "Link")), /*#__PURE__*/React.createElement("h3", {
+    }, "Link")), /*#__PURE__*/React.createElement("div", {
+      id: "vidDiv1"
+    }, /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerOne"
-    }, "Player One: ", video.player1), /*#__PURE__*/React.createElement("h3", {
-      className: "videoCharacterOne"
-    }, "Character One: ", video.char1), /*#__PURE__*/React.createElement("h3", {
-      className: "videoCharacterTwo"
-    }, "Character Two: ", video.char2), /*#__PURE__*/React.createElement("h3", {
+    }, video.player1), /*#__PURE__*/React.createElement("img", {
+      id: "char1Img",
+      src: char1src,
+      alt: video.char1
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "vs"
+    }, /*#__PURE__*/React.createElement("h3", null, "vs")), /*#__PURE__*/React.createElement("div", {
+      id: "vidDiv2"
+    }, /*#__PURE__*/React.createElement("img", {
+      id: "char2Img",
+      src: char2src,
+      alt: video.char2
+    }), /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerTwo"
-    }, "Player Two: ", video.player2));
+    }, video.player2)));
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "videoList"
@@ -150,7 +162,7 @@ var loadAllVideosFromServer = function loadAllVideosFromServer() {
   sendAjax('GET', '/getAllVideos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
-    }), document.querySelector("#videos"));
+    }), document.querySelector("#content"));
   });
   ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 }; //#endregion

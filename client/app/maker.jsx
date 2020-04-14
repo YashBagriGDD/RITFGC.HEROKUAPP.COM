@@ -386,19 +386,26 @@ const VideoList = function(props) {
             deleteButton = null;
         }
 
+        let char1src = `/assets/img/CF/${video.char1}.png`;
+        let char2src = `/assets/img/CF/${video.char2}.png`;
         return (
             <div key = {video._id} className="video">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
                 <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-                <h3 className="videoPlayerOne">{video.player1}</h3>
-                <h3 className="videoCharacterOne">({video.char1})</h3>
-                <h3 className="vs">vs</h3>
-                <img id="char2Img" src="/assets/img/CF/Mai.png" alt="domo face" />
-
-                <h3 className="videoCharacterTwo">({video.char2})</h3>
-                <h3 className="videoPlayerTwo">{video.player2}</h3>
+                <div id = 'vidDiv1'>
+                    <h3 className="videoPlayerOne">{video.player1}</h3>
+                    <img id="char1Img" src={char1src} alt={video.char1} />
+                </div>
+                <div className="vs">
+                    <h3>vs</h3>
+                </div>
+                <div id = 'vidDiv2'>
+                    <img id="char2Img" src={char2src} alt={video.char2} />
+                    <h3 className="videoPlayerTwo">{video.player2}</h3>
+                </div>
                 {deleteButton}
             </div>
+            
         );
     });
     

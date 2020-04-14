@@ -540,6 +540,8 @@ var VideoList = function VideoList(props) {
       deleteButton = null;
     }
 
+    var char1src = "/assets/img/CF/".concat(video.char1, ".png");
+    var char2src = "/assets/img/CF/".concat(video.char2, ".png");
     return /*#__PURE__*/React.createElement("div", {
       key: video._id,
       className: "video"
@@ -551,21 +553,25 @@ var VideoList = function VideoList(props) {
       className: "videoLink"
     }, /*#__PURE__*/React.createElement("a", {
       href: video.link
-    }, "Link")), /*#__PURE__*/React.createElement("h3", {
+    }, "Link")), /*#__PURE__*/React.createElement("div", {
+      id: "vidDiv1"
+    }, /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerOne"
-    }, video.player1), /*#__PURE__*/React.createElement("h3", {
-      className: "videoCharacterOne"
-    }, "(", video.char1, ")"), /*#__PURE__*/React.createElement("h3", {
+    }, video.player1), /*#__PURE__*/React.createElement("img", {
+      id: "char1Img",
+      src: char1src,
+      alt: video.char1
+    })), /*#__PURE__*/React.createElement("div", {
       className: "vs"
-    }, "vs"), /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/React.createElement("h3", null, "vs")), /*#__PURE__*/React.createElement("div", {
+      id: "vidDiv2"
+    }, /*#__PURE__*/React.createElement("img", {
       id: "char2Img",
-      src: "/assets/img/CF/Mai.png",
-      alt: "domo face"
+      src: char2src,
+      alt: video.char2
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoCharacterTwo"
-    }, "(", video.char2, ")"), /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerTwo"
-    }, video.player2), deleteButton);
+    }, video.player2)), deleteButton);
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "videoList"
