@@ -30,8 +30,8 @@ const handleVideo = (e) => {
 
     $("#domoMessage").animate({width: 'hide'}, 350);
 
-    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#characterOne").val() == ''
-    || $("#characterTwo").val() == '' || $("#videoLink").val() == '') {
+    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+    $("#videoLink").val() == '') {
         handleError("RAWR! All fields are required!");
         return false;
     }
@@ -41,6 +41,7 @@ const handleVideo = (e) => {
      /// Putting each input into its own object to send to the server 
      ///
      $('#videoForm').find('section > input').each(function(){
+         console.log(this);
 
         if(modValue===0) {
             // Each match will have a specific timestamp, so put that here with concatenation
@@ -50,20 +51,16 @@ const handleVideo = (e) => {
             videoObj[videoKey].player1 = this.value;
         }
         if(modValue===2) {
-            videoObj[videoKey].char1 = this.value;
-        } 
-        if(modValue===3) {
-            videoObj[videoKey].char2 = this.value;
-        } 
-        if(modValue===4) {
-            
             // Once the end is reached, add the game from the selection
+            // Add characters as well
             // and iterate the videoKey and reset the modification value
+            videoObj[videoKey].char1 = $('#videoForm').find('#char1').find(":selected").text();
+            videoObj[videoKey].char2 = $('#videoForm').find('#char2').find(":selected").text();
             videoObj[videoKey].player2 = this.value;
-            videoObj[videoKey].game = $('#videoForm').find('select').find(":selected").text();
+            videoObj[videoKey].game = $('#videoForm').find('#Game').find(":selected").text();
             videoKey++;
             modValue=-1;
-        } 
+        }
 
         modValue++;
     });
@@ -178,7 +175,126 @@ const VideoForm = (props) => {
     // Rows to dynamically add more matches
     // https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
     let rows = [];
-    let rowing;
+    let charSelection;
+    let char2Selection;
+
+    if($('#videoForm').find('#Game').find(":selected").text() === 'BBCF') {
+        charSelection = <select id = "char1">
+                    <option value="Amane">Amane</option>
+                    <option value="Arakune">Arakune</option>
+                    <option value="Azrael">Azrael</option>
+                    <option value="Bang">Bang</option>
+                    <option value="Bullet">Bullet</option>
+                    <option value="Carl">Carl</option>
+                    <option value="Celica">Celica</option>
+                    <option value="Es">Es</option>
+                    <option value="Hakumen">Hakumen</option>
+                    <option value="Hazama">Hazama</option>
+                    <option value="Hibiki">Hibiki</option>
+                    <option value="Izanami">Izanami</option>
+                    <option value="Izayoi">Izayoi</option>
+                    <option value="Jin">Jin</option>
+                    <option value="Jubei">Jubei</option>
+                    <option value="Kagura">Kagura</option>
+                    <option value="Kokonoe">Kokonoe</option>
+                    <option value="Litchi">Litchi</option>
+                    <option value="Makoto">Makoto</option>
+                    <option value="Mai">Mai</option>
+                    <option value="Naoto">Naoto</option>
+                    <option value="Nine">Nine</option>
+                    <option value="Noel">Noel</option>
+                    <option value="Platinum">Platinum</option>
+                    <option value="Rachel">Rachel</option>
+                    <option value="Ragna">Ragna</option>
+                    <option value="Relius">Relius</option>
+                    <option value="Susanoo">Susanoo</option>
+                    <option value="Tager">Tager</option>
+                    <option value="Taokaka">Taokaka</option>
+                    <option value="Tsubaki">Tsubaki</option>
+                    <option value="Terumi">Terumi</option>
+                    <option value="Valkenhayn">Valkenhayn</option>
+                    <option value="Lambda-11">Lambda-11</option>
+                    <option value="Mu-12">Mu-12</option>
+                    <option value="Nu-13">Nu-13</option>
+                </select>
+
+        char2Selection = <select id = "char2">
+                    <option value="Amane">Amane</option>
+                    <option value="Arakune">Arakune</option>
+                    <option value="Azrael">Azrael</option>
+                    <option value="Bang">Bang</option>
+                    <option value="Bullet">Bullet</option>
+                    <option value="Carl">Carl</option>
+                    <option value="Celica">Celica</option>
+                    <option value="Es">Es</option>
+                    <option value="Hakumen">Hakumen</option>
+                    <option value="Hazama">Hazama</option>
+                    <option value="Hibiki">Hibiki</option>
+                    <option value="Izanami">Izanami</option>
+                    <option value="Izayoi">Izayoi</option>
+                    <option value="Jin">Jin</option>
+                    <option value="Jubei">Jubei</option>
+                    <option value="Kagura">Kagura</option>
+                    <option value="Kokonoe">Kokonoe</option>
+                    <option value="Litchi">Litchi</option>
+                    <option value="Makoto">Makoto</option>
+                    <option value="Mai">Mai</option>
+                    <option value="Naoto">Naoto</option>
+                    <option value="Nine">Nine</option>
+                    <option value="Noel">Noel</option>
+                    <option value="Platinum">Platinum</option>
+                    <option value="Rachel">Rachel</option>
+                    <option value="Ragna">Ragna</option>
+                    <option value="Relius">Relius</option>
+                    <option value="Susanoo">Susanoo</option>
+                    <option value="Tager">Tager</option>
+                    <option value="Taokaka">Taokaka</option>
+                    <option value="Tsubaki">Tsubaki</option>
+                    <option value="Terumi">Terumi</option>
+                    <option value="Valkenhayn">Valkenhayn</option>
+                    <option value="Lambda-11">Lambda-11</option>
+                    <option value="Mu-12">Mu-12</option>
+                    <option value="Nu-13">Nu-13</option>
+                </select>
+
+
+    } else if($('#videoForm').find('#Game').find(":selected").text() === 'GBVS'){
+        charSelection= <select id ="char1">
+                    <option value="Beezlebub">Beezlebub</option>
+                    <option value="Charlotta">Charlotta</option>
+                    <option value="Djeeta">Djeeta</option>
+                    <option value="Ferry">Ferry</option>
+                    <option value="Gran">Gran</option>
+                    <option value="Katalina">Katalina</option>
+                    <option value="Ladiva">Ladiva</option>
+                    <option value="Lancelot">Lancelot</option>
+                    <option value="Lowain">Lowain</option>
+                    <option value="Metera">Metera</option>
+                    <option value="Narmaya">Narmaya</option>
+                    <option value="Percival">Percival</option>
+                    <option value="Soriz">Soriz</option>
+                    <option value="Vaseraga">Vaseraga</option>
+                    <option value="Zeta">Zeta</option>
+                </select>
+
+        char2Selection= <select id ="char2">
+                    <option value="Beezlebub">Beezlebub</option>
+                    <option value="Charlotta">Charlotta</option>
+                    <option value="Djeeta">Djeeta</option>
+                    <option value="Ferry">Ferry</option>
+                    <option value="Gran">Gran</option>
+                    <option value="Katalina">Katalina</option>
+                    <option value="Ladiva">Ladiva</option>
+                    <option value="Lancelot">Lancelot</option>
+                    <option value="Lowain">Lowain</option>
+                    <option value="Metera">Metera</option>
+                    <option value="Narmaya">Narmaya</option>
+                    <option value="Percival">Percival</option>
+                    <option value="Soriz">Soriz</option>
+                    <option value="Vaseraga">Vaseraga</option>
+                    <option value="Zeta">Zeta</option>
+                </select>
+    }
 
     for(let i = 0; i < loopNumber; i++) {
         rows.push(
@@ -188,20 +304,16 @@ const VideoForm = (props) => {
             <label htmlFor="playerOne">Player 1: </label>
             <input id="playerOne" type="text" name="playerOne" placeholder="Player 1"/>
             <label htmlFor="characterOne">Character 1: </label>
-            <input id="characterOne" type="text" name="characterOne" placeholder="Character 1"/>
+            {charSelection}
 
             <label htmlFor="characterTwo">Character 2: </label>
-            <input id="characterTwo" type="text" name="characterTwo" placeholder="Character 2"/>
+            {char2Selection}
+
             <label htmlFor="playerTwo">Player 2: </label>
             <input id="playerTwo" type="text" name="playerTwo" placeholder="Player 2"/>        
         </section>
         )
     }
-
-    if($('#videoForm').find('select').find(":selected").text() == 'BBCF')
-    {
-        rowing = <input className="makeVideoSubmit" type="submit" value="Make Video"/>;
-    } 
 
     return ( 
     <form 
@@ -216,11 +328,11 @@ const VideoForm = (props) => {
         <input id="videoLink" type="text" name="videoLink" placeholder="Video Name"/>
         <label htmlFor="game">Game: </label>
         <select id="Game">
-            <option value="gbvs">GBVS</option>
+            <option value=""></option>
             <option value="bbcf">BBCF</option>
+            <option value="gbvs">GBVS</option>
         </select>
         {rows}
-        {rowing}
         <input className="makeVideoSubmit" type="submit" value="Make Video"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
         <button id="addMatchButton" type="button">Add Match</button>
@@ -331,6 +443,14 @@ const createAddWindow = (csrf) => {
         <VideoForm csrf={csrf} />,
         document.querySelector("#content")
     );
+
+    // If theh game changes, re-render
+    $('#videoForm').find('#Game').on('change', function() {
+        ReactDOM.render(
+            <VideoForm csrf={csrf} />,
+            document.querySelector("#content")
+        );
+    });
 
     // Get the button that was made in the videoForm
     const addMatchButton = document.querySelector("#addMatchButton");
