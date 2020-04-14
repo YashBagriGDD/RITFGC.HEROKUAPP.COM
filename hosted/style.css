@@ -192,12 +192,12 @@ nav:nth-child(1) {
 
 
 
-.img-responsive {
-    width: 50%;
+.gameLogo {
+    width: 55%;
 }
 
 .table {
-    width: 40%; 
+    width: 50%; 
     margin: 0 auto;
 }
 
@@ -205,9 +205,34 @@ nav:nth-child(1) {
     vertical-align: middle;
 }
 
+.table > tbody > tr > th  {
+    vertical-align: middle;
+}
+
 .table > tbody > tr > .td{
     vertical-align: middle;
 }
+
+tr {
+    height: 100%;
+}
+
+.form-control {
+    margin: 0 auto;
+    border: 2px red;
+}
+
+.form-actions {
+    margin: 0 auto;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form-actions > .btn{
+    background-color: red;
+}
+
 
 h3.emptyDomo {
     width: 400px;

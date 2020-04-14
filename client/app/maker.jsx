@@ -178,7 +178,8 @@ const VideoForm = (props) => {
     let charSelection;
     let char2Selection;
 
-    if($('#videoForm').find('#Game').find(":selected").text() === 'BBCF') {
+    if($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' ||
+    $('#videoForm').find('#Game').find(":selected").text() === '') {
         charSelection = <select id = "char1">
                     <option value="Amane">Amane</option>
                     <option value="Arakune">Arakune</option>
@@ -345,18 +346,19 @@ const VideoForm = (props) => {
 /// CHANGE PASSWORD WINDOW
 const ChangeWindow = (props) => {
     return ( 
-    <form id="changeForm" name="changeForm"
+    <form   id="changeForm" 
+            name="changeForm"
             onSubmit={handleChange}
             action="/passChange"
             method="POST"
             className="mainForm"
         >
-        <label htmlFor="pass">Password: </label>
-        <input id="pass" type="password" name="pass" placeholder="old password"/>
-        <label htmlFor="pass2">Password: </label>
-        <input id="pass2" type="password" name="pass2" placeholder="new password"/>
+        <input className="form-control" id="pass" type="password" name="pass" placeholder="old password"/>
+        <input className="form-control" id="pass2" type="password" name="pass2" placeholder="new password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <input className="formSubmit" type="submit" value="Change Password"/>
+        <div className="form-actions">
+            <button className="btn" type="submit">Sign In</button>
+        </div>
     </form>
     );
 };
@@ -403,14 +405,10 @@ const VideoList = function(props) {
             char2Src = `/assets/img/GBVS/${video.char2}.png`;
             gameSrc = `/assets/img/GBVS/${video.game}.png`;
         }
-
-        const formatter = (value, row, index) => {
-            return `<a href=${video.link}>${value}</a>`
-        }
         return (
                 <tbody>
                     <tr>
-                        <th scope="row"><img id="gameLogo" className="img-responsive" src={gameSrc} alt={video.gameSrc} /></th>
+                        <th scope="row"><img id="gameLogo" className="gameLogo" src={gameSrc} alt={video.gameSrc} /></th>
                         <td>{video.player1}</td>
                         <td><img id="char1Img" src={char1Src} alt={video.char1} /></td>
                         <td>vs</td>
@@ -422,23 +420,6 @@ const VideoList = function(props) {
                         {deleteButton}
                     </tr>
                 </tbody>
-
-            /*<div key = {video._id} className="video">
-                <img src={gameSrc} alt={video.game} className="gameLogo"/>
-                <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-                <div id = 'vidDiv1'>
-                    <h3 className="videoPlayerOne">{video.player1}</h3>
-                    <img id="char1Img" src={char1Src} alt={video.char1} />
-                </div>
-                <div className="vs">
-                    <h3>vs</h3>
-                </div>
-                <div id = 'vidDiv2'>
-                    <img id="char2Img" src={char2Src} alt={video.char2} />
-                    <h3 className="videoPlayerTwo">{video.player2}</h3>
-                </div>
-                {deleteButton}
-            </div>*/
             
         );
     });

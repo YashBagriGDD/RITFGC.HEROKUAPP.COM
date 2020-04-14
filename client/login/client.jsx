@@ -37,18 +37,18 @@ const handleSignup = (e) => {
 
 const LoginWindow = (props) => {
     return ( 
-    <form id="loginForm" name="loginForm"
+    <form   id="loginForm"
+            className="loginForm"
             onSubmit={handleLogin}
             action="/login"
             method="POST"
-            className="mainForm"
         >
-        <label htmlFor="username">Username: </label>
-        <input id="user" type="text" name="username" placeholder="username"/>
-        <label htmlFor="pass">Password: </label>
-        <input id="pass" type="password" name="pass" placeholder="password"/>
+        <input className="form-control" id="user" type="text" name="username" placeholder="username"/>
+        <input className="form-control" id="pass" type="password" name="pass" placeholder="password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <input className="formSubmit" type="submit" value="Sign in"/>
+        <div className="form-actions">
+            <button className="btn" type="submit">Sign In</button>
+        </div>
 
     </form>
     );
@@ -99,28 +99,29 @@ const VideoList = function(props) {
             gameSrc = `/assets/img/GBVS/${video.game}.png`;
         }
         return (
-            <div key = {video._id} className="video">
-                <img src={gameSrc} alt={video.game} className="gameLogo"/>
-                <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-                <div id = 'vidDiv1'>
-                    <h3 className="videoPlayerOne">{video.player1}</h3>
-                    <img id="char1Img" src={char1Src} alt={video.char1} />
-                </div>
-                <div className="vs">
-                    <h3>vs</h3>
-                </div>
-                <div id = 'vidDiv2'>
-                    <img id="char2Img" src={char2Src} alt={video.char2} />
-                    <h3 className="videoPlayerTwo">{video.player2}</h3>
-                </div>
-            </div>
+            <tbody>
+                    <tr>
+                        <th scope="row"><img id="gameLogo" className="gameLogo" src={gameSrc} alt={video.gameSrc} /></th>
+                        <td>{video.player1}</td>
+                        <td><img id="char1Img" src={char1Src} alt={video.char1} /></td>
+                        <td>vs</td>
+                        <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
+                        <td>{video.player2}</td>
+                        <td>
+                            <a href={video.link} className="icons-sm yt-ic"><i className="fab fa-youtube fa-2x"> </i></a>
+                        </td>
+                    </tr>
+                </tbody>
+
             
         );
     });
     
     return (
-        <div className="videoList">
-            {videoNodes}
+        <div id="pageContainer">
+            <table className="table table-sm">
+                {videoNodes}
+            </table>
         </div>
     );
 };
@@ -128,7 +129,7 @@ const VideoList = function(props) {
 const loadAllVideosFromServer = () => {
     sendAjax('GET', '/getAllVideos', null, (data) => {
         ReactDOM.render(
-            <VideoList videos={data.videos} />, document.querySelector("#content")
+            <VideoList videos={data.videos} />, document.querySelector("#videos")
         );
     });
 
@@ -142,7 +143,7 @@ const createLoginWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+    //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 const createSignupWindow = (csrf) => {
@@ -151,7 +152,7 @@ const createSignupWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+    //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 const setup = (csrf) => {

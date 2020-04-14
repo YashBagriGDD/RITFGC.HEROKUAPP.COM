@@ -39,21 +39,18 @@ var handleSignup = function handleSignup(e) {
 var LoginWindow = function LoginWindow(props) {
   return /*#__PURE__*/React.createElement("form", {
     id: "loginForm",
-    name: "loginForm",
+    className: "loginForm",
     onSubmit: handleLogin,
     action: "/login",
-    method: "POST",
-    className: "mainForm"
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "username"
-  }, "Username: "), /*#__PURE__*/React.createElement("input", {
+    method: "POST"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "user",
     type: "text",
     name: "username",
     placeholder: "username"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "pass"
-  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "pass",
     type: "password",
     name: "pass",
@@ -62,11 +59,12 @@ var LoginWindow = function LoginWindow(props) {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
-  }), /*#__PURE__*/React.createElement("input", {
-    className: "formSubmit",
-    type: "submit",
-    value: "Sign in"
-  }));
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "form-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    type: "submit"
+  }, "Sign In")));
 };
 
 var SignupWindow = function SignupWindow(props) {
@@ -134,47 +132,40 @@ var VideoList = function VideoList(props) {
       gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
     }
 
-    return /*#__PURE__*/React.createElement("div", {
-      key: video._id,
-      className: "video"
+    return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+      scope: "row"
     }, /*#__PURE__*/React.createElement("img", {
+      id: "gameLogo",
+      className: "gameLogo",
       src: gameSrc,
-      alt: video.game,
-      className: "gameLogo"
-    }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoLink"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: video.link
-    }, "Link")), /*#__PURE__*/React.createElement("div", {
-      id: "vidDiv1"
-    }, /*#__PURE__*/React.createElement("h3", {
-      className: "videoPlayerOne"
-    }, video.player1), /*#__PURE__*/React.createElement("img", {
+      alt: video.gameSrc
+    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
       id: "char1Img",
       src: char1Src,
       alt: video.char1
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "vs"
-    }, /*#__PURE__*/React.createElement("h3", null, "vs")), /*#__PURE__*/React.createElement("div", {
-      id: "vidDiv2"
-    }, /*#__PURE__*/React.createElement("img", {
+    })), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
       id: "char2Img",
       src: char2Src,
       alt: video.char2
-    }), /*#__PURE__*/React.createElement("h3", {
-      className: "videoPlayerTwo"
-    }, video.player2)));
+    })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+      href: video.link,
+      className: "icons-sm yt-ic"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fab fa-youtube fa-2x"
+    }, " ")))));
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "videoList"
-  }, videoNodes);
+    id: "pageContainer"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "table table-sm"
+  }, videoNodes));
 };
 
 var loadAllVideosFromServer = function loadAllVideosFromServer() {
   sendAjax('GET', '/getAllVideos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
-    }), document.querySelector("#content"));
+    }), document.querySelector("#videos"));
   });
   ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 }; //#endregion
@@ -183,15 +174,13 @@ var loadAllVideosFromServer = function loadAllVideosFromServer() {
 var createLoginWindow = function createLoginWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(LoginWindow, {
     csrf: csrf
-  }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+  }), document.querySelector("#content")); //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(SignupWindow, {
     csrf: csrf
-  }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+  }), document.querySelector("#content")); //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
 };
 
 var setup = function setup(csrf) {

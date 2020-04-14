@@ -194,7 +194,7 @@ var VideoForm = function VideoForm(props) {
   var charSelection;
   var char2Selection;
 
-  if ($('#videoForm').find('#Game').find(":selected").text() === 'BBCF') {
+  if ($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' || $('#videoForm').find('#Game').find(":selected").text() === '') {
     charSelection = /*#__PURE__*/React.createElement("select", {
       id: "char1"
     }, /*#__PURE__*/React.createElement("option", {
@@ -493,16 +493,14 @@ var ChangeWindow = function ChangeWindow(props) {
     action: "/passChange",
     method: "POST",
     className: "mainForm"
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "pass"
-  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "pass",
     type: "password",
     name: "pass",
     placeholder: "old password"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "pass2"
-  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "pass2",
     type: "password",
     name: "pass2",
@@ -511,11 +509,12 @@ var ChangeWindow = function ChangeWindow(props) {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
-  }), /*#__PURE__*/React.createElement("input", {
-    className: "formSubmit",
-    type: "submit",
-    value: "Change Password"
-  }));
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "form-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    type: "submit"
+  }, "Sign In")));
 }; /// RENDERING THE LIST
 /// Render the list depending on if it's a page list or the full list
 
@@ -560,15 +559,11 @@ var VideoList = function VideoList(props) {
       gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
     }
 
-    var formatter = function formatter(value, row, index) {
-      return "<a href=".concat(video.link, ">").concat(value, "</a>");
-    };
-
     return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
       scope: "row"
     }, /*#__PURE__*/React.createElement("img", {
       id: "gameLogo",
-      className: "img-responsive",
+      className: "gameLogo",
       src: gameSrc,
       alt: video.gameSrc
     })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
@@ -584,24 +579,7 @@ var VideoList = function VideoList(props) {
       className: "icons-sm yt-ic"
     }, /*#__PURE__*/React.createElement("i", {
       className: "fab fa-youtube fa-2x"
-    }, " "))), deleteButton))
-    /*<div key = {video._id} className="video">
-        <img src={gameSrc} alt={video.game} className="gameLogo"/>
-        <h3 className="videoLink"><a href={video.link}>Link</a></h3>
-        <div id = 'vidDiv1'>
-            <h3 className="videoPlayerOne">{video.player1}</h3>
-            <img id="char1Img" src={char1Src} alt={video.char1} />
-        </div>
-        <div className="vs">
-            <h3>vs</h3>
-        </div>
-        <div id = 'vidDiv2'>
-            <img id="char2Img" src={char2Src} alt={video.char2} />
-            <h3 className="videoPlayerTwo">{video.player2}</h3>
-        </div>
-        {deleteButton}
-    </div>*/
-    ;
+    }, " "))), deleteButton));
   });
   return /*#__PURE__*/React.createElement("div", {
     id: "pageContainer"
