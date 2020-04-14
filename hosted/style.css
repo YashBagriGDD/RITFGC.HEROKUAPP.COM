@@ -7,10 +7,11 @@ html, body {
 }
 
 #logo {
-    height: 40px;
-    width: 40;
+    height: 50px;
+    width: 50px;
     padding-top: 5px;
     float:left;
+    padding-left: 10px;
     border-radius: 8px;
 }
 
@@ -239,13 +240,12 @@ nav:nth-child(1) {
     background-color: #66bfff;
 }
 
-img.domoFace {
+img.gameLogo {
     margin-left: 25px;
     margin-right: 10px;
-    height: 50px;
-    width: 50px;
+    height: 7%;
+    width: 7%;
     border-radius: 4px;
-    margin-top:10px;
     float:left;
 }
 
@@ -271,13 +271,18 @@ h3.videoPlayerOne, h3.videoCharacterOne, h3.vs, h3.videoCharacterTwo, h3.videoPl
     display: inline-block;
 }
 
-h3.videoLink {
+h3.videoLink{
     float:right;
     text-align: left;
     width: 50px;
     font-weight: bold;
     padding-right: 20px;
     font-size: 1.5em;
+}
+
+button.delete {
+    float:right;
+    text-align: left;
 }
 
 .domo:first-child {

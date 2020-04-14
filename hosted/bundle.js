@@ -533,6 +533,7 @@ var VideoList = function VideoList(props) {
     // https://react-cn.github.io/react/tips/if-else-in-JSX.html
     if (pageList) {
       deleteButton = /*#__PURE__*/React.createElement("button", {
+        className: "delete",
         value: video._id,
         onClick: handleDelete
       }, "Delete Item");
@@ -540,15 +541,27 @@ var VideoList = function VideoList(props) {
       deleteButton = null;
     }
 
-    var char1src = "/assets/img/CF/".concat(video.char1, ".png");
-    var char2src = "/assets/img/CF/".concat(video.char2, ".png");
+    var char1Src;
+    var char2Src;
+    var gameSrc;
+
+    if (video.game === "BBCF") {
+      char1Src = "/assets/img/CF/".concat(video.char1, ".png");
+      char2Src = "/assets/img/CF/".concat(video.char2, ".png");
+      gameSrc = "/assets/img/CF/".concat(video.game, ".png");
+    } else {
+      char1Src = "/assets/img/GBVS/".concat(video.char1, ".png");
+      char2Src = "/assets/img/GBVS/".concat(video.char2, ".png");
+      gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
+    }
+
     return /*#__PURE__*/React.createElement("div", {
       key: video._id,
       className: "video"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "/assets/img/domoface.jpeg",
-      alt: "domo face",
-      className: "domoFace"
+      src: gameSrc,
+      alt: video.game,
+      className: "gameLogo"
     }), /*#__PURE__*/React.createElement("h3", {
       className: "videoLink"
     }, /*#__PURE__*/React.createElement("a", {
@@ -559,7 +572,7 @@ var VideoList = function VideoList(props) {
       className: "videoPlayerOne"
     }, video.player1), /*#__PURE__*/React.createElement("img", {
       id: "char1Img",
-      src: char1src,
+      src: char1Src,
       alt: video.char1
     })), /*#__PURE__*/React.createElement("div", {
       className: "vs"
@@ -567,7 +580,7 @@ var VideoList = function VideoList(props) {
       id: "vidDiv2"
     }, /*#__PURE__*/React.createElement("img", {
       id: "char2Img",
-      src: char2src,
+      src: char2Src,
       alt: video.char2
     }), /*#__PURE__*/React.createElement("h3", {
       className: "videoPlayerTwo"

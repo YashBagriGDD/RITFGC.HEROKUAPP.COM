@@ -381,26 +381,36 @@ const VideoList = function(props) {
 
         // https://react-cn.github.io/react/tips/if-else-in-JSX.html
         if(pageList) {
-            deleteButton = <button value={video._id} onClick={handleDelete}>Delete Item</button>;
+            deleteButton = <button className="delete" value={video._id} onClick={handleDelete}>Delete Item</button>;
         } else {
             deleteButton = null;
         }
 
-        let char1src = `/assets/img/CF/${video.char1}.png`;
-        let char2src = `/assets/img/CF/${video.char2}.png`;
+        let char1Src;
+        let char2Src;
+        let gameSrc;
+        if(video.game === "BBCF") {
+            char1Src = `/assets/img/CF/${video.char1}.png`;
+            char2Src = `/assets/img/CF/${video.char2}.png`;
+            gameSrc = `/assets/img/CF/${video.game}.png`;
+        } else {
+            char1Src = `/assets/img/GBVS/${video.char1}.png`;
+            char2Src = `/assets/img/GBVS/${video.char2}.png`;
+            gameSrc = `/assets/img/GBVS/${video.game}.png`;
+        }
         return (
             <div key = {video._id} className="video">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace"/>
+                <img src={gameSrc} alt={video.game} className="gameLogo"/>
                 <h3 className="videoLink"><a href={video.link}>Link</a></h3>
                 <div id = 'vidDiv1'>
                     <h3 className="videoPlayerOne">{video.player1}</h3>
-                    <img id="char1Img" src={char1src} alt={video.char1} />
+                    <img id="char1Img" src={char1Src} alt={video.char1} />
                 </div>
                 <div className="vs">
                     <h3>vs</h3>
                 </div>
                 <div id = 'vidDiv2'>
-                    <img id="char2Img" src={char2src} alt={video.char2} />
+                    <img id="char2Img" src={char2Src} alt={video.char2} />
                     <h3 className="videoPlayerTwo">{video.player2}</h3>
                 </div>
                 {deleteButton}
