@@ -27,17 +27,14 @@ var handleVideo = function handleVideo(e) {
       videoObj.videoLink = this.value;
     }
   });
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
 
   if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
-    handleError("RAWR! All fields are required!");
+    handleError("ERROR | All fields are required");
     return false;
   }
 
   if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
-    handleError("Please select a game");
+    handleError("ERROR | Please select a game");
     return false;
   } // Comment this out if you need to send data
   ///
@@ -101,17 +98,14 @@ var handleDelete = function handleDelete(e) {
 
 var handleChange = function handleChange(e) {
   e.preventDefault();
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
 
   if ($("#pass").val() == '' || $("#pass2").val() == '') {
-    handleError("RAWR! All fields are required!");
+    handleError("ERROR | All fields are required");
     return false;
   }
 
   if ($("#pass").val() === $("#pass2").val()) {
-    handleError("RAWR! Passwords cannot match!");
+    handleError("ERROR | Passwords cannot match");
     return false;
   }
 
@@ -122,9 +116,6 @@ var handleChange = function handleChange(e) {
 
 var handleSearch = function handleSearch(e) {
   e.preventDefault();
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
   var params = {
     player1: $("#player1Search").val(),
     player2: $("#player2Search").val(),
@@ -695,19 +686,17 @@ $(document).ready(function () {
 });
 "use strict";
 
-// https://stackoverflow.com/questions/7676356/can-twitter-bootstrap-alerts-fade-in-as-well-as-out
+// https://stackoverflow.com/questions/32704027/how-to-call-bootstrap-alert-with-jquery
 var handleError = function handleError(message) {
   console.log('Called');
   $(".alert").text(message);
   $(".alert").show();
+  $(".alert").addClass('in');
   $(".alert").delay(2000).fadeOut('slow');
   return false;
 };
 
 var redirect = function redirect(response) {
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
   window.location = response.redirect;
 };
 

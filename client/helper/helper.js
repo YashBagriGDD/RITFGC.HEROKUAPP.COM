@@ -1,9 +1,10 @@
 
-// https://stackoverflow.com/questions/7676356/can-twitter-bootstrap-alerts-fade-in-as-well-as-out
+// https://stackoverflow.com/questions/32704027/how-to-call-bootstrap-alert-with-jquery
 const handleError = (message) => {
-    console.log('Called');
+    console.log('Called')
     $(".alert").text(message);
     $(".alert").show();
+    $(".alert").addClass('in');
     $(".alert").delay(2000).fadeOut('slow');
     return false;
 
@@ -11,7 +12,6 @@ const handleError = (message) => {
 
 
 const redirect = (response) => {
-    $("#domoMessage").animate({width:'hide'},350);
     window.location = response.redirect;
 };
 

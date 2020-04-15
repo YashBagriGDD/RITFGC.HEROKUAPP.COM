@@ -2,12 +2,9 @@
 
 var handleLogin = function handleLogin(e) {
   e.preventDefault();
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
 
   if ($("#user").val() == '' || $("#pass").val() == '') {
-    handleError("RAWR! Username or Password is empty!");
+    handleError("ERROR | Username or Password is empty");
     return false;
   }
 
@@ -18,17 +15,14 @@ var handleLogin = function handleLogin(e) {
 
 var handleSignup = function handleSignup(e) {
   e.preventDefault();
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
 
   if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
-    handleError("RAWR! All fields are required!");
+    handleError("ERROR | All fields are required");
     return false;
   }
 
   if ($("#pass").val() !== $("#pass2").val()) {
-    handleError("RAWR! Passwords do not match!");
+    handleError("ERROR | Passwords do not match");
     return false;
   }
 
@@ -217,19 +211,17 @@ $(document).ready(function () {
 });
 "use strict";
 
-// https://stackoverflow.com/questions/7676356/can-twitter-bootstrap-alerts-fade-in-as-well-as-out
+// https://stackoverflow.com/questions/32704027/how-to-call-bootstrap-alert-with-jquery
 var handleError = function handleError(message) {
   console.log('Called');
   $(".alert").text(message);
   $(".alert").show();
+  $(".alert").addClass('in');
   $(".alert").delay(2000).fadeOut('slow');
   return false;
 };
 
 var redirect = function redirect(response) {
-  $("#domoMessage").animate({
-    width: 'hide'
-  }, 350);
   window.location = response.redirect;
 };
 

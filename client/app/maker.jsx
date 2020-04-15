@@ -28,17 +28,15 @@ const handleVideo = (e) => {
         }
     });
 
-    $("#domoMessage").animate({width: 'hide'}, 350);
-
     if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
     $("#videoLink").val() == '') {
-        handleError("RAWR! All fields are required!");
+        handleError("ERROR | All fields are required");
         return false;
     }
 
     if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
     $('#videoForm').find('#Game').find(":selected").text() === '') {
-        handleError("Please select a game");
+        handleError("ERROR | Please select a game");
         return false;
     }
 
@@ -108,15 +106,13 @@ const handleDelete = (e) => {
 const handleChange = (e) => {
     e.preventDefault();
 
-    $("#domoMessage").animate({width: 'hide'}, 350);
-
     if($("#pass").val() == '' || $("#pass2").val() =='') {
-        handleError("RAWR! All fields are required!");
+        handleError("ERROR | All fields are required");
         return false;
     }
 
     if($("#pass").val() === $("#pass2").val()) {
-        handleError("RAWR! Passwords cannot match!");
+        handleError("ERROR | Passwords cannot match");
         return false;
     }
 
@@ -128,8 +124,6 @@ const handleChange = (e) => {
 // Handle the search
 const handleSearch = (e) => {
     e.preventDefault();
-
-    $("#domoMessage").animate({width: 'hide'}, 350);
 
     let params = {
         player1: $("#player1Search").val(),
