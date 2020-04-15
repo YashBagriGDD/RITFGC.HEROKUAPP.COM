@@ -584,7 +584,7 @@ var VideoList = function VideoList(props) {
   return /*#__PURE__*/React.createElement("div", {
     id: "pageContainer"
   }, /*#__PURE__*/React.createElement("table", {
-    className: "table table-sm"
+    className: "table table-sm table-dark"
   }, videoNodes));
 };
 

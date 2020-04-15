@@ -426,7 +426,7 @@ const VideoList = function(props) {
     
     return (
         <div id="pageContainer">
-            <table className="table table-sm">
+            <table className="table table-sm table-dark">
                 {videoNodes}
             </table>
         </div>
