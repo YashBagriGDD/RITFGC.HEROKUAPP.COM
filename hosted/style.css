@@ -13,6 +13,7 @@ body {
     background-position: left; 
     background-size: 40%;
     background-position-x: -5em;
+    background-color: black;
 }
 
 #logo {
@@ -217,6 +218,29 @@ nav:nth-child(1) {
 
 }
 
+#static {
+    width: 50%; 
+    margin: 0 auto;
+    margin-right: 13%;
+    margin-top: 10%;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+}
+
+#videoFormTable {
+    width: 50%; 
+    margin: 0 auto;
+    margin-right: 13%;
+    background-color: blue;
+    color: black;
+    border-radius: 5px;
+}
+
+select:invalid {
+    color: gray;
+}
+
 .table > tbody > tr > td{
     vertical-align: middle;
 }
@@ -237,6 +261,36 @@ nav:nth-child(1) {
     margin-right: 30%;
     border: 2px red;
 }
+
+#static > .form-control {
+    display: inline;
+    margin: 0 auto;
+    width: 25%;
+    margin-bottom: 2%;
+}
+
+#static > #Game {
+    margin-left: 15%;
+    width: 15%;
+}
+
+#static > #videoLink {
+    width: 50%;
+}
+
+#static > .btn-primary {
+    margin-top: 15px;
+    margin-left: 30%;
+
+}
+
+#static > .btn-default {
+    margin: 0 auto;
+    margin-left: 5%;
+    margin-top: 15px;
+
+}
+
 
 .form-actions {
     margin: 0 auto;

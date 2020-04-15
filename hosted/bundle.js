@@ -1,5 +1,7 @@
 "use strict";
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //At the top of the file
 var _csrf; // Values to help not repeat methods
 
@@ -32,13 +34,18 @@ var handleVideo = function handleVideo(e) {
   if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
     handleError("RAWR! All fields are required!");
     return false;
+  }
+
+  if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
+    handleError("Please select a game");
+    return false;
   } // Comment this out if you need to send data
   ///
   /// Putting each input into its own object to send to the server 
   ///
 
 
-  $('#videoForm').find('section > input').each(function () {
+  $('#videoForm').find('td > input').each(function () {
     console.log(this);
 
     if (modValue === 0) {
@@ -188,17 +195,21 @@ var SearchForm = function SearchForm() {
 
 
 var VideoForm = function VideoForm(props) {
+  var _React$createElement;
+
   // Rows to dynamically add more matches
   // https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
   var rows = [];
   var charSelection;
   var char2Selection;
+  console.log($('#videoForm').find('#Game').find(":selected").text());
 
-  if ($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' || $('#videoForm').find('#Game').find(":selected").text() === '') {
+  if ($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' || $('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
     charSelection = /*#__PURE__*/React.createElement("select", {
       id: "char1"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Amane"
+      value: "Amane",
+      selected: true
     }, "Amane"), /*#__PURE__*/React.createElement("option", {
       value: "Arakune"
     }, "Arakune"), /*#__PURE__*/React.createElement("option", {
@@ -273,7 +284,8 @@ var VideoForm = function VideoForm(props) {
     char2Selection = /*#__PURE__*/React.createElement("select", {
       id: "char2"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Amane"
+      value: "Amane",
+      selected: true
     }, "Amane"), /*#__PURE__*/React.createElement("option", {
       value: "Arakune"
     }, "Arakune"), /*#__PURE__*/React.createElement("option", {
@@ -349,7 +361,8 @@ var VideoForm = function VideoForm(props) {
     charSelection = /*#__PURE__*/React.createElement("select", {
       id: "char1"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Beezlebub"
+      value: "Beezlebub",
+      selected: true
     }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
       value: "Charlotta"
     }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
@@ -382,7 +395,8 @@ var VideoForm = function VideoForm(props) {
     char2Selection = /*#__PURE__*/React.createElement("select", {
       id: "char2"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Beezlebub"
+      value: "Beezlebub",
+      selected: true
     }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
       value: "Charlotta"
     }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
@@ -415,32 +429,22 @@ var VideoForm = function VideoForm(props) {
   }
 
   for (var i = 0; i < loopNumber; i++) {
-    rows.push( /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("label", {
-      htmlFor: "timestamp"
-    }, "timestamp: "), /*#__PURE__*/React.createElement("input", {
+    rows.push( /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
       id: "timestamp",
       type: "text",
       name: "timestamp",
       placeholder: "00h00m00s"
-    }), /*#__PURE__*/React.createElement("label", {
-      htmlFor: "playerOne"
-    }, "Player 1: "), /*#__PURE__*/React.createElement("input", {
+    })), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
       id: "playerOne",
       type: "text",
       name: "playerOne",
       placeholder: "Player 1"
-    }), /*#__PURE__*/React.createElement("label", {
-      htmlFor: "characterOne"
-    }, "Character 1: "), charSelection, /*#__PURE__*/React.createElement("label", {
-      htmlFor: "characterTwo"
-    }, "Character 2: "), char2Selection, /*#__PURE__*/React.createElement("label", {
-      htmlFor: "playerTwo"
-    }, "Player 2: "), /*#__PURE__*/React.createElement("input", {
+    })), /*#__PURE__*/React.createElement("td", null, charSelection), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, char2Selection), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
       id: "playerTwo",
       type: "text",
       name: "playerTwo",
       placeholder: "Player 2"
-    })));
+    })))));
   }
 
   return /*#__PURE__*/React.createElement("form", {
@@ -452,36 +456,39 @@ var VideoForm = function VideoForm(props) {
     className: "videoForm"
   }, /*#__PURE__*/React.createElement("div", {
     id: "static"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "videoLink"
-  }, "Video Link: "), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     id: "videoLink",
-    "class": "form-control",
+    className: "form-control",
     type: "text",
     name: "videoLink",
     placeholder: "YouTube Link"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "game"
-  }, "Game: "), /*#__PURE__*/React.createElement("select", {
-    id: "Game"
+  }), /*#__PURE__*/React.createElement("select", {
+    className: "form-control",
+    id: "Game",
+    placeholder: "Game"
   }, /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }), /*#__PURE__*/React.createElement("option", {
+    value: "",
+    disabled: true,
+    selected: true,
+    hidden: true
+  }, "Game"), /*#__PURE__*/React.createElement("option", {
     value: "bbcf"
   }, "BBCF"), /*#__PURE__*/React.createElement("option", {
     value: "gbvs"
-  }, "GBVS")), rows, /*#__PURE__*/React.createElement("input", {
-    className: "makeVideoSubmit",
-    type: "submit",
-    value: "Make Video"
-  }), /*#__PURE__*/React.createElement("input", {
+  }, "GBVS")), /*#__PURE__*/React.createElement("table", {
+    id: "videoFormTable",
+    className: "table table-sm table-dark"
+  }, rows), /*#__PURE__*/React.createElement("input", (_React$createElement = {
+    className: "makeVideoSubmit"
+  }, _defineProperty(_React$createElement, "className", "btn btn-primary"), _defineProperty(_React$createElement, "type", "submit"), _defineProperty(_React$createElement, "value", "Add Video"), _React$createElement)), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
   }), /*#__PURE__*/React.createElement("button", {
     id: "addMatchButton",
+    className: "btn btn-default",
     type: "button"
-  }, "Add Match"));
+  }, "Add a Match")));
 }; /// CHANGE PASSWORD WINDOW
 
 
@@ -547,7 +554,7 @@ var VideoList = function VideoList(props) {
 
     var char1Src;
     var char2Src;
-    var gameSrc;
+    var gameSrc; // Just put the images in one folder oops
 
     if (video.game === "BBCF") {
       char1Src = "/assets/img/CF/".concat(video.char1, ".png");

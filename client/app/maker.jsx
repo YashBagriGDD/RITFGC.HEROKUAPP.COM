@@ -36,11 +36,18 @@ const handleVideo = (e) => {
         return false;
     }
 
+    if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
+    $('#videoForm').find('#Game').find(":selected").text() === '') {
+        handleError("Please select a game");
+        return false;
+    }
+
      // Comment this out if you need to send data
      ///
      /// Putting each input into its own object to send to the server 
      ///
-     $('#videoForm').find('section > input').each(function(){
+
+     $('#videoForm').find('td > input').each(function(){
          console.log(this);
 
         if(modValue===0) {
@@ -178,10 +185,13 @@ const VideoForm = (props) => {
     let charSelection;
     let char2Selection;
 
+    console.log($('#videoForm').find('#Game').find(":selected").text());
+
     if($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' ||
+    $('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
     $('#videoForm').find('#Game').find(":selected").text() === '') {
         charSelection = <select id = "char1">
-                    <option value="Amane">Amane</option>
+                    <option value="Amane" selected>Amane</option>
                     <option value="Arakune">Arakune</option>
                     <option value="Azrael">Azrael</option>
                     <option value="Bang">Bang</option>
@@ -220,7 +230,7 @@ const VideoForm = (props) => {
                 </select>
 
         char2Selection = <select id = "char2">
-                    <option value="Amane">Amane</option>
+                    <option value="Amane" selected>Amane</option>
                     <option value="Arakune">Arakune</option>
                     <option value="Azrael">Azrael</option>
                     <option value="Bang">Bang</option>
@@ -261,7 +271,7 @@ const VideoForm = (props) => {
 
     } else if($('#videoForm').find('#Game').find(":selected").text() === 'GBVS'){
         charSelection= <select id ="char1">
-                    <option value="Beezlebub">Beezlebub</option>
+                    <option value="Beezlebub" selected>Beezlebub</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Djeeta">Djeeta</option>
                     <option value="Ferry">Ferry</option>
@@ -279,7 +289,7 @@ const VideoForm = (props) => {
                 </select>
 
         char2Selection= <select id ="char2">
-                    <option value="Beezlebub">Beezlebub</option>
+                    <option value="Beezlebub" selected>Beezlebub</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Djeeta">Djeeta</option>
                     <option value="Ferry">Ferry</option>
@@ -299,20 +309,16 @@ const VideoForm = (props) => {
 
     for(let i = 0; i < loopNumber; i++) {
         rows.push(
-        <section>
-            <label htmlFor="timestamp">timestamp: </label>
-            <input id="timestamp" type="text" name="timestamp" placeholder="00h00m00s"/>
-            <label htmlFor="playerOne">Player 1: </label>
-            <input id="playerOne" type="text" name="playerOne" placeholder="Player 1"/>
-            <label htmlFor="characterOne">Character 1: </label>
-            {charSelection}
-
-            <label htmlFor="characterTwo">Character 2: </label>
-            {char2Selection}
-
-            <label htmlFor="playerTwo">Player 2: </label>
-            <input id="playerTwo" type="text" name="playerTwo" placeholder="Player 2"/>        
-        </section>
+            <tbody>
+                <tr>
+                    <td><input id="timestamp" type="text" name="timestamp" placeholder="00h00m00s"/></td>
+                    <td><input id="playerOne" type="text" name="playerOne" placeholder="Player 1"/></td>
+                    <td>{charSelection}</td>
+                    <td>vs</td>
+                    <td>{char2Selection}</td>
+                    <td><input id="playerTwo" type="text" name="playerTwo" placeholder="Player 2"/></td>
+                </tr>
+            </tbody>
         )
     }
 
@@ -325,19 +331,20 @@ const VideoForm = (props) => {
         method="POST"
         className="videoForm"
     >
-        <div id ="static"></div>
-        <label htmlFor="videoLink">Video Link: </label>
-        <input id="videoLink" class='form-control' type="text" name="videoLink" placeholder="YouTube Link"/>
-        <label htmlFor="game">Game: </label>
-        <select id="Game">
-            <option value=""></option>
-            <option value="bbcf">BBCF</option>
-            <option value="gbvs">GBVS</option>
-        </select>
-        {rows}
-        <input className="makeVideoSubmit" type="submit" value="Make Video"/>
-        <input type="hidden" name="_csrf" value={props.csrf}/>
-        <button id="addMatchButton" type="button">Add Match</button>
+        <div id ="static">
+            <input id="videoLink" className='form-control' type="text" name="videoLink" placeholder="YouTube Link"/>
+            <select className="form-control" id="Game" placeholder="Game">
+                <option value="" disabled selected hidden>Game</option>
+                <option value="bbcf">BBCF</option>
+                <option value="gbvs">GBVS</option>
+            </select>
+            <table id="videoFormTable" className="table table-sm table-dark">
+                {rows}
+            </table>
+            <input className="makeVideoSubmit" className="btn btn-primary" type="submit" value="Add Video"/>
+            <input type="hidden" name="_csrf" value={props.csrf}/>
+            <button id="addMatchButton" className="btn btn-default"type="button">Add a Match</button>
+        </div>
     </form>
     );
 };
@@ -396,6 +403,9 @@ const VideoList = function(props) {
         let char1Src;
         let char2Src;
         let gameSrc;
+
+
+        // Just put the images in one folder oops
         if(video.game === "BBCF") {
             char1Src = `/assets/img/CF/${video.char1}.png`;
             char2Src = `/assets/img/CF/${video.char2}.png`;
