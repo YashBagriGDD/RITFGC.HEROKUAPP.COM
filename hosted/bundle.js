@@ -695,11 +695,13 @@ $(document).ready(function () {
 });
 "use strict";
 
+// https://stackoverflow.com/questions/7676356/can-twitter-bootstrap-alerts-fade-in-as-well-as-out
 var handleError = function handleError(message) {
-  $("#errorMessage").text(message);
-  $("#domoMessage").animate({
-    width: 'toggle'
-  }, 350);
+  console.log('Called');
+  $(".alert").text(message);
+  $(".alert").show();
+  $(".alert").delay(2000).fadeOut('slow');
+  return false;
 };
 
 var redirect = function redirect(response) {

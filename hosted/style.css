@@ -13,7 +13,11 @@ body {
     background-position: left; 
     background-size: 40%;
     background-position-x: -5em;
-    background-color: black;
+    background-color: #1C1F24;
+}
+
+#bsalert {
+    width: 40%;
 }
 
 #logo {
@@ -28,7 +32,7 @@ body {
 nav {
     width: 100%;
     height: 50px;
-    background-color: #55acee;
+    background-color: #F76902;
     position: fixed;
 }
 
@@ -50,56 +54,13 @@ nav:nth-child(1) {
     text-decoration: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #F76902;
     transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
     transition: background-color 0.8s ease;
-    background-color: #66bdff;
-}
-
-.domoForm {
-    border: 2px solid #338acc;
-    height: 35px;
-    width: 700px;
-    margin-top:0px;
-    padding-top:10px;
-    background-color: #55acee;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.domoForm label {
-    display: inline-block;
-    width: 75px;
-    margin-left: 10px;
-    font-size: 1.2em;
-    float: left;
-    color: white;
-}
-
-.domoForm input[type=text] {
-    float:left;
-}
-
-.makeDomoSubmit {
-    transition: background-color 0.4s ease;
-    display: inline;
-    width: 90px;
-    background-color: #55acee;
-    border-radius: 2px;
-    color: white;
-    text-decoration: none;
-}
-
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
-    color: white;
-}
-
-.makeDomoSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #7C878E;
 }
 
 .mainForm {
@@ -212,10 +173,15 @@ nav:nth-child(1) {
     margin: 0 auto;
     margin-top: 5%;
     margin-right: 13%;
-    background-color: darkgray;
-    color: black;
+    background-color: #586073;
+    color: #ffffff;
     border-radius: 5px;
 
+}
+
+
+.fa-youtube {
+    color: #F76902;
 }
 
 #static {
@@ -232,7 +198,7 @@ nav:nth-child(1) {
     width: 50%; 
     margin: 0 auto;
     margin-right: 13%;
-    background-color: blue;
+    background-color: #586073;
     color: black;
     border-radius: 5px;
 }
@@ -281,6 +247,7 @@ select:invalid {
 #static > .btn-primary {
     margin-top: 15px;
     margin-left: 30%;
+    color: #F76902;
 
 }
 
@@ -325,12 +292,4 @@ h3.videoLink{
 button.delete {
     float:right;
     text-align: left;
-}
-
-.domo:first-child {
-    margin-top: 10px;
-}
-
-.domo:last-child {
-    margin-bottom:10px;
 }
