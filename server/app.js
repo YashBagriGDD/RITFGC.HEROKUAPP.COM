@@ -12,6 +12,7 @@ const RedisStore = require('connect-redis')(session);
 const url = require('url');
 const redis = require('redis');
 const csrf = require('csurf');
+const YouTube = require('youtube-api');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -53,7 +54,7 @@ const router = require('./router.js');
 const app = express();
 
 app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
-app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
+app.use(favicon(`${__dirname}/../hosted/img/logo.png`));
 app.disable('x-powered-by');
 app.use(compression());
 app.use(bodyParser.urlencoded({

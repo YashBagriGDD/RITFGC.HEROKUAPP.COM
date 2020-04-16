@@ -36,11 +36,13 @@ var handleVideo = function handleVideo(e) {
   if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
     handleError("ERROR | Please select a game");
     return false;
-  } // Comment this out if you need to send data
+  }
+
+  var video_id = videoObj.videoLink.split('v=')[1];
+  console.log(video_id); // Comment this out if you need to send data
   ///
   /// Putting each input into its own object to send to the server 
   ///
-
 
   $('#videoForm').find('td > input').each(function () {
     console.log(this);
@@ -77,9 +79,10 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
-    loadVideosFromServer();
-  });
+  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+      loadVideosFromServer();
+  });*/
+
   return false;
 };
 

@@ -5,7 +5,6 @@ let _csrf;
 let pageList = false;
 let loopNumber = 1;
 
-
 const handleVideo = (e) => {
     let videoKey = 0;
     let modValue = 0;
@@ -40,6 +39,8 @@ const handleVideo = (e) => {
         return false;
     }
 
+    var video_id = videoObj.videoLink.split('v=')[1];
+    console.log(video_id);
      // Comment this out if you need to send data
      ///
      /// Putting each input into its own object to send to the server 
@@ -82,9 +83,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });
+    });*/
 
     return false;
 };

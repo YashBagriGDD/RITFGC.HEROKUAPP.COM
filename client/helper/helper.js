@@ -1,4 +1,5 @@
 
+
 // https://stackoverflow.com/questions/32704027/how-to-call-bootstrap-alert-with-jquery
 const handleError = (message) => {
     console.log('Called')
