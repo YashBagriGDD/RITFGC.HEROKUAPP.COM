@@ -143,7 +143,8 @@ var VideoList = function VideoList(props) {
       alt: video.char2
     })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
       href: video.link,
-      className: "icons-sm yt-ic"
+      className: "icons-sm yt-ic",
+      target: "_blank"
     }, /*#__PURE__*/React.createElement("i", {
       className: "fab fa-youtube fa-2x"
     }, " ")))));
@@ -152,29 +153,32 @@ var VideoList = function VideoList(props) {
     id: "pageContainer"
   }, /*#__PURE__*/React.createElement("table", {
     className: "table table-sm"
-  }, videoNodes));
+  }, videoNodes), /*#__PURE__*/React.createElement("div", {
+    id: "ad"
+  }, "Ad 1"), /*#__PURE__*/React.createElement("div", {
+    id: "adtwo"
+  }, "Ad 2"));
 };
 
 var loadAllVideosFromServer = function loadAllVideosFromServer() {
   sendAjax('GET', '/getAllVideos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
-    }), document.querySelector("#videos"));
-  });
-  ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
+    }), document.querySelector("#content"));
+  }); //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 }; //#endregion
 
 
 var createLoginWindow = function createLoginWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(LoginWindow, {
     csrf: csrf
-  }), document.querySelector("#content")); //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+  }), document.querySelector("#content")); //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(SignupWindow, {
     csrf: csrf
-  }), document.querySelector("#content")); //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+  }), document.querySelector("#content")); // ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 var setup = function setup(csrf) {

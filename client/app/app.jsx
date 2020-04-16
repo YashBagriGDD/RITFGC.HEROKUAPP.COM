@@ -39,19 +39,37 @@ const handleVideo = (e) => {
         return false;
     }
 
-    var video_id = videoObj.videoLink.split('v=')[1];
-    console.log(video_id);
-     // Comment this out if you need to send data
-     ///
+    // Check if the error uses the correct link *just copying the url
+    if(!$("#videoLink").val().includes('www.youtube.com')) {
+        handleError("ERROR | Please use a valid link");
+        return false;
+    }
+
+
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+    // https://www.w3schools.com/jsref/jsref_replace.asp
+    let regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g;
+
+
      /// Putting each input into its own object to send to the server 
      ///
-
      $('#videoForm').find('td > input').each(function(){
          console.log(this);
 
         if(modValue===0) {
-            // Each match will have a specific timestamp, so put that here with concatenation
-            videoObj[videoKey].link = `${videoObj.videoLink}&t=${this.value}`;
+
+            // Using regex to ensure the timestamp is correct
+            if(regex.test(this.value)) {
+                let array = this.value.match(regex);
+                JSON.stringify(array);
+                let newArray = array[0].replace(/:.*?/, "h");
+                let newArray2 = newArray.replace(/:.*?/, "m");
+                let finalArray = newArray2 + "s"
+
+                videoObj[videoKey].link = `${videoObj.videoLink}&t=${finalArray}`;
+            } else {
+                videoObj[videoKey].link = `${videoObj.videoLink}&t=${this.value}`;
+            }
         } 
         if(modValue===1) {
             videoObj[videoKey].player1 = this.value;
@@ -83,9 +101,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });*/
+    });
 
     return false;
 };
@@ -306,7 +324,7 @@ const VideoForm = (props) => {
         rows.push(
             <tbody>
                 <tr>
-                    <td><input id="timestamp" type="text" name="timestamp" placeholder="00h00m00s"/></td>
+                    <td><input id="timestamp" type="text" name="timestamp" placeholder="Timestamp"/></td>
                     <td><input id="playerOne" type="text" name="playerOne" placeholder="Player 1"/></td>
                     <td>{charSelection}</td>
                     <td>vs</td>
@@ -327,7 +345,7 @@ const VideoForm = (props) => {
         className="videoForm"
     >
         <div id ="static">
-            <input id="videoLink" className='form-control' type="text" name="videoLink" placeholder="YouTube Link"/>
+            <input id="videoLink" className='form-control' type="text" name="videoLink" placeholder="YouTube Link (https://www.youtube.com/watch?v=***********)"/>
             <select className="form-control" id="Game" placeholder="Game">
                 <option value="" disabled selected hidden>Game</option>
                 <option value="bbcf">BBCF</option>
@@ -340,6 +358,8 @@ const VideoForm = (props) => {
             <input type="hidden" name="_csrf" value={props.csrf}/>
             <button id="addMatchButton" className="btn btn-default"type="button">Add a Match</button>
         </div>
+        <div id="adSpace"></div>
+
     </form>
     );
 };
@@ -372,6 +392,7 @@ const VideoList = function(props) {
     
     // Do we need to show deletion or not
     let deleteButton;
+    let adSpace;
 
     if(props.videos.length === 0) {
         return (
@@ -391,8 +412,13 @@ const VideoList = function(props) {
                                 <i className="fas fa-trash"></i>
                             </button>
                            </td>;
+            adSpace = null;
         } else {
             deleteButton = null;
+            adSpace = <div>
+                      <div id="ad">Ad 1</div>
+                      <div id="adtwo">Ad 2</div>
+                      </div>;
         }
 
         let char1Src;
@@ -420,7 +446,7 @@ const VideoList = function(props) {
                         <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
                         <td>{video.player2}</td>
                         <td>
-                            <a href={video.link} className="icons-sm yt-ic"><i className="fab fa-youtube fa-2x"> </i></a>
+                            <a href={video.link} className="icons-sm yt-ic" target="_blank"><i className="fab fa-youtube fa-2x"> </i></a>
                         </td>
                         {deleteButton}
                     </tr>
@@ -434,6 +460,7 @@ const VideoList = function(props) {
             <table className="table table-sm table-dark">
                 {videoNodes}
             </table>
+            {adSpace}
         </div>
     );
 };

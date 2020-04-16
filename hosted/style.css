@@ -127,8 +127,6 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-
-
 .gameLogo {
     width: 55%;
 }
@@ -141,30 +139,39 @@ nav:nth-child(1) {
     background-color: #586073;
     color: #ffffff;
     border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
 
 }
 
 .alert {
-    width: 45%;
+    width: 20%;
     position: absolute;
     margin: 0 auto; 
-    margin-left: 37%;
+    margin-left: 5%;
     z-index: 1;
     text-align: center;
-    margin-top: 4%;
+    margin-top: 15%;
 }
-
-
 
 .fa-youtube {
     color: #F76902;
+}
+
+.fa-trash {
+    color: black;
+}
+
+.fa-trash:hover {
+    transition: color 0.8s ease;
+    color: gray;
 }
 
 #static {
     width: 50%; 
     margin: 0 auto;
     margin-right: 13%;
-    margin-top: 10%;
+    margin-top: 5%;
     padding: 10px;
     color: black;
     border-radius: 5px;
@@ -177,6 +184,7 @@ nav:nth-child(1) {
     background-color: #586073;
     color: black;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 select:invalid {
@@ -201,7 +209,7 @@ select:invalid {
     margin: 0 auto;
     margin-top: 5%;
     margin-right: 30%;
-    border: 2px red;
+    font-weight: bold;
 }
 
 #static > .form-control {
@@ -234,7 +242,6 @@ select:invalid {
 
 }
 
-
 .form-actions {
     margin: 0 auto;
     background-color: transparent;
@@ -250,3 +257,24 @@ button.delete {
     float:right;
     text-align: left;
 }
+
+#ad {
+    position: fixed;
+    width: 8%;
+    height: 40%;
+    border: 10px solid red;
+    right: 50;
+    top: 11%;
+    color: red;
+}
+
+#adtwo {
+    position: fixed;
+    width: 8%;
+    height: 40%;
+    border: 10px solid blue;
+    right: 50;
+    top: 55%;
+    color: blue;
+}
+

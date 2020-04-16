@@ -36,20 +36,34 @@ var handleVideo = function handleVideo(e) {
   if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
     handleError("ERROR | Please select a game");
     return false;
-  }
+  } // Check if the error uses the correct link *just copying the url
 
-  var video_id = videoObj.videoLink.split('v=')[1];
-  console.log(video_id); // Comment this out if you need to send data
-  ///
-  /// Putting each input into its own object to send to the server 
+
+  if (!$("#videoLink").val().includes('www.youtube.com')) {
+    handleError("ERROR | Please use a valid link");
+    return false;
+  } // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+  // https://www.w3schools.com/jsref/jsref_replace.asp
+
+
+  var regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g; /// Putting each input into its own object to send to the server 
   ///
 
   $('#videoForm').find('td > input').each(function () {
     console.log(this);
 
     if (modValue === 0) {
-      // Each match will have a specific timestamp, so put that here with concatenation
-      videoObj[videoKey].link = "".concat(videoObj.videoLink, "&t=").concat(this.value);
+      // Using regex to ensure the timestamp is correct
+      if (regex.test(this.value)) {
+        var array = this.value.match(regex);
+        JSON.stringify(array);
+        var newArray = array[0].replace(/:.*?/, "h");
+        var newArray2 = newArray.replace(/:.*?/, "m");
+        var finalArray = newArray2 + "s";
+        videoObj[videoKey].link = "".concat(videoObj.videoLink, "&t=").concat(finalArray);
+      } else {
+        videoObj[videoKey].link = "".concat(videoObj.videoLink, "&t=").concat(this.value);
+      }
     }
 
     if (modValue === 1) {
@@ -79,10 +93,9 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
-      loadVideosFromServer();
-  });*/
-
+  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
+    loadVideosFromServer();
+  });
   return false;
 };
 
@@ -427,7 +440,7 @@ var VideoForm = function VideoForm(props) {
       id: "timestamp",
       type: "text",
       name: "timestamp",
-      placeholder: "00h00m00s"
+      placeholder: "Timestamp"
     })), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
       id: "playerOne",
       type: "text",
@@ -455,7 +468,7 @@ var VideoForm = function VideoForm(props) {
     className: "form-control",
     type: "text",
     name: "videoLink",
-    placeholder: "YouTube Link"
+    placeholder: "YouTube Link (https://www.youtube.com/watch?v=***********)"
   }), /*#__PURE__*/React.createElement("select", {
     className: "form-control",
     id: "Game",
@@ -482,7 +495,9 @@ var VideoForm = function VideoForm(props) {
     id: "addMatchButton",
     className: "btn btn-default",
     type: "button"
-  }, "Add a Match")));
+  }, "Add a Match")), /*#__PURE__*/React.createElement("div", {
+    id: "adSpace"
+  }));
 }; /// CHANGE PASSWORD WINDOW
 
 
@@ -523,6 +538,7 @@ var ChangeWindow = function ChangeWindow(props) {
 var VideoList = function VideoList(props) {
   // Do we need to show deletion or not
   var deleteButton;
+  var adSpace;
 
   if (props.videos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
@@ -542,8 +558,14 @@ var VideoList = function VideoList(props) {
       }, /*#__PURE__*/React.createElement("i", {
         className: "fas fa-trash"
       })));
+      adSpace = null;
     } else {
       deleteButton = null;
+      adSpace = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        id: "ad"
+      }, "Ad 1"), /*#__PURE__*/React.createElement("div", {
+        id: "adtwo"
+      }, "Ad 2"));
     }
 
     var char1Src;
@@ -577,7 +599,8 @@ var VideoList = function VideoList(props) {
       alt: video.char2
     })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
       href: video.link,
-      className: "icons-sm yt-ic"
+      className: "icons-sm yt-ic",
+      target: "_blank"
     }, /*#__PURE__*/React.createElement("i", {
       className: "fab fa-youtube fa-2x"
     }, " "))), deleteButton));
@@ -586,7 +609,7 @@ var VideoList = function VideoList(props) {
     id: "pageContainer"
   }, /*#__PURE__*/React.createElement("table", {
     className: "table table-sm table-dark"
-  }, videoNodes));
+  }, videoNodes), adSpace);
 };
 
 var loadVideosFromServer = function loadVideosFromServer() {

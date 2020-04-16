@@ -104,7 +104,7 @@ const VideoList = function(props) {
                         <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
                         <td>{video.player2}</td>
                         <td>
-                            <a href={video.link} className="icons-sm yt-ic"><i className="fab fa-youtube fa-2x"> </i></a>
+                            <a href={video.link} className="icons-sm yt-ic" target="_blank"><i className="fab fa-youtube fa-2x"> </i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -118,6 +118,9 @@ const VideoList = function(props) {
             <table className="table table-sm">
                 {videoNodes}
             </table>
+            <div id="ad">Ad 1</div>
+            <div id="adtwo">Ad 2</div>
+
         </div>
     );
 };
@@ -125,11 +128,11 @@ const VideoList = function(props) {
 const loadAllVideosFromServer = () => {
     sendAjax('GET', '/getAllVideos', null, (data) => {
         ReactDOM.render(
-            <VideoList videos={data.videos} />, document.querySelector("#videos")
+            <VideoList videos={data.videos} />, document.querySelector("#content")
         );
     });
 
-    ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
+    //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 //#endregion
 
@@ -139,7 +142,7 @@ const createLoginWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+    //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 const createSignupWindow = (csrf) => {
@@ -148,7 +151,7 @@ const createSignupWindow = (csrf) => {
         document.querySelector("#content")
     );
 
-    //ReactDOM.unmountComponentAtNode(document.querySelector("#videos"));
+   // ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 const setup = (csrf) => {
