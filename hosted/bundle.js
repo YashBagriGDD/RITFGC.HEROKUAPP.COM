@@ -27,24 +27,23 @@ var handleVideo = function handleVideo(e) {
       videoObj.videoLink = this.value;
     }
   });
-
-  if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
-    handleError("ERROR | All fields are required");
-    return false;
+  /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+  $("#videoLink").val() == '') {
+      handleError("ERROR | All fields are required");
+      return false;
   }
-
-  if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
-    handleError("ERROR | Please select a game");
-    return false;
-  } // Check if the error uses the correct link *just copying the url
-
-
-  if (!$("#videoLink").val().includes('www.youtube.com')) {
-    handleError("ERROR | Please use a valid link");
-    return false;
-  } // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+    if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
+  $('#videoForm').find('#Game').find(":selected").text() === '') {
+      handleError("ERROR | Please select a game");
+      return false;
+  }
+    // Check if the error uses the correct link *just copying the url
+  if(!$("#videoLink").val().includes('www.youtube.com')) {
+      handleError("ERROR | Please use a valid link");
+      return false;
+  }*/
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
   // https://www.w3schools.com/jsref/jsref_replace.asp
-
 
   var regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g; /// Putting each input into its own object to send to the server 
   ///
@@ -93,9 +92,10 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
-    loadVideosFromServer();
-  });
+  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+      loadVideosFromServer();
+  });*/
+
   return false;
 };
 

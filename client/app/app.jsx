@@ -27,7 +27,7 @@ const handleVideo = (e) => {
         }
     });
 
-    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+    /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
     $("#videoLink").val() == '') {
         handleError("ERROR | All fields are required");
         return false;
@@ -43,7 +43,7 @@ const handleVideo = (e) => {
     if(!$("#videoLink").val().includes('www.youtube.com')) {
         handleError("ERROR | Please use a valid link");
         return false;
-    }
+    }*/
 
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
@@ -101,9 +101,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });
+    });*/
 
     return false;
 };
@@ -204,11 +204,8 @@ const VideoForm = (props) => {
     $('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
     $('#videoForm').find('#Game').find(":selected").text() === '') {
         charSelection = <select id = "char1">
-                    <option value="Amane" selected>Amane</option>
-                    <option value="Arakune">Arakune</option>
-                    <option value="Azrael">Azrael</option>
-                    <option value="Bang">Bang</option>
-                    <option value="Bullet">Bullet</option>
+                    <option value="Amane" selected>Amane</option><option value="Arakune">Arakune</option>
+        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
                     <option value="Carl">Carl</option>
                     <option value="Celica">Celica</option>
                     <option value="Es">Es</option>
