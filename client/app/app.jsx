@@ -27,7 +27,7 @@ const handleVideo = (e) => {
         }
     });
 
-    /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
     $("#videoLink").val() == '') {
         handleError("ERROR | All fields are required");
         return false;
@@ -43,7 +43,7 @@ const handleVideo = (e) => {
     if(!$("#videoLink").val().includes('www.youtube.com')) {
         handleError("ERROR | Please use a valid link");
         return false;
-    }*/
+    }
 
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
@@ -101,9 +101,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });*/
+    });
 
     return false;
 };
@@ -132,6 +132,11 @@ const handleChange = (e) => {
 
     if($("#pass").val() === $("#pass2").val()) {
         handleError("ERROR | Passwords cannot match");
+        return false;
+    }
+
+    if($("pass2").val() !== $("#pass3").val()) {
+        handleError("ERROR | The new passwords do not match");
         return false;
     }
 
@@ -206,114 +211,81 @@ const VideoForm = (props) => {
         charSelection = <select id = "char1">
                     <option value="Amane" selected>Amane</option><option value="Arakune">Arakune</option>
         <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
-                    <option value="Carl">Carl</option>
-                    <option value="Celica">Celica</option>
-                    <option value="Es">Es</option>
-                    <option value="Hakumen">Hakumen</option>
-                    <option value="Hazama">Hazama</option>
-                    <option value="Hibiki">Hibiki</option>
-                    <option value="Izanami">Izanami</option>
-                    <option value="Izayoi">Izayoi</option>
-                    <option value="Jin">Jin</option>
-                    <option value="Jubei">Jubei</option>
-                    <option value="Kagura">Kagura</option>
-                    <option value="Kokonoe">Kokonoe</option>
-                    <option value="Litchi">Litchi</option>
-                    <option value="Makoto">Makoto</option>
-                    <option value="Mai">Mai</option>
-                    <option value="Naoto">Naoto</option>
-                    <option value="Nine">Nine</option>
-                    <option value="Noel">Noel</option>
-                    <option value="Platinum">Platinum</option>
-                    <option value="Rachel">Rachel</option>
-                    <option value="Ragna">Ragna</option>
-                    <option value="Relius">Relius</option>
-                    <option value="Susanoo">Susanoo</option>
-                    <option value="Tager">Tager</option>
-                    <option value="Taokaka">Taokaka</option>
-                    <option value="Tsubaki">Tsubaki</option>
-                    <option value="Terumi">Terumi</option>
-                    <option value="Valkenhayn">Valkenhayn</option>
-                    <option value="Lambda-11">Lambda-11</option>
-                    <option value="Mu-12">Mu-12</option>
-                    <option value="Nu-13">Nu-13</option>
+        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+        <option value="Nu-13">Nu-13</option>
                 </select>
 
         char2Selection = <select id = "char2">
-                    <option value="Amane" selected>Amane</option>
-                    <option value="Arakune">Arakune</option>
-                    <option value="Azrael">Azrael</option>
-                    <option value="Bang">Bang</option>
-                    <option value="Bullet">Bullet</option>
-                    <option value="Carl">Carl</option>
-                    <option value="Celica">Celica</option>
-                    <option value="Es">Es</option>
-                    <option value="Hakumen">Hakumen</option>
-                    <option value="Hazama">Hazama</option>
-                    <option value="Hibiki">Hibiki</option>
-                    <option value="Izanami">Izanami</option>
-                    <option value="Izayoi">Izayoi</option>
-                    <option value="Jin">Jin</option>
-                    <option value="Jubei">Jubei</option>
-                    <option value="Kagura">Kagura</option>
-                    <option value="Kokonoe">Kokonoe</option>
-                    <option value="Litchi">Litchi</option>
-                    <option value="Makoto">Makoto</option>
-                    <option value="Mai">Mai</option>
-                    <option value="Naoto">Naoto</option>
-                    <option value="Nine">Nine</option>
-                    <option value="Noel">Noel</option>
-                    <option value="Platinum">Platinum</option>
-                    <option value="Rachel">Rachel</option>
-                    <option value="Ragna">Ragna</option>
-                    <option value="Relius">Relius</option>
-                    <option value="Susanoo">Susanoo</option>
-                    <option value="Tager">Tager</option>
-                    <option value="Taokaka">Taokaka</option>
-                    <option value="Tsubaki">Tsubaki</option>
-                    <option value="Terumi">Terumi</option>
-                    <option value="Valkenhayn">Valkenhayn</option>
-                    <option value="Lambda-11">Lambda-11</option>
-                    <option value="Mu-12">Mu-12</option>
-                    <option value="Nu-13">Nu-13</option>
+                    <option value="Amane" selected>Amane</option><option value="Arakune">Arakune</option>
+        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
+        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+        <option value="Nu-13">Nu-13</option>
                 </select>
 
 
     } else if($('#videoForm').find('#Game').find(":selected").text() === 'GBVS'){
         charSelection= <select id ="char1">
-                    <option value="Beezlebub" selected>Beezlebub</option>
-                    <option value="Charlotta">Charlotta</option>
-                    <option value="Djeeta">Djeeta</option>
-                    <option value="Ferry">Ferry</option>
-                    <option value="Gran">Gran</option>
-                    <option value="Katalina">Katalina</option>
-                    <option value="Ladiva">Ladiva</option>
-                    <option value="Lancelot">Lancelot</option>
-                    <option value="Lowain">Lowain</option>
-                    <option value="Metera">Metera</option>
-                    <option value="Narmaya">Narmaya</option>
-                    <option value="Percival">Percival</option>
-                    <option value="Soriz">Soriz</option>
-                    <option value="Vaseraga">Vaseraga</option>
-                    <option value="Zeta">Zeta</option>
+        <option value="Beezlebub" selected>Beezlebub</option><option value="Charlotta">Charlotta</option>
+        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+        <option value="Zeta">Zeta</option>
                 </select>
 
         char2Selection= <select id ="char2">
-                    <option value="Beezlebub" selected>Beezlebub</option>
-                    <option value="Charlotta">Charlotta</option>
-                    <option value="Djeeta">Djeeta</option>
-                    <option value="Ferry">Ferry</option>
-                    <option value="Gran">Gran</option>
-                    <option value="Katalina">Katalina</option>
-                    <option value="Ladiva">Ladiva</option>
-                    <option value="Lancelot">Lancelot</option>
-                    <option value="Lowain">Lowain</option>
-                    <option value="Metera">Metera</option>
-                    <option value="Narmaya">Narmaya</option>
-                    <option value="Percival">Percival</option>
-                    <option value="Soriz">Soriz</option>
-                    <option value="Vaseraga">Vaseraga</option>
-                    <option value="Zeta">Zeta</option>
+        <option value="Beezlebub" selected>Beezlebub</option><option value="Charlotta">Charlotta</option>
+        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+        <option value="Zeta">Zeta</option>
+                </select>
+    } else if($('#videoForm').find('#Game').find(":selected").text() === 'UNICLR'){
+        charSelection= <select id ="char1">
+        <option value="Akatsuki">Akatsuki</option><option value="Byakuya" selected>Byakuya</option>
+        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
+                </select>
+
+        char2Selection= <select id ="char2">
+        <option value="Akatsuki">Akatsuki</option><option value="Byakuya" selected>Byakuya</option>
+        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
                 </select>
     }
 
@@ -347,6 +319,7 @@ const VideoForm = (props) => {
                 <option value="" disabled selected hidden>Game</option>
                 <option value="bbcf">BBCF</option>
                 <option value="gbvs">GBVS</option>
+                <option value="uniclr">UNICLR</option>
             </select>
             <table id="videoFormTable" className="table table-sm table-dark">
                 {rows}
@@ -374,10 +347,9 @@ const ChangeWindow = (props) => {
         >
         <input className="form-control" id="pass" type="password" name="pass" placeholder="old password"/>
         <input className="form-control" id="pass2" type="password" name="pass2" placeholder="new password"/>
+        <input className="form-control" id="pass3" type="password" name="pass3" placeholder="re-type password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <div className="form-actions">
-            <button className="btn" type="submit">Sign In</button>
-        </div>
+        <input className="formSubmit btn" type="submit" value="Change"/>
     </form>
     );
 };
@@ -413,8 +385,8 @@ const VideoList = function(props) {
         } else {
             deleteButton = null;
             adSpace = <div>
-                      <div id="ad">Ad 1</div>
-                      <div id="adtwo">Ad 2</div>
+                      <div id="ad">Your Ad Here!</div>
+                      <div id="adtwo">Your Ad Here!</div>
                       </div>;
         }
 
@@ -422,25 +394,39 @@ const VideoList = function(props) {
         let char2Src;
         let gameSrc;
 
+        let img1;
+        let img2;
 
-        // Just put the images in one folder oops
         if(video.game === "BBCF") {
             char1Src = `/assets/img/CF/${video.char1}.png`;
             char2Src = `/assets/img/CF/${video.char2}.png`;
             gameSrc = `/assets/img/CF/${video.game}.png`;
-        } else {
+        } else if(video.game === "GBVS"){
             char1Src = `/assets/img/GBVS/${video.char1}.png`;
             char2Src = `/assets/img/GBVS/${video.char2}.png`;
             gameSrc = `/assets/img/GBVS/${video.game}.png`;
+        } else {
+            char1Src = `/assets/img/UNICLR/${video.char1}.png`;
+            char2Src = `/assets/img/UNICLR/${video.char2}.png`;
+            gameSrc = `/assets/img/UNICLR/${video.game}.png`;
         }
+
+        img1 = <img id="char1Img" src={char1Src} alt={video.char1} />
+        img2 = <img id="char2Img" src={char2Src} alt={video.char2} />
+
+        if(video.game === "UNICLR") {
+            img2 = <img id="char2Img" className='flip' src={char2Src} alt={video.char2} />
+        }
+
+        
         return (
                 <tbody>
                     <tr>
                         <th scope="row"><img id="gameLogo" className="gameLogo" src={gameSrc} alt={video.gameSrc} /></th>
                         <td>{video.player1}</td>
-                        <td><img id="char1Img" src={char1Src} alt={video.char1} /></td>
+                        <td>{img1}</td>
                         <td>vs</td>
-                        <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
+                        <td>{img2}</td>
                         <td>{video.player2}</td>
                         <td>
                             <a href={video.link} className="icons-sm yt-ic" target="_blank"><i className="fab fa-youtube fa-2x"> </i></a>

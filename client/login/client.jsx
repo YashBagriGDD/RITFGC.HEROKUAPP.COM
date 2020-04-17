@@ -34,17 +34,15 @@ const handleSignup = (e) => {
 const LoginWindow = (props) => {
     return ( 
     <form   id="loginForm"
-            className="loginForm"
+            className="mainForm"
             onSubmit={handleLogin}
             action="/login"
             method="POST"
         >
-        <input className="form-control" id="user" type="text" name="username" placeholder="username"/>
-        <input className="form-control" id="pass" type="password" name="pass" placeholder="password"/>
+        <input id="user" type="text" name="username" placeholder="username"/>
+        <input id="pass" type="password" name="pass" placeholder="password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <div className="form-actions">
-            <button className="btn" type="submit">Sign In</button>
-        </div>
+        <input className="formSubmit btn" type="submit" value="Sign Up"/>
 
     </form>
     );
@@ -58,14 +56,11 @@ const SignupWindow = (props) => {
             method="POST"
             className="mainForm"
         >
-        <label htmlFor="username">Username: </label>
         <input id="user" type="text" name="username" placeholder="username"/>
-        <label htmlFor="pass">Password: </label>
         <input id="pass" type="password" name="pass" placeholder="password"/>
-        <label htmlFor="pass2">Password: </label>
         <input id="pass2" type="password" name="pass2" placeholder="retype password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <input className="formSubmit" type="submit" value="Sign Up"/>
+        <input className="formSubmit btn" type="submit" value="Sign Up"/>
 
     </form>
     );
@@ -85,23 +80,38 @@ const VideoList = function(props) {
         let char1Src;
         let char2Src;
         let gameSrc;
+
+        let img1;
+        let img2;
+        
         if(video.game === "BBCF") {
             char1Src = `/assets/img/CF/${video.char1}.png`;
             char2Src = `/assets/img/CF/${video.char2}.png`;
             gameSrc = `/assets/img/CF/${video.game}.png`;
-        } else {
+        } else if(video.game === "GBVS"){
             char1Src = `/assets/img/GBVS/${video.char1}.png`;
             char2Src = `/assets/img/GBVS/${video.char2}.png`;
             gameSrc = `/assets/img/GBVS/${video.game}.png`;
+        } else {
+            char1Src = `/assets/img/UNICLR/${video.char1}.png`;
+            char2Src = `/assets/img/UNICLR/${video.char2}.png`;
+            gameSrc = `/assets/img/UNICLR/${video.game}.png`;
+        }
+
+        img1 = <img id="char1Img" src={char1Src} alt={video.char1} />
+        img2 = <img id="char2Img" src={char2Src} alt={video.char2} />
+
+        if(video.game === "UNICLR") {
+            img2 = <img id="char2Img" className='flip' src={char2Src} alt={video.char2} />
         }
         return (
             <tbody>
                     <tr>
                         <th scope="row"><img id="gameLogo" className="gameLogo" src={gameSrc} alt={video.gameSrc} /></th>
                         <td>{video.player1}</td>
-                        <td><img id="char1Img" src={char1Src} alt={video.char1} /></td>
+                        <td>{img1}</td>
                         <td>vs</td>
-                        <td><img id="char2Img" src={char2Src} alt={video.char2} /></td>
+                        <td>{img2}</td>
                         <td>{video.player2}</td>
                         <td>
                             <a href={video.link} className="icons-sm yt-ic" target="_blank"><i className="fab fa-youtube fa-2x"> </i></a>
@@ -118,8 +128,8 @@ const VideoList = function(props) {
             <table className="table table-sm">
                 {videoNodes}
             </table>
-            <div id="ad">Ad 1</div>
-            <div id="adtwo">Ad 2</div>
+            <div id="ad">Your Ad Here!</div>
+            <div id="adtwo">Your Ad Here!</div>
 
         </div>
     );

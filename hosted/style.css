@@ -60,24 +60,19 @@ nav:nth-child(1) {
 }
 
 .mainForm {
-    height: 300px;
+    height: 20px;
     width: 350px;
     margin: 0 auto;
     padding-top: 350px;
     font-size: 1.2em;
+    margin-right: 33%;
+    margin-top: -5%;
 }
 
 .mainForm h3 {
     text-align: center;
 }
 
-.mainForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
-}
 
 .formSubmit {
     transition: background-color 0.4s ease;
@@ -85,35 +80,36 @@ nav:nth-child(1) {
     text-align: center;
     margin: 0 auto;
     margin-top: 14px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: 100px;
-    background-color: #55acee;
-    border-radius: 2px;
-    border-color: #66acee;
+    background-color: #7C878E;
+    border-color: black;
     padding: 3px 0px;
     color: white;
-    text-decoration: none;
 }
 
 .formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
     color: white;
+    background-color: #F76902;
 }
 
 .formSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #F76902;
 }
 
-#user, #pass, #pass2 {
+#user, #pass, #pass2, #pass3 {
     text-align: center;
     font-size: 1.1em;
-    width: 180px;
+    width: 190px;
     border-radius: 6px;
+    margin-left: 23%;
+    margin-top: 10px;
 }
 
-#user:focus, #pass:focus, #pass2:focus {
+#user:focus, #pass:focus, #pass2:focus, #pass3:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
+    box-shadow: 0px 0px 1px 1px #F76902;
 }
 
 #video {
@@ -155,15 +151,22 @@ nav:nth-child(1) {
 }
 
 .fa-youtube {
+    transition: color 0.5s ease;
     color: #F76902;
 }
 
+.fa-youtube:hover {
+    transition: color 0.5s ease;
+    color: #CF6902;
+}
+
 .fa-trash {
+    transition: color 0.5s ease;
     color: black;
 }
 
-.fa-trash:hover {
-    transition: color 0.8s ease;
+.delete:hover > .fa-trash {
+    transition: color 0.5s ease;
     color: gray;
 }
 
@@ -205,14 +208,6 @@ select:invalid {
     vertical-align: middle;
 }
 
-
-.form-control {
-    margin: 0 auto;
-    margin-top: 5%;
-    margin-right: 30%;
-    font-weight: bold;
-}
-
 #static > .form-control {
     display: inline;
     margin: 0 auto;
@@ -232,26 +227,43 @@ select:invalid {
 #static > .btn-primary {
     margin-top: 15px;
     margin-left: 30%;
-    color: #F76902;
+    background-color: hsl(351, 68%, 11%) !important;
+ 
+    background-repeat: repeat-x;
+ 
+    background-image: -o-linear-gradient(top, #F76902, #7C878E);
+    
+    background-image: linear-gradient(#F76902, #2f080e);
+    
+    border-color: #2f080e #2f080e hsl(351, 68%, 1.5%);
+    
+    color: #fff !important;
+    
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.62);
 
 }
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+ 
+    background-color: hsl(360, 68%, 60%) !important;
+     
+    background-repeat: repeat-x;
+     
+    background-image: linear-gradient(#fbeded, #de5353);
+     
+    border-color: #de5353 #de5353 hsl(360, 68%, 51%);
+     
+    color: #333 !important;
+     
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.59);
+}
+     
 
 #static > .btn-default {
     margin: 0 auto;
     margin-left: 5%;
     margin-top: 15px;
 
-}
-
-.form-actions {
-    margin: 0 auto;
-    background-color: transparent;
-    text-align: center;
-    margin-top: 5px;
-}
-
-.form-actions > .btn{
-    background-color: red;
 }
 
 button.delete {
@@ -263,19 +275,34 @@ button.delete {
     position: fixed;
     width: 8%;
     height: 40%;
-    border: 10px solid red;
+    border: 10px solid #F76902;
     right: 50;
     top: 11%;
-    color: red;
+    color: #F76902;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
 #adtwo {
     position: fixed;
     width: 8%;
     height: 40%;
-    border: 10px solid blue;
+    border: 10px solid #F76902;
     right: 50;
     top: 55%;
-    color: blue;
+    color: #F76902;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.flip {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 

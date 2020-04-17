@@ -33,18 +33,16 @@ var handleSignup = function handleSignup(e) {
 var LoginWindow = function LoginWindow(props) {
   return /*#__PURE__*/React.createElement("form", {
     id: "loginForm",
-    className: "loginForm",
+    className: "mainForm",
     onSubmit: handleLogin,
     action: "/login",
     method: "POST"
   }, /*#__PURE__*/React.createElement("input", {
-    className: "form-control",
     id: "user",
     type: "text",
     name: "username",
     placeholder: "username"
   }), /*#__PURE__*/React.createElement("input", {
-    className: "form-control",
     id: "pass",
     type: "password",
     name: "pass",
@@ -53,12 +51,11 @@ var LoginWindow = function LoginWindow(props) {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "form-actions"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn",
-    type: "submit"
-  }, "Sign In")));
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "formSubmit btn",
+    type: "submit",
+    value: "Sign Up"
+  }));
 };
 
 var SignupWindow = function SignupWindow(props) {
@@ -69,23 +66,17 @@ var SignupWindow = function SignupWindow(props) {
     action: "/signup",
     method: "POST",
     className: "mainForm"
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "username"
-  }, "Username: "), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     id: "user",
     type: "text",
     name: "username",
     placeholder: "username"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "pass"
-  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("input", {
     id: "pass",
     type: "password",
     name: "pass",
     placeholder: "password"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "pass2"
-  }, "Password: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("input", {
     id: "pass2",
     type: "password",
     name: "pass2",
@@ -95,7 +86,7 @@ var SignupWindow = function SignupWindow(props) {
     name: "_csrf",
     value: props.csrf
   }), /*#__PURE__*/React.createElement("input", {
-    className: "formSubmit",
+    className: "formSubmit btn",
     type: "submit",
     value: "Sign Up"
   }));
@@ -115,15 +106,41 @@ var VideoList = function VideoList(props) {
     var char1Src;
     var char2Src;
     var gameSrc;
+    var img1;
+    var img2;
 
     if (video.game === "BBCF") {
       char1Src = "/assets/img/CF/".concat(video.char1, ".png");
       char2Src = "/assets/img/CF/".concat(video.char2, ".png");
       gameSrc = "/assets/img/CF/".concat(video.game, ".png");
-    } else {
+    } else if (video.game === "GBVS") {
       char1Src = "/assets/img/GBVS/".concat(video.char1, ".png");
       char2Src = "/assets/img/GBVS/".concat(video.char2, ".png");
       gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
+    } else {
+      char1Src = "/assets/img/UNICLR/".concat(video.char1, ".png");
+      char2Src = "/assets/img/UNICLR/".concat(video.char2, ".png");
+      gameSrc = "/assets/img/UNICLR/".concat(video.game, ".png");
+    }
+
+    img1 = /*#__PURE__*/React.createElement("img", {
+      id: "char1Img",
+      src: char1Src,
+      alt: video.char1
+    });
+    img2 = /*#__PURE__*/React.createElement("img", {
+      id: "char2Img",
+      src: char2Src,
+      alt: video.char2
+    });
+
+    if (video.game === "UNICLR") {
+      img2 = /*#__PURE__*/React.createElement("img", {
+        id: "char2Img",
+        className: "flip",
+        src: char2Src,
+        alt: video.char2
+      });
     }
 
     return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
@@ -133,15 +150,7 @@ var VideoList = function VideoList(props) {
       className: "gameLogo",
       src: gameSrc,
       alt: video.gameSrc
-    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
-      id: "char1Img",
-      src: char1Src,
-      alt: video.char1
-    })), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
-      id: "char2Img",
-      src: char2Src,
-      alt: video.char2
-    })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, img1), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, img2), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
       href: video.link,
       className: "icons-sm yt-ic",
       target: "_blank"
@@ -155,9 +164,9 @@ var VideoList = function VideoList(props) {
     className: "table table-sm"
   }, videoNodes), /*#__PURE__*/React.createElement("div", {
     id: "ad"
-  }, "Ad 1"), /*#__PURE__*/React.createElement("div", {
+  }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
     id: "adtwo"
-  }, "Ad 2"));
+  }, "Your Ad Here!"));
 };
 
 var loadAllVideosFromServer = function loadAllVideosFromServer() {

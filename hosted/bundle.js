@@ -27,23 +27,24 @@ var handleVideo = function handleVideo(e) {
       videoObj.videoLink = this.value;
     }
   });
-  /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
-  $("#videoLink").val() == '') {
-      handleError("ERROR | All fields are required");
-      return false;
+
+  if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
+    handleError("ERROR | All fields are required");
+    return false;
   }
-    if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
-  $('#videoForm').find('#Game').find(":selected").text() === '') {
-      handleError("ERROR | Please select a game");
-      return false;
-  }
-    // Check if the error uses the correct link *just copying the url
-  if(!$("#videoLink").val().includes('www.youtube.com')) {
-      handleError("ERROR | Please use a valid link");
-      return false;
-  }*/
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+
+  if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
+    handleError("ERROR | Please select a game");
+    return false;
+  } // Check if the error uses the correct link *just copying the url
+
+
+  if (!$("#videoLink").val().includes('www.youtube.com')) {
+    handleError("ERROR | Please use a valid link");
+    return false;
+  } // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
   // https://www.w3schools.com/jsref/jsref_replace.asp
+
 
   var regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g; /// Putting each input into its own object to send to the server 
   ///
@@ -92,10 +93,9 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
-      loadVideosFromServer();
-  });*/
-
+  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
+    loadVideosFromServer();
+  });
   return false;
 };
 
@@ -122,6 +122,11 @@ var handleChange = function handleChange(e) {
 
   if ($("#pass").val() === $("#pass2").val()) {
     handleError("ERROR | Passwords cannot match");
+    return false;
+  }
+
+  if ($("pass2").val() !== $("#pass3").val()) {
+    handleError("ERROR | The new passwords do not match");
     return false;
   }
 
@@ -433,6 +438,87 @@ var VideoForm = function VideoForm(props) {
     }, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
       value: "Zeta"
     }, "Zeta"));
+  } else if ($('#videoForm').find('#Game').find(":selected").text() === 'UNICLR') {
+    charSelection = /*#__PURE__*/React.createElement("select", {
+      id: "char1"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "Akatsuki"
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya",
+      selected: true
+    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+      value: "Carmine"
+    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
+      value: "Chaos"
+    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
+      value: "Eltnum"
+    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+      value: "Enkidu"
+    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+      value: "Gordeau"
+    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+      value: "Hilda"
+    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
+      value: "Hyde"
+    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
+      value: "Linne"
+    }, "Linne"), /*#__PURE__*/React.createElement("option", {
+      value: "Londrekia"
+    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+      value: "Merkava"
+    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
+      value: "Phonon"
+    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
+      value: "Seth"
+    }, "Seth"), /*#__PURE__*/React.createElement("option", {
+      value: "Vatista"
+    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
+      value: "Wagner"
+    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
+      value: "Waldstein"
+    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+      value: "Yuzuriha"
+    }, "Yuzuriha"));
+    char2Selection = /*#__PURE__*/React.createElement("select", {
+      id: "char2"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "Akatsuki"
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya",
+      selected: true
+    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+      value: "Carmine"
+    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
+      value: "Chaos"
+    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
+      value: "Eltnum"
+    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+      value: "Enkidu"
+    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+      value: "Gordeau"
+    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+      value: "Hilda"
+    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
+      value: "Hyde"
+    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
+      value: "Linne"
+    }, "Linne"), /*#__PURE__*/React.createElement("option", {
+      value: "Londrekia"
+    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+      value: "Merkava"
+    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
+      value: "Phonon"
+    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
+      value: "Seth"
+    }, "Seth"), /*#__PURE__*/React.createElement("option", {
+      value: "Vatista"
+    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
+      value: "Wagner"
+    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
+      value: "Waldstein"
+    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+      value: "Yuzuriha"
+    }, "Yuzuriha"));
   }
 
   for (var i = 0; i < loopNumber; i++) {
@@ -482,7 +568,9 @@ var VideoForm = function VideoForm(props) {
     value: "bbcf"
   }, "BBCF"), /*#__PURE__*/React.createElement("option", {
     value: "gbvs"
-  }, "GBVS")), /*#__PURE__*/React.createElement("table", {
+  }, "GBVS"), /*#__PURE__*/React.createElement("option", {
+    value: "uniclr"
+  }, "UNICLR")), /*#__PURE__*/React.createElement("table", {
     id: "videoFormTable",
     className: "table table-sm table-dark"
   }, rows), /*#__PURE__*/React.createElement("input", (_React$createElement = {
@@ -522,15 +610,20 @@ var ChangeWindow = function ChangeWindow(props) {
     name: "pass2",
     placeholder: "new password"
   }), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
+    id: "pass3",
+    type: "password",
+    name: "pass3",
+    placeholder: "re-type password"
+  }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "form-actions"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn",
-    type: "submit"
-  }, "Sign In")));
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "formSubmit btn",
+    type: "submit",
+    value: "Change"
+  }));
 }; /// RENDERING THE LIST
 /// Render the list depending on if it's a page list or the full list
 
@@ -563,23 +656,49 @@ var VideoList = function VideoList(props) {
       deleteButton = null;
       adSpace = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
         id: "ad"
-      }, "Ad 1"), /*#__PURE__*/React.createElement("div", {
+      }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
         id: "adtwo"
-      }, "Ad 2"));
+      }, "Your Ad Here!"));
     }
 
     var char1Src;
     var char2Src;
-    var gameSrc; // Just put the images in one folder oops
+    var gameSrc;
+    var img1;
+    var img2;
 
     if (video.game === "BBCF") {
       char1Src = "/assets/img/CF/".concat(video.char1, ".png");
       char2Src = "/assets/img/CF/".concat(video.char2, ".png");
       gameSrc = "/assets/img/CF/".concat(video.game, ".png");
-    } else {
+    } else if (video.game === "GBVS") {
       char1Src = "/assets/img/GBVS/".concat(video.char1, ".png");
       char2Src = "/assets/img/GBVS/".concat(video.char2, ".png");
       gameSrc = "/assets/img/GBVS/".concat(video.game, ".png");
+    } else {
+      char1Src = "/assets/img/UNICLR/".concat(video.char1, ".png");
+      char2Src = "/assets/img/UNICLR/".concat(video.char2, ".png");
+      gameSrc = "/assets/img/UNICLR/".concat(video.game, ".png");
+    }
+
+    img1 = /*#__PURE__*/React.createElement("img", {
+      id: "char1Img",
+      src: char1Src,
+      alt: video.char1
+    });
+    img2 = /*#__PURE__*/React.createElement("img", {
+      id: "char2Img",
+      src: char2Src,
+      alt: video.char2
+    });
+
+    if (video.game === "UNICLR") {
+      img2 = /*#__PURE__*/React.createElement("img", {
+        id: "char2Img",
+        className: "flip",
+        src: char2Src,
+        alt: video.char2
+      });
     }
 
     return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
@@ -589,15 +708,7 @@ var VideoList = function VideoList(props) {
       className: "gameLogo",
       src: gameSrc,
       alt: video.gameSrc
-    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
-      id: "char1Img",
-      src: char1Src,
-      alt: video.char1
-    })), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("img", {
-      id: "char2Img",
-      src: char2Src,
-      alt: video.char2
-    })), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+    })), /*#__PURE__*/React.createElement("td", null, video.player1), /*#__PURE__*/React.createElement("td", null, img1), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, img2), /*#__PURE__*/React.createElement("td", null, video.player2), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
       href: video.link,
       className: "icons-sm yt-ic",
       target: "_blank"
