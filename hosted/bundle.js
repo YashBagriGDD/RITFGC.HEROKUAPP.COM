@@ -8,10 +8,13 @@ var _csrf; // Values to help not repeat methods
 
 var pageList = false;
 var loopNumber = 1;
+var videoKey = 0;
 
 var handleVideo = function handleVideo(e) {
-  var videoKey = 0;
+  videoKey = 0;
   var modValue = 0;
+  var charVideoKey = 0;
+  var charModValue = 0;
   e.preventDefault(); // Create a video object to send to the server
 
   var videoObj = {}; // For each match a user wants to add, push the object
@@ -27,31 +30,28 @@ var handleVideo = function handleVideo(e) {
       videoObj.videoLink = this.value;
     }
   });
-
-  if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
-    handleError("ERROR | All fields are required");
-    return false;
+  /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+  $("#videoLink").val() == '') {
+      handleError("ERROR | All fields are required");
+      return false;
   }
-
-  if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
-    handleError("ERROR | Please select a game");
-    return false;
-  } // Check if the error uses the correct link *just copying the url
-
-
-  if (!$("#videoLink").val().includes('www.youtube.com')) {
-    handleError("ERROR | Please use a valid link");
-    return false;
-  } // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+    if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
+  $('#videoForm').find('#Game').find(":selected").text() === '') {
+      handleError("ERROR | Please select a game");
+      return false;
+  }
+    // Check if the error uses the correct link *just copying the url
+  if(!$("#videoLink").val().includes('www.youtube.com')) {
+      handleError("ERROR | Please use a valid link");
+      return false;
+  }*/
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
   // https://www.w3schools.com/jsref/jsref_replace.asp
-
 
   var regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g; /// Putting each input into its own object to send to the server 
   ///
 
   $('#videoForm').find('td > input').each(function () {
-    console.log(this);
-
     if (modValue === 0) {
       // Using regex to ensure the timestamp is correct
       if (regex.test(this.value)) {
@@ -73,9 +73,7 @@ var handleVideo = function handleVideo(e) {
     if (modValue === 2) {
       // Once the end is reached, add the game from the selection
       // Add characters as well
-      // and iterate the videoKey and reset the modification value
-      videoObj[videoKey].char1 = $('#videoForm').find('#char1').find(":selected").text();
-      videoObj[videoKey].char2 = $('#videoForm').find('#char2').find(":selected").text();
+      // and iterate the videoKey and reset the modification values
       videoObj[videoKey].player2 = this.value;
       videoObj[videoKey].game = $('#videoForm').find('#Game').find(":selected").text();
       videoKey++;
@@ -83,6 +81,26 @@ var handleVideo = function handleVideo(e) {
     }
 
     modValue++;
+  });
+  videoKey = 0; //console.dir("Video Object: " + videoObj);
+
+  $('#videoForm').find('select').each(function () {
+    console.log(videoObj);
+
+    if (this.id !== 'Game') {
+      if (charModValue === 0) {
+        videoObj[videoKey].char1 = this.value;
+      }
+
+      if (charModValue === 1) {
+        videoObj[videoKey].char2 = this.value;
+        videoKey++;
+        charModValue = -1;
+      }
+    }
+
+    videoKey++;
+    charModValue++;
   }); // CSRF is associated with a user, so add a token to the overall object to send to the server
 
   $('#videoForm').find('input').each(function () {
@@ -93,9 +111,10 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
-    loadVideosFromServer();
-  });
+  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+      loadVideosFromServer();
+  });*/
+
   return false;
 };
 
@@ -144,11 +163,11 @@ var handleSearch = function handleSearch(e) {
     char2: $("#char2Search").val(),
     game: $("#gameSearch").val()
   };
-  sendAjax('GET', $("#searchForm").attr("action"), params, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
-      videos: data.videos
-    }), document.querySelector("#content"));
-  });
+  /*sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
+      ReactDOM.render(
+          <VideoList videos={data.videos} />, document.querySelector("#content")
+      );
+  });*/
 }; // Search form
 
 
@@ -442,10 +461,10 @@ var VideoForm = function VideoForm(props) {
     charSelection = /*#__PURE__*/React.createElement("select", {
       id: "char1"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Akatsuki"
-    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
-      value: "Byakuya",
+      value: "Akatsuki",
       selected: true
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya"
     }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
       value: "Carmine"
     }, "Carmine"), /*#__PURE__*/React.createElement("option", {
@@ -482,10 +501,10 @@ var VideoForm = function VideoForm(props) {
     char2Selection = /*#__PURE__*/React.createElement("select", {
       id: "char2"
     }, /*#__PURE__*/React.createElement("option", {
-      value: "Akatsuki"
-    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
-      value: "Byakuya",
+      value: "Akatsuki",
       selected: true
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya"
     }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
       value: "Carmine"
     }, "Carmine"), /*#__PURE__*/React.createElement("option", {

@@ -4,10 +4,14 @@ let _csrf;
 // Values to help not repeat methods
 let pageList = false;
 let loopNumber = 1;
+let videoKey = 0;
 
 const handleVideo = (e) => {
-    let videoKey = 0;
+    videoKey = 0;
     let modValue = 0;
+
+    let charVideoKey = 0;
+    let charModValue = 0;
     e.preventDefault();
 
     // Create a video object to send to the server
@@ -27,7 +31,7 @@ const handleVideo = (e) => {
         }
     });
 
-    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+    /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
     $("#videoLink").val() == '') {
         handleError("ERROR | All fields are required");
         return false;
@@ -43,7 +47,7 @@ const handleVideo = (e) => {
     if(!$("#videoLink").val().includes('www.youtube.com')) {
         handleError("ERROR | Please use a valid link");
         return false;
-    }
+    }*/
 
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
@@ -54,7 +58,6 @@ const handleVideo = (e) => {
      /// Putting each input into its own object to send to the server 
      ///
      $('#videoForm').find('td > input').each(function(){
-         console.log(this);
 
         if(modValue===0) {
 
@@ -77,9 +80,7 @@ const handleVideo = (e) => {
         if(modValue===2) {
             // Once the end is reached, add the game from the selection
             // Add characters as well
-            // and iterate the videoKey and reset the modification value
-            videoObj[videoKey].char1 = $('#videoForm').find('#char1').find(":selected").text();
-            videoObj[videoKey].char2 = $('#videoForm').find('#char2').find(":selected").text();
+            // and iterate the videoKey and reset the modification values
             videoObj[videoKey].player2 = this.value;
             videoObj[videoKey].game = $('#videoForm').find('#Game').find(":selected").text();
             videoKey++;
@@ -88,6 +89,27 @@ const handleVideo = (e) => {
 
         modValue++;
     });
+
+    videoKey = 0;
+    //console.dir("Video Object: " + videoObj);
+
+    $('#videoForm').find('select').each(function() {
+        console.log(videoObj);
+
+
+        if(this.id !== 'Game') {
+            if(charModValue === 0) {
+                videoObj[videoKey].char1 = this.value;
+            }
+            if(charModValue === 1) {
+                videoObj[videoKey].char2 = this.value;
+                videoKey++;
+                charModValue = -1;
+            }
+        }
+        videoKey++;
+        charModValue++;
+    })
 
     // CSRF is associated with a user, so add a token to the overall object to send to the server
     $('#videoForm').find('input').each(function(){
@@ -101,9 +123,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });
+    });*/
 
     return false;
 };
@@ -157,11 +179,11 @@ const handleSearch = (e) => {
         game: $("#gameSearch").val(),
     }
 
-    sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
+    /*sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
         ReactDOM.render(
             <VideoList videos={data.videos} />, document.querySelector("#content")
         );
-    });
+    });*/
 };
 
 // Search form
@@ -265,7 +287,7 @@ const VideoForm = (props) => {
                 </select>
     } else if($('#videoForm').find('#Game').find(":selected").text() === 'UNICLR'){
         charSelection= <select id ="char1">
-        <option value="Akatsuki">Akatsuki</option><option value="Byakuya" selected>Byakuya</option>
+        <option value="Akatsuki" selected>Akatsuki</option><option value="Byakuya">Byakuya</option>
         <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
         <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
         <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
@@ -277,7 +299,7 @@ const VideoForm = (props) => {
                 </select>
 
         char2Selection= <select id ="char2">
-        <option value="Akatsuki">Akatsuki</option><option value="Byakuya" selected>Byakuya</option>
+        <option value="Akatsuki" selected>Akatsuki</option><option value="Byakuya">Byakuya</option>
         <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
         <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
         <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
