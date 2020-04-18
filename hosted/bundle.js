@@ -144,7 +144,7 @@ var handleChange = function handleChange(e) {
     return false;
   }
 
-  if ($("pass2").val() !== $("#pass3").val()) {
+  if ($("#pass2").val() !== $("#pass3").val()) {
     handleError("ERROR | The new passwords do not match");
     return false;
   }

@@ -52,7 +52,7 @@ const passChange = (request, response) => {
     return res.status(400).json({ error: 'ERROR | Passwords cannot match' });
   }
 
-  if (req.body.pass2 === req.body.pass3) {
+  if (req.body.pass2 !== req.body.pass3) {
     return res.status(400).json({ error: 'ERROR | The new passwords do not match' });
   }
 
