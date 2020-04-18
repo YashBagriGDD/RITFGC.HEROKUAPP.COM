@@ -19,8 +19,7 @@ const handleVideo = (e) => {
 
     // For each match a user wants to add, push the object
     for(let i = 0; i < loopNumber; i++) {
-        let newObject = {
-         }
+        let newObject = {}
         videoObj[i] = newObject;
     }
 
@@ -31,7 +30,7 @@ const handleVideo = (e) => {
         }
     });
 
-    /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
+    if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
     $("#videoLink").val() == '') {
         handleError("ERROR | All fields are required");
         return false;
@@ -47,7 +46,7 @@ const handleVideo = (e) => {
     if(!$("#videoLink").val().includes('www.youtube.com')) {
         handleError("ERROR | Please use a valid link");
         return false;
-    }*/
+    }
 
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
@@ -90,24 +89,28 @@ const handleVideo = (e) => {
         modValue++;
     });
 
-    videoKey = 0;
-    //console.dir("Video Object: " + videoObj);
 
+    // Set the new video key to the loop number for the next loop
+    videoKey = loopNumber;
+
+    // For character selection
     $('#videoForm').find('select').each(function() {
-        console.log(videoObj);
 
+        // One of the selections is for the game, we don't need that
+        // Also, if the key is equal to zero, skip it.
+        if(this.id !== 'Game' && videoKey>0) {
+            if(charModValue%2 !== 0) {
 
-        if(this.id !== 'Game') {
-            if(charModValue === 0) {
-                videoObj[videoKey].char1 = this.value;
+                // In order to ensure the object exists, take it from 
+                // the loop number and go down what's already been created
+                // and add that property to the list
+                videoObj[loopNumber-videoKey].char1 = this.value;
             }
-            if(charModValue === 1) {
-                videoObj[videoKey].char2 = this.value;
-                videoKey++;
-                charModValue = -1;
+            else if(charModValue%2 === 0) {
+                videoObj[loopNumber-videoKey].char2 = this.value;
+                videoKey--;
             }
         }
-        videoKey++;
         charModValue++;
     })
 
@@ -123,9 +126,9 @@ const handleVideo = (e) => {
 
     // Uncomment this to send data
     // Send the object! :diaYay:
-    /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
+    sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
         loadVideosFromServer();
-    });*/
+    });
 
     return false;
 };

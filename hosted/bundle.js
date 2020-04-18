@@ -30,23 +30,24 @@ var handleVideo = function handleVideo(e) {
       videoObj.videoLink = this.value;
     }
   });
-  /*if($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' ||
-  $("#videoLink").val() == '') {
-      handleError("ERROR | All fields are required");
-      return false;
+
+  if ($("#timeStamp").val() == '' || $("#playerOne").val() == '' || $("#playerTwo").val() == '' || $("#videoLink").val() == '') {
+    handleError("ERROR | All fields are required");
+    return false;
   }
-    if($('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
-  $('#videoForm').find('#Game').find(":selected").text() === '') {
-      handleError("ERROR | Please select a game");
-      return false;
-  }
-    // Check if the error uses the correct link *just copying the url
-  if(!$("#videoLink").val().includes('www.youtube.com')) {
-      handleError("ERROR | Please use a valid link");
-      return false;
-  }*/
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+
+  if ($('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
+    handleError("ERROR | Please select a game");
+    return false;
+  } // Check if the error uses the correct link *just copying the url
+
+
+  if (!$("#videoLink").val().includes('www.youtube.com')) {
+    handleError("ERROR | Please use a valid link");
+    return false;
+  } // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
   // https://www.w3schools.com/jsref/jsref_replace.asp
+
 
   var regex = /[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/g; /// Putting each input into its own object to send to the server 
   ///
@@ -81,25 +82,25 @@ var handleVideo = function handleVideo(e) {
     }
 
     modValue++;
-  });
-  videoKey = 0; //console.dir("Video Object: " + videoObj);
+  }); // Set the new video key to the loop number for the next loop
+
+  videoKey = loopNumber; // For character selection
 
   $('#videoForm').find('select').each(function () {
-    console.log(videoObj);
-
-    if (this.id !== 'Game') {
-      if (charModValue === 0) {
-        videoObj[videoKey].char1 = this.value;
-      }
-
-      if (charModValue === 1) {
-        videoObj[videoKey].char2 = this.value;
-        videoKey++;
-        charModValue = -1;
+    // One of the selections is for the game, we don't need that
+    // Also, if the key is equal to zero, skip it.
+    if (this.id !== 'Game' && videoKey > 0) {
+      if (charModValue % 2 !== 0) {
+        // In order to ensure the object exists, take it from 
+        // the loop number and go down what's already been created
+        // and add that property to the list
+        videoObj[loopNumber - videoKey].char1 = this.value;
+      } else if (charModValue % 2 === 0) {
+        videoObj[loopNumber - videoKey].char2 = this.value;
+        videoKey--;
       }
     }
 
-    videoKey++;
     charModValue++;
   }); // CSRF is associated with a user, so add a token to the overall object to send to the server
 
@@ -111,10 +112,9 @@ var handleVideo = function handleVideo(e) {
   console.log(videoObj); // Uncomment this to send data
   // Send the object! :diaYay:
 
-  /*sendAjax('POST', $("#videoForm").attr("action"), videoObj, function() {
-      loadVideosFromServer();
-  });*/
-
+  sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
+    loadVideosFromServer();
+  });
   return false;
 };
 
