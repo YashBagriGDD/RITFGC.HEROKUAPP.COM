@@ -14,7 +14,6 @@ const makerPage = (req, res) => {
 };
 
 const makeVideo = (req, res) => {
-
   const promiseArray = [];
   const values = Object.values(req.body);
 

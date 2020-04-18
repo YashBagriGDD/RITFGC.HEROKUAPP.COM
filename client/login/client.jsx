@@ -42,7 +42,7 @@ const LoginWindow = (props) => {
         <input id="user" type="text" name="username" placeholder="username"/>
         <input id="pass" type="password" name="pass" placeholder="password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
-        <input className="formSubmit btn" type="submit" value="Sign Up"/>
+        <input className="formSubmit btn" type="submit" value="Sign In"/>
 
     </form>
     );
@@ -83,7 +83,7 @@ const VideoList = function(props) {
 
         let img1;
         let img2;
-        
+
         if(video.game === "BBCF") {
             char1Src = `/assets/img/CF/${video.char1}.png`;
             char2Src = `/assets/img/CF/${video.char2}.png`;

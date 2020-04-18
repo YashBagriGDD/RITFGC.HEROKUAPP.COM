@@ -42,18 +42,18 @@ const passChange = (request, response) => {
   req.body.username = `${req.body.username}`;
   req.body.pass = `${req.body.pass}`;
   req.body.pass2 = `${req.body.pass2}`;
-  req.body.pass3 = `${req.body.pass3}`
+  req.body.pass3 = `${req.body.pass3}`;
 
   if (!req.body.pass || !req.body.pass2) {
-    return res.status(400).json({ error: "ERROR | All fields are required" });
+    return res.status(400).json({ error: 'ERROR | All fields are required' });
   }
 
   if (req.body.pass === req.body.pass2) {
-    return res.status(400).json({ error: "ERROR | Passwords cannot match" });
+    return res.status(400).json({ error: 'ERROR | Passwords cannot match' });
   }
 
-  if(req.body.pass2 === req.body.pass3) {
-    return res.status(400).json({ error: "ERROR | The new passwords do not match" });
+  if (req.body.pass2 === req.body.pass3) {
+    return res.status(400).json({ error: 'ERROR | The new passwords do not match' });
   }
 
   // Check to see if the initial password was correct in the first place

@@ -54,7 +54,7 @@ var LoginWindow = function LoginWindow(props) {
   }), /*#__PURE__*/React.createElement("input", {
     className: "formSubmit btn",
     type: "submit",
-    value: "Sign Up"
+    value: "Sign In"
   }));
 };
 
