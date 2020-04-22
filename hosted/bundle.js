@@ -2,6 +2,8 @@
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
+
 //At the top of the file
 var _csrf; // Values to help not repeat methods
 
@@ -156,18 +158,33 @@ var handleChange = function handleChange(e) {
 
 var handleSearch = function handleSearch(e) {
   e.preventDefault();
-  var params = {
-    player1: $("#player1Search").val(),
-    player2: $("#player2Search").val(),
-    char1: $("#char1Search").val(),
-    char2: $("#char2Search").val(),
-    game: $("#gameSearch").val()
-  };
-  /*sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
-      ReactDOM.render(
-          <VideoList videos={data.videos} />, document.querySelector("#content")
-      );
-  });*/
+  var queryString = "".concat($('#searchForm').attr('action'), "?"); // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
+
+  if ($("#player1Search").val()) {
+    queryString += (_readOnlyError("queryString"), "player1=".concat($("#player1Search").val(), "&"));
+  }
+
+  if ($("#player2Search").val()) {
+    queryString += (_readOnlyError("queryString"), "player1=".concat($("#player2Search").val(), "&"));
+  }
+
+  if ($("#char1Search").val()) {
+    queryString += (_readOnlyError("queryString"), "player1=".concat($("#char1Search").val(), "&"));
+  }
+
+  if ($("#char2Search").val()) {
+    queryString += (_readOnlyError("queryString"), "player1=".concat($("#char2Search").val(), "&"));
+  }
+
+  if ($("#gameSearch").val()) {
+    queryString += (_readOnlyError("queryString"), "player1=".concat($("#gameSearch").val(), "&"));
+  }
+
+  sendAjax('GET', queryString, null, function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
+      videos: data.videos
+    }), document.querySelector("#content"));
+  });
 }; // Search form
 
 
