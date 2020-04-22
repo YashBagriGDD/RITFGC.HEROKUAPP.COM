@@ -211,21 +211,24 @@ const SearchForm = () => {
             method="GET"
             className="searchForm"
         >
-            <label htmlFor="player1">Player 1: </label>
-            <input id="player1Search" type="text" name="player1" placeholder="Player 1"/>
-            <label htmlFor="player2">Player 2: </label>
-            <input id="player2Search" type="text" name="player2" placeholder="Player 2"/>
-            <label htmlFor="char1">Character 1: </label>
-            <input id="char1Search" type="text" name="char1" placeholder="Character 1"/>
-            <label htmlFor="char2">Character 2: </label>
-            <input id="char2Search" type="text" name="char2" placeholder="Character 2"/>
-            <label htmlFor="game">Game: </label>
-            <select id="gameSearch">
-                <option value="gbvs">GBVS</option>
-                <option value="bbcf">BBCF</option>
-                <option value="">All</option>
-            </select>
-            <input id="formSubmit" type="submit" value="Search"/>
+            <div id ="static">
+
+                <label htmlFor="player1">Player 1: </label>
+                <input className="form-control" id="player1Search" type="text" name="player1" placeholder="Player 1"/>
+                <label htmlFor="player2">Player 2: </label>
+                <input className="form-control" id="player2Search" type="text" name="player2" placeholder="Player 2"/>
+                <label htmlFor="char1">Character 1: </label>
+                <input className="form-control" id="char1Search" type="text" name="char1" placeholder="Character 1"/>
+                <label htmlFor="char2">Character 2: </label>
+                <input className="form-control" id="char2Search" type="text" name="char2" placeholder="Character 2"/>
+                <label htmlFor="game">Game: </label>
+                <select id="gameSearch">
+                    <option value="gbvs">GBVS</option>
+                    <option value="bbcf">BBCF</option>
+                    <option value="">All</option>
+                </select>
+                <input id="formSubmit" type="submit" value="Search"/>
+            </div>
         </form>
     )
 };
