@@ -174,19 +174,30 @@ const handleChange = (e) => {
 const handleSearch = (e) => {
     e.preventDefault();
 
-    let params = {
-        player1: $("#player1Search").val(),
-        player2: $("#player2Search").val(),
-        char1: $("#char1Search").val(),
-        char2: $("#char2Search").val(),
-        game: $("#gameSearch").val(),
+    const queryString = `${$('#searchForm').attr('action')}?`;
+
+    // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
+    if($("#player1Search").val()){
+        queryString += `player1=${$("#player1Search").val()}&`
+    }
+    if($("#player2Search").val()){
+        queryString += `player1=${$("#player2Search").val()}&`
+    }
+    if($("#char1Search").val()){
+        queryString += `player1=${$("#char1Search").val()}&`
+    }   
+    if($("#char2Search").val()){
+        queryString += `player1=${$("#char2Search").val()}&`
+    }
+    if($("#gameSearch").val()){
+        queryString += `player1=${$("#gameSearch").val()}&`
     }
 
-    /*sendAjax('GET', $("#searchForm").attr("action"), params, (data) =>{
+    sendAjax('GET', queryString , null, (data) =>{
         ReactDOM.render(
             <VideoList videos={data.videos} />, document.querySelector("#content")
         );
-    });*/
+    });
 };
 
 // Search form

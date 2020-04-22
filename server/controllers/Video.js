@@ -100,7 +100,7 @@ const searchVideos = (request, response) => {
   const req = request;
   const res = response;
 
-  return Video.VideoModel.findSearch(req.body, (err, docs) => {
+  return Video.VideoModel.findSearch(req.query, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
