@@ -103,11 +103,14 @@ const searchVideos = (request, response) => {
   const params = {};
 
   // check if the params exist
-   params.player1 = `${req.query.player1}`;
-   params.player2 = `${req.query.player2}`;
-   params.char1 = `${req.query.char1}`;
-   params.char2 = `${req.query.char2}`;
-   params.game = `${req.query.game}`;
+  const {
+    player1, player2, char1, char2, game,
+  } = req.query;
+  if (player1) params.player1 = player1;
+  if (player2) params.player2 = player2;
+  if (char1) params.char1 = char1;
+  if (char2) params.char2 = char2;
+  if (game) params.game = game;
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
