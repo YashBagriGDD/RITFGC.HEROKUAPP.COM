@@ -100,7 +100,16 @@ const searchVideos = (request, response) => {
   const req = request;
   const res = response;
 
-  return Video.VideoModel.findSearch(req.query, (err, docs) => {
+  const params = {};
+
+  // check if the params exist
+  if (req.query.player1) params.player1 = req.query.player1;
+  if (req.query.player2) params.player2 = req.query.player2;
+  if (req.query.char1) params.char1 = req.query.char1;
+  if (req.query.char2) params.char2 = req.query.char2;
+  if (req.query.game) params.game = req.query.game;
+
+  return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
