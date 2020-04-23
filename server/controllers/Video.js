@@ -106,11 +106,11 @@ const searchVideos = (request, response) => {
   const {
     player1, player2, char1, char2, game,
   } = req.query;
-  if (player1) params.player1 = player1;
-  if (player2) params.player2 = player2;
-  if (char1) params.char1 = char1;
-  if (char2) params.char2 = char2;
-  if (game) params.game = game;
+  if (player1) params.player1 = `${player1}`;
+  if (player2) params.player2 = `${player2}`;
+  if (char1) params.char1 = `${char1}`;
+  if (char2) params.char2 = `${char2}`;
+  if (game) params.game = `${game}`;
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
