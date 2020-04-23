@@ -178,19 +178,19 @@ const handleSearch = (e) => {
 
     // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
     if($("#player1Search").val()){
-        queryString += `player1=${$("#player1Search").val()}&`
+        queryString += `player1=${$("#player1Search").val()}`
     }
     if($("#player2Search").val()){
-        queryString += `player2=${$("#player2Search").val()}&`
+        queryString += `&player2=${$("#player2Search").val()}`
     }
     if($("#char1Search").val()){
-        queryString += `char1=${$("#char1Search").val()}&`
+        queryString += `&char1=${$("#char1Search").val()}`
     }   
     if($("#char2Search").val()){
-        queryString += `char2=${$("#char2Search").val()}&`
+        queryString += `&char2=${$("#char2Search").val()}`
     }
     if($("#gameSearch").val()){
-        queryString += `game=${$("#gameSearch").val()}&`
+        queryString += `&game=${$("#gameSearch").val()}`
     }
 
     sendAjax('GET', queryString , null, (data) =>{

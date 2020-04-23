@@ -159,23 +159,23 @@ var handleSearch = function handleSearch(e) {
   var queryString = "".concat($('#searchForm').attr('action'), "?"); // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
 
   if ($("#player1Search").val()) {
-    queryString += "player1=".concat($("#player1Search").val(), "&");
+    queryString += "player1=".concat($("#player1Search").val());
   }
 
   if ($("#player2Search").val()) {
-    queryString += "player1=".concat($("#player2Search").val(), "&");
+    queryString += "&player2=".concat($("#player2Search").val());
   }
 
   if ($("#char1Search").val()) {
-    queryString += "player1=".concat($("#char1Search").val(), "&");
+    queryString += "&char1=".concat($("#char1Search").val());
   }
 
   if ($("#char2Search").val()) {
-    queryString += "player1=".concat($("#char2Search").val(), "&");
+    queryString += "&char2=".concat($("#char2Search").val());
   }
 
   if ($("#gameSearch").val()) {
-    queryString += "player1=".concat($("#gameSearch").val(), "&");
+    queryString += "&game=".concat($("#gameSearch").val());
   }
 
   sendAjax('GET', queryString, null, function (data) {
