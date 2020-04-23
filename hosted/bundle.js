@@ -194,9 +194,12 @@ var SearchForm = function SearchForm() {
     action: "/search",
     method: "GET",
     className: "searchForm"
+  }, /*#__PURE__*/React.createElement("div", {
+    id: "static"
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "player1"
   }, "Player 1: "), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "player1Search",
     type: "text",
     name: "player1",
@@ -204,6 +207,7 @@ var SearchForm = function SearchForm() {
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "player2"
   }, "Player 2: "), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "player2Search",
     type: "text",
     name: "player2",
@@ -211,6 +215,7 @@ var SearchForm = function SearchForm() {
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "char1"
   }, "Character 1: "), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "char1Search",
     type: "text",
     name: "char1",
@@ -218,6 +223,7 @@ var SearchForm = function SearchForm() {
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "char2"
   }, "Character 2: "), /*#__PURE__*/React.createElement("input", {
+    className: "form-control",
     id: "char2Search",
     type: "text",
     name: "char2",
@@ -236,7 +242,7 @@ var SearchForm = function SearchForm() {
     id: "formSubmit",
     type: "submit",
     value: "Search"
-  }));
+  })));
 }; /// FORM TO SUBMIT NEW DATA
 
 
