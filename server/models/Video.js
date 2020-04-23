@@ -92,7 +92,7 @@ VideoSchema.statics.findSearch = (search, callback) => {
   //   game: search.game,
   // };
 
-  return VideoModel.find({...search}).select('player1 player2 char1 char2 game link').lean().exec(callback);
+  return VideoModel.find({search}).select('player1 player2 char1 char2 game link').lean().exec(callback);
 };
 
 VideoSchema.statics.deleteItem = (uid, callback) => {
