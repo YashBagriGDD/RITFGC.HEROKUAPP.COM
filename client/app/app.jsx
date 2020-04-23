@@ -174,7 +174,7 @@ const handleChange = (e) => {
 const handleSearch = (e) => {
     e.preventDefault();
 
-    const queryString = `${$('#searchForm').attr('action')}?`;
+    let queryString = `${$('#searchForm').attr('action')}?`;
 
     // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
     if($("#player1Search").val()){
