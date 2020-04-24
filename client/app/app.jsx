@@ -446,7 +446,7 @@ const VideoForm = (props) => {
         id="videoForm"
         onSubmit={handleVideo}
         name="videoForm"
-        action="/maker"
+        action="/main"
         method="POST"
         className="videoForm"
     >
@@ -667,7 +667,6 @@ const setup = function(csrf) {
     const pageButton = document.querySelector("#myPage");
     const addButton = document.querySelector("#addVideo");
     const passChangeButton = document.querySelector("#passChangeButton");
-    const searchButton = document.querySelector("#searchButton");
 
     passChangeButton.addEventListener("click", (e) => {
         e.preventDefault();

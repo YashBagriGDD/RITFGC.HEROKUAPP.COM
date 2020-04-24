@@ -2,7 +2,7 @@ const models = require('../models');
 
 const { Video } = models;
 
-const makerPage = (req, res) => {
+const mainPage = (req, res) => {
   Video.VideoModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
@@ -52,7 +52,7 @@ const makeVideo = (req, res) => {
     promiseArray.push(videoPromise);
   }
 
-  Promise.all(promiseArray).then(() => res.json({ redirect: '/maker' }));
+  Promise.all(promiseArray).then(() => res.json({ redirect: '/main' }));
 };
 
 const getVideos = (request, response) => {
@@ -111,7 +111,7 @@ const searchVideos = (request, response) => {
   if (char1) params.char1 = `${char1}`;
   if (char2) params.char2 = `${char2}`;
   if (game) params.game = `${game}`.toUpperCase();
-  
+
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
       console.log(err);
@@ -122,7 +122,7 @@ const searchVideos = (request, response) => {
   });
 };
 
-module.exports.makerPage = makerPage;
+module.exports.mainPage = mainPage;
 module.exports.getVideos = getVideos;
 module.exports.getAllVideos = getAllVideos;
 module.exports.make = makeVideo;

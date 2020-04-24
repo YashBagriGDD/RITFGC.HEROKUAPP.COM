@@ -30,7 +30,7 @@ const login = (request, response) => {
 
     req.session.account = Account.AccountModel.toAPI(account);
 
-    return res.json({ redirect: '/maker' });
+    return res.json({ redirect: '/main' });
   });
 };
 
@@ -73,7 +73,7 @@ const passChange = (request, response) => {
             if (errUpdate) {
               return res.status(400).json({ error: 'There was an error' });
             }
-            return res.json({ redirect: '/maker' });
+            return res.json({ redirect: '/main' });
           });
       });
     });
@@ -109,7 +109,7 @@ const signup = (request, response) => {
 
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
-      res.json({ redirect: '/maker' });
+      res.json({ redirect: '/main' });
     });
 
     savePromise.catch((err) => {

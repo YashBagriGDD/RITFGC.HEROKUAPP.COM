@@ -912,7 +912,7 @@ var VideoForm = function VideoForm(props) {
     id: "videoForm",
     onSubmit: handleVideo,
     name: "videoForm",
-    action: "/maker",
+    action: "/main",
     method: "POST",
     className: "videoForm"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1157,7 +1157,6 @@ var setup = function setup(csrf) {
   var pageButton = document.querySelector("#myPage");
   var addButton = document.querySelector("#addVideo");
   var passChangeButton = document.querySelector("#passChangeButton");
-  var searchButton = document.querySelector("#searchButton");
   passChangeButton.addEventListener("click", function (e) {
     e.preventDefault();
     createPassChangeWindow(csrf);

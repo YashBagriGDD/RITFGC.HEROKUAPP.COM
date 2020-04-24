@@ -31,6 +31,164 @@ const handleSignup = (e) => {
     return false;
 };
 
+// Handle the search
+const handleSearch = (e) => {
+    e.preventDefault();
+
+    let queryString = `${$('#searchForm').attr('action')}?`;
+
+    // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
+    if($("#player1Search").val()){
+        queryString += `player1=${$("#player1Search").val()}`
+    }
+    if($("#player2Search").val()){
+        queryString += `&player2=${$("#player2Search").val()}`
+    }
+    if($("#char1").find(":selected").text() !== 'Character 1'){
+        queryString += `&char1=${$("#char1").find(":selected").text()}`
+    }   
+    if($("#char2").find(":selected").text() !== 'Character 2'){
+        queryString += `&char2=${$("#char2").find(":selected").text()}`
+    }
+    if($("#gameSearch").val()){
+        queryString += `&game=${$("#gameSearch").val()}`
+    }
+
+
+    sendAjax('GET', queryString , null, (data) =>{
+
+        ReactDOM.render(
+            <VideoList videos={data.videos} />, document.querySelector("#content")
+        );
+    });
+};
+
+// Search form
+const SearchForm = () => {
+
+    let charSelection;
+    let char2Selection;
+
+    if($('#searchForm').find('#gameSearch').find(":selected").text() === 'BBCF') {
+        charSelection = <select id = "char1" className="form-control">
+        <option value="" disabled selected hidden>Character 1</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
+        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+        <option value="Nu-13">Nu-13</option>
+                </select>
+
+        char2Selection = <select id = "char2" className="form-control">
+        <option value="" disabled selected hidden>Character 2</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
+        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+        <option value="Nu-13">Nu-13</option>
+                </select>
+
+
+    } else if($('#searchForm').find('#gameSearch').find(":selected").text() === 'GBVS'){
+        charSelection= <select id ="char1" className="form-control">
+        <option value="" disabled selected hidden>Character 1</option>
+        <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
+        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+        <option value="Zeta">Zeta</option>
+                </select>
+
+        char2Selection= <select id ="char2" className="form-control">
+        <option value="" disabled selected hidden>Character 2</option>
+        <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
+        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+        <option value="Zeta">Zeta</option>
+                </select>
+    } else if($('#searchForm').find('#gameSearch').find(":selected").text() === 'UNICLR'){
+        charSelection= <select id ="char1" className="form-control">
+        <option value="" disabled selected hidden>Character 1</option>
+        <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
+        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
+                </select>
+
+        char2Selection= <select id ="char2" className="form-control">
+        <option value="" disabled selected hidden>Character 2</option>
+        <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
+        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
+                </select>
+    }
+
+    return(
+        <form
+            id="searchForm"
+            onSubmit={handleSearch}
+            name="searchForm"
+            action="/search"
+            method="GET"
+            className="searchForm"
+        >
+          <table id="searchFormTable" className="table table-sm">
+                <tbody>
+                    <tr>
+                        <td><input className="form-control" id="player1Search" type="text" name="player1" placeholder="Player 1"/></td>
+                        <td>{charSelection}</td>
+                        <td>vs</td>
+                        <td>{char2Selection}</td>
+                        <td><input className="form-control" id="player2Search" type="text" name="player2" placeholder="Player 2"/></td>
+                        <td>
+                            <select id="gameSearch" className="form-control">
+                                <option value="" disabled selected hidden>Game</option>
+                                <option value="">All</option>
+                                <option value="bbcf">BBCF</option>
+                                <option value="gbvs">GBVS</option>
+                                <option value="uniclr">UNICLR</option>
+                            </select>
+                        </td>
+                        <td><input className="searchFormSubmit btn" id="formSubmit" type="submit" value="Search"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    )
+};
+
 const LoginWindow = (props) => {
     return ( 
     <form   id="loginForm"
@@ -71,7 +229,7 @@ const VideoList = function(props) {
     if(props.videos.length === 0) {
         return (
             <div className="videoList">
-                <h3 className="emptyVideo">No Videos Yet</h3>
+                <h3 className="emptyVideo">No videos found!</h3>
             </div>
         );
     }
@@ -152,6 +310,8 @@ const createLoginWindow = (csrf) => {
         document.querySelector("#content")
     );
 
+    ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
+
     //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
@@ -161,8 +321,23 @@ const createSignupWindow = (csrf) => {
         document.querySelector("#content")
     );
 
+    ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
    // ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
+
+const createSearchForm = () => {
+    ReactDOM.render(
+        <SearchForm />, document.querySelector("#search")  
+    );
+
+    // If theh game changes, re-render
+    $('#searchForm').find('select').on('change', function() {
+        ReactDOM.render(
+            <SearchForm />,
+            document.querySelector("#search")
+        );
+    });
+}
 
 const setup = (csrf) => {
     const loginButton = document.querySelector("#loginButton");
@@ -183,10 +358,12 @@ const setup = (csrf) => {
 
     homeButton.addEventListener("click", (e) => {
         e.preventDefault();
+        createSearchForm();
         loadAllVideosFromServer();
         return false;
     });
 
+    createSearchForm();
     loadAllVideosFromServer() //Default window
     //Default loads all Videos on the server 
 };
