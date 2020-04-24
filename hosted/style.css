@@ -69,6 +69,17 @@ nav:nth-child(1) {
     margin-top: -5%;
 }
 
+.videoList {
+    height: 20px;
+    width: 350px;
+    margin: 0 auto;
+    padding-top: 350px;
+    font-size: 1.2em;
+    margin-right: 25%;
+    margin-top: -3%;
+    color: white;
+}
+
 .mainForm h3 {
     text-align: center;
 }
@@ -96,6 +107,26 @@ nav:nth-child(1) {
 .formSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #F76902;
+}
+
+.searchFormSubmit {
+    transition: background-color 0.4s ease;
+    text-align: center;
+    font-size: 1.3em;
+    width: 100px;
+    background-color: #F76902;
+    padding: 3px 0px;
+    color: white;
+}
+
+.searchFormSubmit:link, .searchFormSubmit:visited, .searchFormSubmit:hover, .searchFormSubmit:active {
+    color: white;
+    background-color: #7C878E;
+}
+
+.searchFormSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #7C878E;
 }
 
 #user, #pass, #pass2, #pass3 {
@@ -138,6 +169,7 @@ nav:nth-child(1) {
     font-weight: bold;
     font-size: 20px;
 }
+
 
 .alert {
     width: 20%;
@@ -191,6 +223,25 @@ nav:nth-child(1) {
 
 #videoFormTable > tbody > tr > td > input {
     width: 150px;
+}
+
+#searchFormTable {
+    width: 50%; 
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+    position: fixed;
+    right: -10%;
+    top: -11%;
+    border: 5px solid transparent;
+}
+
+#searchFormTable > tbody > tr > td > .form-control {
+    vertical-align: middle;
+}
+
+#searchFormTable > tbody > tr  {
+    vertical-align: middle;
 }
 
 select:invalid {

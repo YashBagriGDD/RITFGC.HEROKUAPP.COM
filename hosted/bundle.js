@@ -166,18 +166,20 @@ var handleSearch = function handleSearch(e) {
     queryString += "&player2=".concat($("#player2Search").val());
   }
 
-  if ($("#char1Search").val()) {
-    queryString += "&char1=".concat($("#char1Search").val());
+  if ($("#char1").find(":selected").text() !== 'Character 1') {
+    queryString += "&char1=".concat($("#char1").find(":selected").text());
   }
 
-  if ($("#char2Search").val()) {
-    queryString += "&char2=".concat($("#char2Search").val());
+  if ($("#char2").find(":selected").text() !== 'Character 2') {
+    queryString += "&char2=".concat($("#char2").find(":selected").text());
   }
 
   if ($("#gameSearch").val()) {
     queryString += "&game=".concat($("#gameSearch").val());
   }
 
+  console.log($('#searchForm').find('#char1').find(":selected").text());
+  console.log(queryString);
   sendAjax('GET', queryString, null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
@@ -187,6 +189,344 @@ var handleSearch = function handleSearch(e) {
 
 
 var SearchForm = function SearchForm() {
+  var charSelection;
+  var char2Selection;
+
+  if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'BBCF') {
+    charSelection = /*#__PURE__*/React.createElement("select", {
+      id: "char1",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+      value: "Amane"
+    }, "Amane"), /*#__PURE__*/React.createElement("option", {
+      value: "Arakune"
+    }, "Arakune"), /*#__PURE__*/React.createElement("option", {
+      value: "Azrael"
+    }, "Azrael"), /*#__PURE__*/React.createElement("option", {
+      value: "Bang"
+    }, "Bang"), /*#__PURE__*/React.createElement("option", {
+      value: "Bullet"
+    }, "Bullet"), /*#__PURE__*/React.createElement("option", {
+      value: "Carl"
+    }, "Carl"), /*#__PURE__*/React.createElement("option", {
+      value: "Celica"
+    }, "Celica"), /*#__PURE__*/React.createElement("option", {
+      value: "Es"
+    }, "Es"), /*#__PURE__*/React.createElement("option", {
+      value: "Hakumen"
+    }, "Hakumen"), /*#__PURE__*/React.createElement("option", {
+      value: "Hazama"
+    }, "Hazama"), /*#__PURE__*/React.createElement("option", {
+      value: "Hibiki"
+    }, "Hibiki"), /*#__PURE__*/React.createElement("option", {
+      value: "Izanami"
+    }, "Izanami"), /*#__PURE__*/React.createElement("option", {
+      value: "Izayoi"
+    }, "Izayoi"), /*#__PURE__*/React.createElement("option", {
+      value: "Jin"
+    }, "Jin"), /*#__PURE__*/React.createElement("option", {
+      value: "Jubei"
+    }, "Jubei"), /*#__PURE__*/React.createElement("option", {
+      value: "Kagura"
+    }, "Kagura"), /*#__PURE__*/React.createElement("option", {
+      value: "Kokonoe"
+    }, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
+      value: "Litchi"
+    }, "Litchi"), /*#__PURE__*/React.createElement("option", {
+      value: "Makoto"
+    }, "Makoto"), /*#__PURE__*/React.createElement("option", {
+      value: "Mai"
+    }, "Mai"), /*#__PURE__*/React.createElement("option", {
+      value: "Naoto"
+    }, "Naoto"), /*#__PURE__*/React.createElement("option", {
+      value: "Nine"
+    }, "Nine"), /*#__PURE__*/React.createElement("option", {
+      value: "Noel"
+    }, "Noel"), /*#__PURE__*/React.createElement("option", {
+      value: "Platinum"
+    }, "Platinum"), /*#__PURE__*/React.createElement("option", {
+      value: "Rachel"
+    }, "Rachel"), /*#__PURE__*/React.createElement("option", {
+      value: "Ragna"
+    }, "Ragna"), /*#__PURE__*/React.createElement("option", {
+      value: "Relius"
+    }, "Relius"), /*#__PURE__*/React.createElement("option", {
+      value: "Susanoo"
+    }, "Susanoo"), /*#__PURE__*/React.createElement("option", {
+      value: "Tager"
+    }, "Tager"), /*#__PURE__*/React.createElement("option", {
+      value: "Taokaka"
+    }, "Taokaka"), /*#__PURE__*/React.createElement("option", {
+      value: "Tsubaki"
+    }, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
+      value: "Terumi"
+    }, "Terumi"), /*#__PURE__*/React.createElement("option", {
+      value: "Valkenhayn"
+    }, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
+      value: "Lambda-11"
+    }, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
+      value: "Mu-12"
+    }, "Mu-12"), /*#__PURE__*/React.createElement("option", {
+      value: "Nu-13"
+    }, "Nu-13"));
+    char2Selection = /*#__PURE__*/React.createElement("select", {
+      id: "char2",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+      value: "Amane"
+    }, "Amane"), /*#__PURE__*/React.createElement("option", {
+      value: "Arakune"
+    }, "Arakune"), /*#__PURE__*/React.createElement("option", {
+      value: "Azrael"
+    }, "Azrael"), /*#__PURE__*/React.createElement("option", {
+      value: "Bang"
+    }, "Bang"), /*#__PURE__*/React.createElement("option", {
+      value: "Bullet"
+    }, "Bullet"), /*#__PURE__*/React.createElement("option", {
+      value: "Carl"
+    }, "Carl"), /*#__PURE__*/React.createElement("option", {
+      value: "Celica"
+    }, "Celica"), /*#__PURE__*/React.createElement("option", {
+      value: "Es"
+    }, "Es"), /*#__PURE__*/React.createElement("option", {
+      value: "Hakumen"
+    }, "Hakumen"), /*#__PURE__*/React.createElement("option", {
+      value: "Hazama"
+    }, "Hazama"), /*#__PURE__*/React.createElement("option", {
+      value: "Hibiki"
+    }, "Hibiki"), /*#__PURE__*/React.createElement("option", {
+      value: "Izanami"
+    }, "Izanami"), /*#__PURE__*/React.createElement("option", {
+      value: "Izayoi"
+    }, "Izayoi"), /*#__PURE__*/React.createElement("option", {
+      value: "Jin"
+    }, "Jin"), /*#__PURE__*/React.createElement("option", {
+      value: "Jubei"
+    }, "Jubei"), /*#__PURE__*/React.createElement("option", {
+      value: "Kagura"
+    }, "Kagura"), /*#__PURE__*/React.createElement("option", {
+      value: "Kokonoe"
+    }, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
+      value: "Litchi"
+    }, "Litchi"), /*#__PURE__*/React.createElement("option", {
+      value: "Makoto"
+    }, "Makoto"), /*#__PURE__*/React.createElement("option", {
+      value: "Mai"
+    }, "Mai"), /*#__PURE__*/React.createElement("option", {
+      value: "Naoto"
+    }, "Naoto"), /*#__PURE__*/React.createElement("option", {
+      value: "Nine"
+    }, "Nine"), /*#__PURE__*/React.createElement("option", {
+      value: "Noel"
+    }, "Noel"), /*#__PURE__*/React.createElement("option", {
+      value: "Platinum"
+    }, "Platinum"), /*#__PURE__*/React.createElement("option", {
+      value: "Rachel"
+    }, "Rachel"), /*#__PURE__*/React.createElement("option", {
+      value: "Ragna"
+    }, "Ragna"), /*#__PURE__*/React.createElement("option", {
+      value: "Relius"
+    }, "Relius"), /*#__PURE__*/React.createElement("option", {
+      value: "Susanoo"
+    }, "Susanoo"), /*#__PURE__*/React.createElement("option", {
+      value: "Tager"
+    }, "Tager"), /*#__PURE__*/React.createElement("option", {
+      value: "Taokaka"
+    }, "Taokaka"), /*#__PURE__*/React.createElement("option", {
+      value: "Tsubaki"
+    }, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
+      value: "Terumi"
+    }, "Terumi"), /*#__PURE__*/React.createElement("option", {
+      value: "Valkenhayn"
+    }, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
+      value: "Lambda-11"
+    }, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
+      value: "Mu-12"
+    }, "Mu-12"), /*#__PURE__*/React.createElement("option", {
+      value: "Nu-13"
+    }, "Nu-13"));
+  } else if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'GBVS') {
+    charSelection = /*#__PURE__*/React.createElement("select", {
+      id: "char1",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+      value: "Beezlebub"
+    }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
+      value: "Charlotta"
+    }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
+      value: "Djeeta"
+    }, "Djeeta"), /*#__PURE__*/React.createElement("option", {
+      value: "Ferry"
+    }, "Ferry"), /*#__PURE__*/React.createElement("option", {
+      value: "Gran"
+    }, "Gran"), /*#__PURE__*/React.createElement("option", {
+      value: "Katalina"
+    }, "Katalina"), /*#__PURE__*/React.createElement("option", {
+      value: "Ladiva"
+    }, "Ladiva"), /*#__PURE__*/React.createElement("option", {
+      value: "Lancelot"
+    }, "Lancelot"), /*#__PURE__*/React.createElement("option", {
+      value: "Lowain"
+    }, "Lowain"), /*#__PURE__*/React.createElement("option", {
+      value: "Metera"
+    }, "Metera"), /*#__PURE__*/React.createElement("option", {
+      value: "Narmaya"
+    }, "Narmaya"), /*#__PURE__*/React.createElement("option", {
+      value: "Percival"
+    }, "Percival"), /*#__PURE__*/React.createElement("option", {
+      value: "Soriz"
+    }, "Soriz"), /*#__PURE__*/React.createElement("option", {
+      value: "Vaseraga"
+    }, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
+      value: "Zeta"
+    }, "Zeta"));
+    char2Selection = /*#__PURE__*/React.createElement("select", {
+      id: "char2",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+      value: "Beezlebub"
+    }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
+      value: "Charlotta"
+    }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
+      value: "Djeeta"
+    }, "Djeeta"), /*#__PURE__*/React.createElement("option", {
+      value: "Ferry"
+    }, "Ferry"), /*#__PURE__*/React.createElement("option", {
+      value: "Gran"
+    }, "Gran"), /*#__PURE__*/React.createElement("option", {
+      value: "Katalina"
+    }, "Katalina"), /*#__PURE__*/React.createElement("option", {
+      value: "Ladiva"
+    }, "Ladiva"), /*#__PURE__*/React.createElement("option", {
+      value: "Lancelot"
+    }, "Lancelot"), /*#__PURE__*/React.createElement("option", {
+      value: "Lowain"
+    }, "Lowain"), /*#__PURE__*/React.createElement("option", {
+      value: "Metera"
+    }, "Metera"), /*#__PURE__*/React.createElement("option", {
+      value: "Narmaya"
+    }, "Narmaya"), /*#__PURE__*/React.createElement("option", {
+      value: "Percival"
+    }, "Percival"), /*#__PURE__*/React.createElement("option", {
+      value: "Soriz"
+    }, "Soriz"), /*#__PURE__*/React.createElement("option", {
+      value: "Vaseraga"
+    }, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
+      value: "Zeta"
+    }, "Zeta"));
+  } else if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'UNICLR') {
+    charSelection = /*#__PURE__*/React.createElement("select", {
+      id: "char1",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+      value: "Akatsuki"
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya"
+    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+      value: "Carmine"
+    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
+      value: "Chaos"
+    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
+      value: "Eltnum"
+    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+      value: "Enkidu"
+    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+      value: "Gordeau"
+    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+      value: "Hilda"
+    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
+      value: "Hyde"
+    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
+      value: "Linne"
+    }, "Linne"), /*#__PURE__*/React.createElement("option", {
+      value: "Londrekia"
+    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+      value: "Merkava"
+    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
+      value: "Phonon"
+    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
+      value: "Seth"
+    }, "Seth"), /*#__PURE__*/React.createElement("option", {
+      value: "Vatista"
+    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
+      value: "Wagner"
+    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
+      value: "Waldstein"
+    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+      value: "Yuzuriha"
+    }, "Yuzuriha"));
+    char2Selection = /*#__PURE__*/React.createElement("select", {
+      id: "char2",
+      className: "form-control"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "",
+      disabled: true,
+      selected: true,
+      hidden: true
+    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+      value: "Akatsuki"
+    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+      value: "Byakuya"
+    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+      value: "Carmine"
+    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
+      value: "Chaos"
+    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
+      value: "Eltnum"
+    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+      value: "Enkidu"
+    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+      value: "Gordeau"
+    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+      value: "Hilda"
+    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
+      value: "Hyde"
+    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
+      value: "Linne"
+    }, "Linne"), /*#__PURE__*/React.createElement("option", {
+      value: "Londrekia"
+    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+      value: "Merkava"
+    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
+      value: "Phonon"
+    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
+      value: "Seth"
+    }, "Seth"), /*#__PURE__*/React.createElement("option", {
+      value: "Vatista"
+    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
+      value: "Wagner"
+    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
+      value: "Waldstein"
+    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+      value: "Yuzuriha"
+    }, "Yuzuriha"));
+  }
+
   return /*#__PURE__*/React.createElement("form", {
     id: "searchForm",
     onSubmit: handleSearch,
@@ -194,55 +534,43 @@ var SearchForm = function SearchForm() {
     action: "/search",
     method: "GET",
     className: "searchForm"
-  }, /*#__PURE__*/React.createElement("div", {
-    id: "static"
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "player1"
-  }, "Player 1: "), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("table", {
+    id: "searchFormTable",
+    className: "table table-sm"
+  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
     className: "form-control",
     id: "player1Search",
     type: "text",
     name: "player1",
     placeholder: "Player 1"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "player2"
-  }, "Player 2: "), /*#__PURE__*/React.createElement("input", {
+  })), /*#__PURE__*/React.createElement("td", null, charSelection), /*#__PURE__*/React.createElement("td", null, "vs"), /*#__PURE__*/React.createElement("td", null, char2Selection), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
     className: "form-control",
     id: "player2Search",
     type: "text",
     name: "player2",
     placeholder: "Player 2"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "char1"
-  }, "Character 1: "), /*#__PURE__*/React.createElement("input", {
-    className: "form-control",
-    id: "char1Search",
-    type: "text",
-    name: "char1",
-    placeholder: "Character 1"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "char2"
-  }, "Character 2: "), /*#__PURE__*/React.createElement("input", {
-    className: "form-control",
-    id: "char2Search",
-    type: "text",
-    name: "char2",
-    placeholder: "Character 2"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "game"
-  }, "Game: "), /*#__PURE__*/React.createElement("select", {
-    id: "gameSearch"
+  })), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("select", {
+    id: "gameSearch",
+    className: "form-control"
   }, /*#__PURE__*/React.createElement("option", {
-    value: "gbvs"
-  }, "GBVS"), /*#__PURE__*/React.createElement("option", {
+    value: "",
+    disabled: true,
+    selected: true,
+    hidden: true
+  }, "Game"), /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "All"), /*#__PURE__*/React.createElement("option", {
     value: "bbcf"
   }, "BBCF"), /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }, "All")), /*#__PURE__*/React.createElement("input", {
+    value: "gbvs"
+  }, "GBVS"), /*#__PURE__*/React.createElement("option", {
+    value: "uniclr"
+  }, "UNICLR"))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
+    className: "searchFormSubmit btn",
     id: "formSubmit",
     type: "submit",
     value: "Search"
-  })));
+  }))))));
 }; /// FORM TO SUBMIT NEW DATA
 
 
@@ -672,13 +1000,14 @@ var VideoList = function VideoList(props) {
   // Do we need to show deletion or not
   var deleteButton;
   var adSpace;
+  console.log(props.videos.length);
 
   if (props.videos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
       className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
       className: "emptyVideo"
-    }, "No Videos Yet"));
+    }, "No videos found!"));
   }
 
   var videoNodes = props.videos.map(function (video) {
@@ -788,13 +1117,16 @@ var createPassChangeWindow = function createPassChangeWindow(csrf) {
   loopNumber = 1;
   ReactDOM.render( /*#__PURE__*/React.createElement(ChangeWindow, {
     csrf: csrf
-  }), document.querySelector("#content"));
+  }), document.querySelector("#content")); // Unmount the search bar
+
+  ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
 };
 
 var createAddWindow = function createAddWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
     csrf: csrf
-  }), document.querySelector("#content")); // If theh game changes, re-render
+  }), document.querySelector("#content"));
+  ReactDOM.unmountComponentAtNode(document.querySelector("#search")); // If theh game changes, re-render
 
   $('#videoForm').find('#Game').on('change', function () {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
@@ -813,7 +1145,11 @@ var createAddWindow = function createAddWindow(csrf) {
 };
 
 var createSearchForm = function createSearchForm() {
-  ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#content"));
+  ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#search")); // If theh game changes, re-render
+
+  $('#searchForm').find('select').on('change', function () {
+    ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#search"));
+  });
 };
 
 var setup = function setup(csrf) {
@@ -834,19 +1170,17 @@ var setup = function setup(csrf) {
   });
   homeButton.addEventListener("click", function (e) {
     e.preventDefault();
+    createSearchForm();
     loadAllVideosFromServer();
     return false;
   });
   pageButton.addEventListener("click", function (e) {
     e.preventDefault();
+    createSearchForm();
     loadVideosFromServer();
     return false;
   });
-  searchButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    createSearchForm();
-    return false;
-  });
+  createSearchForm();
   loadAllVideosFromServer();
 }; //And set it in getToken
 
