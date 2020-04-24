@@ -110,7 +110,7 @@ const searchVideos = (request, response) => {
   if (player2) params.player2 = `${player2}`;
   if (char1) params.char1 = `${char1}`;
   if (char2) params.char2 = `${char2}`;
-  if (game) params.game = `${game}`;
+  if (game) params.game = `${game}`.toUpperCase();
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
