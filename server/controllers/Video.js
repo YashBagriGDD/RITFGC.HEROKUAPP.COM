@@ -100,17 +100,32 @@ const searchVideos = (request, response) => {
   const req = request;
   const res = response;
 
-  const params = {};
+  const params = { $and: [] };
 
   // check if the params exist
   const {
     player1, player2, char1, char2, game,
   } = req.query;
-  if (player1) params.player1 = `${player1}`;
-  if (player2) params.player2 = `${player2}`;
-  if (char1) params.char1 = `${char1}`;
-  if (char2) params.char2 = `${char2}`;
-  if (game) params.game = `${game}`.toUpperCase();
+  let i = 0; // keeps track of position in params.$and array
+  if (player1) {
+    params.$and[i] = { $or: [{ player1: `${player1}` }, { player2: `${player1}` }] };
+    i++;
+  }
+  if (player2) {
+    params.$and[i] = { $or: [{ player2: `${player2}` }, { player1: `${player2}` }] };
+    i++;
+  }
+  if (char1) {
+    params.$and[i] = { $or: [{ char1: `${char1}` }, { char2: `${char1}` }] };
+    i++;
+  }
+  if (char2) {
+    params.$and[i] = { $or: [{ char2: `${char2}` }, { char1: `${char2}` }] };
+    i++;
+  }
+  if (game) {
+    params.$and[i] = { game: game.toUpperCase() };
+  }
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
