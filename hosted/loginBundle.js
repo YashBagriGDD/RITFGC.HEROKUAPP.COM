@@ -404,7 +404,7 @@ var SearchForm = function SearchForm() {
 
   return /*#__PURE__*/React.createElement("form", {
     id: "searchForm",
-    onSubmit: handleSearch,
+    onChange: handleSearch,
     name: "searchForm",
     action: "/search",
     method: "GET",

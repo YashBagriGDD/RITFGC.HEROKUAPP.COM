@@ -158,7 +158,7 @@ const SearchForm = () => {
     return(
         <form
             id="searchForm"
-            onSubmit={handleSearch}
+            onChange={handleSearch}
             name="searchForm"
             action="/search"
             method="GET"
