@@ -32,7 +32,7 @@ const makeVideo = (req, res) => {
       player2: values[i].player2,
       char1: values[i].char1,
       char2: values[i].char2,
-      game: values[i].game.toUpperCase(),
+      game: values[i].game,
       link: values[i].link,
       owner: req.session.account._id,
     };
