@@ -175,7 +175,7 @@ const handleSearch = (e) => {
     e.preventDefault();
 
     let queryString = `${$('#searchForm').attr('action')}?`;
-
+    
     // Check each search field to see if anything is in them. If there is data in them, add it to the querystring
     if($("#player1Search").val()){
         queryString += `player1=${$("#player1Search").val()}`
@@ -183,17 +183,19 @@ const handleSearch = (e) => {
     if($("#player2Search").val()){
         queryString += `&player2=${$("#player2Search").val()}`
     }
-    if($("#char1").find(":selected").text() !== 'Character 1'){
-        queryString += `&char1=${$("#char1").find(":selected").text()}`
+    if($("#char1Search").find(":selected").text() !== 'Character 1' &&
+    $("#char1Search").find(":selected").text() !== 'Anyone'){
+        queryString += `&char1=${$("#char1Search").find(":selected").text()}`
     }   
-    if($("#char2").find(":selected").text() !== 'Character 2'){
-        queryString += `&char2=${$("#char2").find(":selected").text()}`
+    if($("#char2Search").find(":selected").text() !== 'Character 2' &&
+    $("#char2Search").find(":selected").text() !== 'Anyone'){
+        queryString += `&char2=${$("#char2Search").find(":selected").text()}`
     }
     if($("#gameSearch").val()){
         queryString += `&game=${$("#gameSearch").val()}`
     }
 
-    console.log($('#searchForm').find('#char1').find(":selected").text());
+    console.log($('#searchForm').find('#char1Search').find(":selected").text());
 
     console.log(queryString)
 
@@ -575,8 +577,9 @@ $(document).ready(function() {
 });
 
 //#region Character Forms
-const bbcfChar1 = <select id = "char1" className="form-control">
-    <option value="" disabled selected hidden>Character 1</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+const bbcfChar1 = <select id = "char1Search" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option><option value="Anyone">Anyone</option>
+    <option value="Amane">Amane</option><option value="Arakune">Arakune</option>
     <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
     <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
     <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
@@ -591,8 +594,9 @@ const bbcfChar1 = <select id = "char1" className="form-control">
     <option value="Nu-13">Nu-13</option>
     </select>;
 
-const bbcfChar2 = <select id = "char2" className="form-control">
-    <option value="" disabled selected hidden>Character 2</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+const bbcfChar2 = <select id = "char2Search" className="form-control">
+    <option value="" disabled selected hidden>Character 2</option><option value="Anyone">Anyone</option>
+    <option value="Amane">Amane</option><option value="Arakune">Arakune</option>
     <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
     <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
     <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
@@ -607,8 +611,8 @@ const bbcfChar2 = <select id = "char2" className="form-control">
     <option value="Nu-13">Nu-13</option>
     </select>;
 
-const gbvsChar1 = <select id ="char1" className="form-control">
-    <option value="" disabled selected hidden>Character 1</option>
+const gbvsChar1 = <select id ="char1Search" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option><option value="Anyone">Anyone</option>
     <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
     <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
     <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
@@ -619,8 +623,8 @@ const gbvsChar1 = <select id ="char1" className="form-control">
     <option value="Zeta">Zeta</option>
     </select>;
 
-const gbvsChar2 = <select id ="char2" className="form-control">
-    <option value="" disabled selected hidden>Character 2</option>
+const gbvsChar2 = <select id ="char2Search" className="form-control">
+    <option value="" disabled selected hidden>Character 2</option><option value="Anyone">Anyone</option>
     <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
     <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
     <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
@@ -631,8 +635,8 @@ const gbvsChar2 = <select id ="char2" className="form-control">
     <option value="Zeta">Zeta</option>
     </select>;
 
-const uniChar1 = <select id ="char1" className="form-control">
-    <option value="" disabled selected hidden>Character 1</option>
+const uniChar1 = <select id ="char1Search" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option><option value="Anyone">Anyone</option>
     <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
     <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
     <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
@@ -644,8 +648,8 @@ const uniChar1 = <select id ="char1" className="form-control">
     <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
     </select>;
 
-const uniChar2 = <select id ="char2" className="form-control">
-    <option value="" disabled selected hidden>Character 2</option>
+const uniChar2 = <select id ="char2Search" className="form-control">
+    <option value="" disabled selected hidden>Character 2</option><option value="Anyone">Anyone</option>
     <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
     <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
     <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>

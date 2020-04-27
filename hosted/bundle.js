@@ -166,19 +166,19 @@ var handleSearch = function handleSearch(e) {
     queryString += "&player2=".concat($("#player2Search").val());
   }
 
-  if ($("#char1").find(":selected").text() !== 'Character 1') {
-    queryString += "&char1=".concat($("#char1").find(":selected").text());
+  if ($("#char1Search").find(":selected").text() !== 'Character 1' && $("#char1Search").find(":selected").text() !== 'Anyone') {
+    queryString += "&char1=".concat($("#char1Search").find(":selected").text());
   }
 
-  if ($("#char2").find(":selected").text() !== 'Character 2') {
-    queryString += "&char2=".concat($("#char2").find(":selected").text());
+  if ($("#char2Search").find(":selected").text() !== 'Character 2' && $("#char2Search").find(":selected").text() !== 'Anyone') {
+    queryString += "&char2=".concat($("#char2Search").find(":selected").text());
   }
 
   if ($("#gameSearch").val()) {
     queryString += "&game=".concat($("#gameSearch").val());
   }
 
-  console.log($('#searchForm').find('#char1').find(":selected").text());
+  console.log($('#searchForm').find('#char1Search').find(":selected").text());
   console.log(queryString);
   sendAjax('GET', queryString, null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
@@ -578,7 +578,7 @@ $(document).ready(function () {
 }); //#region Character Forms
 
 var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
-  id: "char1",
+  id: "char1Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -586,6 +586,8 @@ var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Amane"
 }, "Amane"), /*#__PURE__*/React.createElement("option", {
   value: "Arakune"
@@ -659,7 +661,7 @@ var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
   value: "Nu-13"
 }, "Nu-13"));
 var bbcfChar2 = /*#__PURE__*/React.createElement("select", {
-  id: "char2",
+  id: "char2Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -667,6 +669,8 @@ var bbcfChar2 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Amane"
 }, "Amane"), /*#__PURE__*/React.createElement("option", {
   value: "Arakune"
@@ -740,7 +744,7 @@ var bbcfChar2 = /*#__PURE__*/React.createElement("select", {
   value: "Nu-13"
 }, "Nu-13"));
 var gbvsChar1 = /*#__PURE__*/React.createElement("select", {
-  id: "char1",
+  id: "char1Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -748,6 +752,8 @@ var gbvsChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Beezlebub"
 }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
   value: "Charlotta"
@@ -779,7 +785,7 @@ var gbvsChar1 = /*#__PURE__*/React.createElement("select", {
   value: "Zeta"
 }, "Zeta"));
 var gbvsChar2 = /*#__PURE__*/React.createElement("select", {
-  id: "char2",
+  id: "char2Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -787,6 +793,8 @@ var gbvsChar2 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Beezlebub"
 }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
   value: "Charlotta"
@@ -818,7 +826,7 @@ var gbvsChar2 = /*#__PURE__*/React.createElement("select", {
   value: "Zeta"
 }, "Zeta"));
 var uniChar1 = /*#__PURE__*/React.createElement("select", {
-  id: "char1",
+  id: "char1Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -826,6 +834,8 @@ var uniChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Akatsuki"
 }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
   value: "Byakuya"
@@ -863,7 +873,7 @@ var uniChar1 = /*#__PURE__*/React.createElement("select", {
   value: "Yuzuriha"
 }, "Yuzuriha"));
 var uniChar2 = /*#__PURE__*/React.createElement("select", {
-  id: "char2",
+  id: "char2Search",
   className: "form-control"
 }, /*#__PURE__*/React.createElement("option", {
   value: "",
@@ -871,6 +881,8 @@ var uniChar2 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Akatsuki"
 }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
   value: "Byakuya"

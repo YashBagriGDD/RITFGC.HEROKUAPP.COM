@@ -43,11 +43,11 @@ var handleSearch = function handleSearch(e) {
     queryString += "&player2=".concat($("#player2Search").val());
   }
 
-  if ($("#char1").find(":selected").text() !== 'Character 1') {
+  if ($("#char1").find(":selected").text() !== 'Character 1' && $("#char1").find(":selected").text() !== 'Anyone') {
     queryString += "&char1=".concat($("#char1").find(":selected").text());
   }
 
-  if ($("#char2").find(":selected").text() !== 'Character 2') {
+  if ($("#char2").find(":selected").text() !== 'Character 2' && $("#char2").find(":selected").text() !== 'Anyone') {
     queryString += "&char2=".concat($("#char2").find(":selected").text());
   }
 
@@ -340,6 +340,8 @@ var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Amane"
 }, "Amane"), /*#__PURE__*/React.createElement("option", {
   value: "Arakune"
@@ -421,6 +423,8 @@ var bbcfChar2 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Amane"
 }, "Amane"), /*#__PURE__*/React.createElement("option", {
   value: "Arakune"
@@ -502,6 +506,8 @@ var gbvsChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Beezlebub"
 }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
   value: "Charlotta"
@@ -540,7 +546,9 @@ var gbvsChar2 = /*#__PURE__*/React.createElement("select", {
   disabled: true,
   selected: true,
   hidden: true
-}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+}, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Beezlebub"
 }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
   value: "Charlotta"
@@ -580,6 +588,8 @@ var uniChar1 = /*#__PURE__*/React.createElement("select", {
   selected: true,
   hidden: true
 }, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Akatsuki"
 }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
   value: "Byakuya"
@@ -624,7 +634,9 @@ var uniChar2 = /*#__PURE__*/React.createElement("select", {
   disabled: true,
   selected: true,
   hidden: true
-}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+}, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Anyone"
+}, "Anyone"), /*#__PURE__*/React.createElement("option", {
   value: "Akatsuki"
 }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
   value: "Byakuya"
