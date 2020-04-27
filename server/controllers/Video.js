@@ -125,7 +125,10 @@ const searchVideos = (request, response) => {
   }
   if (game) {
     params.$and[i] = { game: game.toUpperCase() };
+    i++;
   }
+
+  if(i == 0) params = {}; //set params to empty object if no query params were sent
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
