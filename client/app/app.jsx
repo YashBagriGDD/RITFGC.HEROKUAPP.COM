@@ -212,7 +212,8 @@ const SearchForm = () => {
     let char2Selection;
 
     if($('#searchForm').find('#gameSearch').find(":selected").text() === 'BBCF') {
-        charSelection = bbcfChar1;
+        charSelection = <select id = "char1" className="form-control">
+        <option value="" disabled selected hidden>Character 1</option> {bbcfChar1} </select>;
 
         char2Selection = bbcfChar2;
 
@@ -641,8 +642,7 @@ $(document).ready(function() {
 });
 
 //#region Character Forms
-const bbcfChar1 = <select id = "char1" className="form-control">
-    <option value="" disabled selected hidden>Character 1</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+const bbcfChar1 = <option value="Amane">Amane</option><option value="Arakune">Arakune</option>
     <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
     <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
     <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
@@ -654,8 +654,7 @@ const bbcfChar1 = <select id = "char1" className="form-control">
     <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
     <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
     <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
-    <option value="Nu-13">Nu-13</option>
-    </select>;
+    <option value="Nu-13">Nu-13</option>;
 
 const bbcfChar2 = <select id = "char2" className="form-control">
     <option value="" disabled selected hidden>Character 2</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
