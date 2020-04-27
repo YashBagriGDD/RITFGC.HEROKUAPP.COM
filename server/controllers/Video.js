@@ -100,7 +100,7 @@ const searchVideos = (request, response) => {
   const req = request;
   const res = response;
 
-  const params = { $and: [] };
+  let params = { $and: [] };
 
   // check if the params exist
   const {
@@ -128,7 +128,7 @@ const searchVideos = (request, response) => {
     i++;
   }
 
-  if(i == 0) params = {}; //set params to empty object if no query params were sent
+  if(i === 0) params = {}; //set params to empty object if no query params were sent
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {
