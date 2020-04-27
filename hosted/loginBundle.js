@@ -55,6 +55,8 @@ var handleSearch = function handleSearch(e) {
     queryString += "&game=".concat($("#gameSearch").val());
   }
 
+  console.log($('#searchForm').find('#char1').find(":selected").text());
+  console.log(queryString);
   sendAjax('GET', queryString, null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos

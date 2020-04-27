@@ -54,6 +54,9 @@ const handleSearch = (e) => {
         queryString += `&game=${$("#gameSearch").val()}`
     }
 
+    console.log($('#searchForm').find('#char1').find(":selected").text());
+
+    console.log(queryString)
 
     sendAjax('GET', queryString , null, (data) =>{
 
@@ -73,7 +76,6 @@ const SearchForm = () => {
         charSelection = bbcfChar1;
 
         char2Selection = bbcfChar2;
-
 
     } else if($('#searchForm').find('#gameSearch').find(":selected").text() === 'GBVS'){
         charSelection= gbvsChar1;
