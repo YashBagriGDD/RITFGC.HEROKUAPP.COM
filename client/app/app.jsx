@@ -212,95 +212,25 @@ const SearchForm = () => {
     let char2Selection;
 
     if($('#searchForm').find('#gameSearch').find(":selected").text() === 'BBCF') {
-        charSelection = <select id = "char1" className="form-control">
-        <option value="" disabled selected hidden>Character 1</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
-        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
-        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
-        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
-        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
-        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
-        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
-        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
-        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
-        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
-        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
-        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
-        <option value="Nu-13">Nu-13</option>
-                </select>
+        charSelection = bbcfChar1;
 
-        char2Selection = <select id = "char2" className="form-control">
-        <option value="" disabled selected hidden>Character 2</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
-        <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
-        <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
-        <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
-        <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
-        <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
-        <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
-        <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
-        <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
-        <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
-        <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
-        <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
-        <option value="Nu-13">Nu-13</option>
-                </select>
-
+        char2Selection = bbcfChar2;
 
     } else if($('#searchForm').find('#gameSearch').find(":selected").text() === 'GBVS'){
-        charSelection= <select id ="char1" className="form-control">
-        <option value="" disabled selected hidden>Character 1</option>
-        <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
-        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
-        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
-        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
-        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
-        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
-        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
-        <option value="Zeta">Zeta</option>
-                </select>
+        charSelection= gbvsChar1;
 
-        char2Selection= <select id ="char2" className="form-control">
-        <option value="" disabled selected hidden>Character 2</option>
-        <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
-        <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
-        <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
-        <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
-        <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
-        <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
-        <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
-        <option value="Zeta">Zeta</option>
-                </select>
+        char2Selection= gbvsChar2;
+
     } else if($('#searchForm').find('#gameSearch').find(":selected").text() === 'UNICLR'){
-        charSelection= <select id ="char1" className="form-control">
-        <option value="" disabled selected hidden>Character 1</option>
-        <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
-        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
-        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
-        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
-        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
-        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
-        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
-        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
-        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
-                </select>
+        charSelection= uniChar1;
 
-        char2Selection= <select id ="char2" className="form-control">
-        <option value="" disabled selected hidden>Character 2</option>
-        <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
-        <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
-        <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
-        <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
-        <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
-        <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
-        <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
-        <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
-        <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
-                </select>
+        char2Selection= uniChar2;
     }
 
     return(
         <form
             id="searchForm"
-            onSubmit={handleSearch}
+            onChange={handleSearch}
             name="searchForm"
             action="/search"
             method="GET"
@@ -709,3 +639,87 @@ const getToken = () => {
 $(document).ready(function() {
     getToken();
 });
+
+//#region Character Forms
+const bbcfChar1 = <select id = "char1" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+    <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
+    <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+    <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+    <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+    <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+    <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+    <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+    <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+    <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+    <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+    <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+    <option value="Nu-13">Nu-13</option>
+    </select>;
+
+const bbcfChar2 = <select id = "char2" className="form-control">
+    <option value="" disabled selected hidden>Character 2</option><option value="Amane">Amane</option><option value="Arakune">Arakune</option>
+    <option value="Azrael">Azrael</option><option value="Bang">Bang</option><option value="Bullet">Bullet</option>
+    <option value="Carl">Carl</option><option value="Celica">Celica</option><option value="Es">Es</option>
+    <option value="Hakumen">Hakumen</option><option value="Hazama">Hazama</option><option value="Hibiki">Hibiki</option>
+    <option value="Izanami">Izanami</option><option value="Izayoi">Izayoi</option><option value="Jin">Jin</option>
+    <option value="Jubei">Jubei</option><option value="Kagura">Kagura</option><option value="Kokonoe">Kokonoe</option>
+    <option value="Litchi">Litchi</option><option value="Makoto">Makoto</option><option value="Mai">Mai</option>
+    <option value="Naoto">Naoto</option><option value="Nine">Nine</option><option value="Noel">Noel</option>
+    <option value="Platinum">Platinum</option><option value="Rachel">Rachel</option><option value="Ragna">Ragna</option>
+    <option value="Relius">Relius</option><option value="Susanoo">Susanoo</option><option value="Tager">Tager</option>
+    <option value="Taokaka">Taokaka</option><option value="Tsubaki">Tsubaki</option><option value="Terumi">Terumi</option>
+    <option value="Valkenhayn">Valkenhayn</option><option value="Lambda-11">Lambda-11</option><option value="Mu-12">Mu-12</option>
+    <option value="Nu-13">Nu-13</option>
+    </select>;
+
+const gbvsChar1 = <select id ="char1" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option>
+    <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
+    <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+    <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+    <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+    <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+    <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+    <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+    <option value="Zeta">Zeta</option>
+    </select>;
+
+const gbvsChar2 = <select id ="char2" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option>
+    <option value="Beezlebub">Beezlebub</option><option value="Charlotta">Charlotta</option>
+    <option value="Djeeta">Djeeta</option><option value="Ferry">Ferry</option>
+    <option value="Gran">Gran</option><option value="Katalina">Katalina</option>
+    <option value="Ladiva">Ladiva</option><option value="Lancelot">Lancelot</option>
+    <option value="Lowain">Lowain</option><option value="Metera">Metera</option>
+    <option value="Narmaya">Narmaya</option><option value="Percival">Percival</option>
+    <option value="Soriz">Soriz</option><option value="Vaseraga">Vaseraga</option>
+    <option value="Zeta">Zeta</option>
+    </select>;
+
+const uniChar1 = <select id ="char1" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option>
+    <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
+    <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+    <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+    <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+    <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+    <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+    <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+    <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+    <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
+    </select>;
+
+const uniChar2 = <select id ="char2" className="form-control">
+    <option value="" disabled selected hidden>Character 1</option>
+    <option value="Akatsuki">Akatsuki</option><option value="Byakuya">Byakuya</option>
+    <option value="Carmine">Carmine</option><option value="Chaos">Chaos</option>
+    <option value="Eltnum">Eltnum</option><option value="Enkidu">Enkidu</option>
+    <option value="Gordeau">Gordeau</option><option value="Hilda">Hilda</option>
+    <option value="Hyde">Hyde</option><option value="Linne">Linne</option>
+    <option value="Londrekia">Londrekia</option><option value="Merkava">Merkava</option>
+    <option value="Phonon">Phonon</option><option value="Seth">Seth</option>
+    <option value="Vatista">Vatista</option><option value="Wagner">Wagner</option>
+    <option value="Waldstein">Waldstein</option><option value="Yuzuriha">Yuzuriha</option>
+    </select>;
+//#endregion

@@ -68,338 +68,14 @@ var SearchForm = function SearchForm() {
   var char2Selection;
 
   if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'BBCF') {
-    charSelection = /*#__PURE__*/React.createElement("select", {
-      id: "char1",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
-      value: "Amane"
-    }, "Amane"), /*#__PURE__*/React.createElement("option", {
-      value: "Arakune"
-    }, "Arakune"), /*#__PURE__*/React.createElement("option", {
-      value: "Azrael"
-    }, "Azrael"), /*#__PURE__*/React.createElement("option", {
-      value: "Bang"
-    }, "Bang"), /*#__PURE__*/React.createElement("option", {
-      value: "Bullet"
-    }, "Bullet"), /*#__PURE__*/React.createElement("option", {
-      value: "Carl"
-    }, "Carl"), /*#__PURE__*/React.createElement("option", {
-      value: "Celica"
-    }, "Celica"), /*#__PURE__*/React.createElement("option", {
-      value: "Es"
-    }, "Es"), /*#__PURE__*/React.createElement("option", {
-      value: "Hakumen"
-    }, "Hakumen"), /*#__PURE__*/React.createElement("option", {
-      value: "Hazama"
-    }, "Hazama"), /*#__PURE__*/React.createElement("option", {
-      value: "Hibiki"
-    }, "Hibiki"), /*#__PURE__*/React.createElement("option", {
-      value: "Izanami"
-    }, "Izanami"), /*#__PURE__*/React.createElement("option", {
-      value: "Izayoi"
-    }, "Izayoi"), /*#__PURE__*/React.createElement("option", {
-      value: "Jin"
-    }, "Jin"), /*#__PURE__*/React.createElement("option", {
-      value: "Jubei"
-    }, "Jubei"), /*#__PURE__*/React.createElement("option", {
-      value: "Kagura"
-    }, "Kagura"), /*#__PURE__*/React.createElement("option", {
-      value: "Kokonoe"
-    }, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
-      value: "Litchi"
-    }, "Litchi"), /*#__PURE__*/React.createElement("option", {
-      value: "Makoto"
-    }, "Makoto"), /*#__PURE__*/React.createElement("option", {
-      value: "Mai"
-    }, "Mai"), /*#__PURE__*/React.createElement("option", {
-      value: "Naoto"
-    }, "Naoto"), /*#__PURE__*/React.createElement("option", {
-      value: "Nine"
-    }, "Nine"), /*#__PURE__*/React.createElement("option", {
-      value: "Noel"
-    }, "Noel"), /*#__PURE__*/React.createElement("option", {
-      value: "Platinum"
-    }, "Platinum"), /*#__PURE__*/React.createElement("option", {
-      value: "Rachel"
-    }, "Rachel"), /*#__PURE__*/React.createElement("option", {
-      value: "Ragna"
-    }, "Ragna"), /*#__PURE__*/React.createElement("option", {
-      value: "Relius"
-    }, "Relius"), /*#__PURE__*/React.createElement("option", {
-      value: "Susanoo"
-    }, "Susanoo"), /*#__PURE__*/React.createElement("option", {
-      value: "Tager"
-    }, "Tager"), /*#__PURE__*/React.createElement("option", {
-      value: "Taokaka"
-    }, "Taokaka"), /*#__PURE__*/React.createElement("option", {
-      value: "Tsubaki"
-    }, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
-      value: "Terumi"
-    }, "Terumi"), /*#__PURE__*/React.createElement("option", {
-      value: "Valkenhayn"
-    }, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
-      value: "Lambda-11"
-    }, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
-      value: "Mu-12"
-    }, "Mu-12"), /*#__PURE__*/React.createElement("option", {
-      value: "Nu-13"
-    }, "Nu-13"));
-    char2Selection = /*#__PURE__*/React.createElement("select", {
-      id: "char2",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
-      value: "Amane"
-    }, "Amane"), /*#__PURE__*/React.createElement("option", {
-      value: "Arakune"
-    }, "Arakune"), /*#__PURE__*/React.createElement("option", {
-      value: "Azrael"
-    }, "Azrael"), /*#__PURE__*/React.createElement("option", {
-      value: "Bang"
-    }, "Bang"), /*#__PURE__*/React.createElement("option", {
-      value: "Bullet"
-    }, "Bullet"), /*#__PURE__*/React.createElement("option", {
-      value: "Carl"
-    }, "Carl"), /*#__PURE__*/React.createElement("option", {
-      value: "Celica"
-    }, "Celica"), /*#__PURE__*/React.createElement("option", {
-      value: "Es"
-    }, "Es"), /*#__PURE__*/React.createElement("option", {
-      value: "Hakumen"
-    }, "Hakumen"), /*#__PURE__*/React.createElement("option", {
-      value: "Hazama"
-    }, "Hazama"), /*#__PURE__*/React.createElement("option", {
-      value: "Hibiki"
-    }, "Hibiki"), /*#__PURE__*/React.createElement("option", {
-      value: "Izanami"
-    }, "Izanami"), /*#__PURE__*/React.createElement("option", {
-      value: "Izayoi"
-    }, "Izayoi"), /*#__PURE__*/React.createElement("option", {
-      value: "Jin"
-    }, "Jin"), /*#__PURE__*/React.createElement("option", {
-      value: "Jubei"
-    }, "Jubei"), /*#__PURE__*/React.createElement("option", {
-      value: "Kagura"
-    }, "Kagura"), /*#__PURE__*/React.createElement("option", {
-      value: "Kokonoe"
-    }, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
-      value: "Litchi"
-    }, "Litchi"), /*#__PURE__*/React.createElement("option", {
-      value: "Makoto"
-    }, "Makoto"), /*#__PURE__*/React.createElement("option", {
-      value: "Mai"
-    }, "Mai"), /*#__PURE__*/React.createElement("option", {
-      value: "Naoto"
-    }, "Naoto"), /*#__PURE__*/React.createElement("option", {
-      value: "Nine"
-    }, "Nine"), /*#__PURE__*/React.createElement("option", {
-      value: "Noel"
-    }, "Noel"), /*#__PURE__*/React.createElement("option", {
-      value: "Platinum"
-    }, "Platinum"), /*#__PURE__*/React.createElement("option", {
-      value: "Rachel"
-    }, "Rachel"), /*#__PURE__*/React.createElement("option", {
-      value: "Ragna"
-    }, "Ragna"), /*#__PURE__*/React.createElement("option", {
-      value: "Relius"
-    }, "Relius"), /*#__PURE__*/React.createElement("option", {
-      value: "Susanoo"
-    }, "Susanoo"), /*#__PURE__*/React.createElement("option", {
-      value: "Tager"
-    }, "Tager"), /*#__PURE__*/React.createElement("option", {
-      value: "Taokaka"
-    }, "Taokaka"), /*#__PURE__*/React.createElement("option", {
-      value: "Tsubaki"
-    }, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
-      value: "Terumi"
-    }, "Terumi"), /*#__PURE__*/React.createElement("option", {
-      value: "Valkenhayn"
-    }, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
-      value: "Lambda-11"
-    }, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
-      value: "Mu-12"
-    }, "Mu-12"), /*#__PURE__*/React.createElement("option", {
-      value: "Nu-13"
-    }, "Nu-13"));
+    charSelection = bbcfChar1;
+    char2Selection = bbcfChar2;
   } else if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'GBVS') {
-    charSelection = /*#__PURE__*/React.createElement("select", {
-      id: "char1",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
-      value: "Beezlebub"
-    }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
-      value: "Charlotta"
-    }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
-      value: "Djeeta"
-    }, "Djeeta"), /*#__PURE__*/React.createElement("option", {
-      value: "Ferry"
-    }, "Ferry"), /*#__PURE__*/React.createElement("option", {
-      value: "Gran"
-    }, "Gran"), /*#__PURE__*/React.createElement("option", {
-      value: "Katalina"
-    }, "Katalina"), /*#__PURE__*/React.createElement("option", {
-      value: "Ladiva"
-    }, "Ladiva"), /*#__PURE__*/React.createElement("option", {
-      value: "Lancelot"
-    }, "Lancelot"), /*#__PURE__*/React.createElement("option", {
-      value: "Lowain"
-    }, "Lowain"), /*#__PURE__*/React.createElement("option", {
-      value: "Metera"
-    }, "Metera"), /*#__PURE__*/React.createElement("option", {
-      value: "Narmaya"
-    }, "Narmaya"), /*#__PURE__*/React.createElement("option", {
-      value: "Percival"
-    }, "Percival"), /*#__PURE__*/React.createElement("option", {
-      value: "Soriz"
-    }, "Soriz"), /*#__PURE__*/React.createElement("option", {
-      value: "Vaseraga"
-    }, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
-      value: "Zeta"
-    }, "Zeta"));
-    char2Selection = /*#__PURE__*/React.createElement("select", {
-      id: "char2",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
-      value: "Beezlebub"
-    }, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
-      value: "Charlotta"
-    }, "Charlotta"), /*#__PURE__*/React.createElement("option", {
-      value: "Djeeta"
-    }, "Djeeta"), /*#__PURE__*/React.createElement("option", {
-      value: "Ferry"
-    }, "Ferry"), /*#__PURE__*/React.createElement("option", {
-      value: "Gran"
-    }, "Gran"), /*#__PURE__*/React.createElement("option", {
-      value: "Katalina"
-    }, "Katalina"), /*#__PURE__*/React.createElement("option", {
-      value: "Ladiva"
-    }, "Ladiva"), /*#__PURE__*/React.createElement("option", {
-      value: "Lancelot"
-    }, "Lancelot"), /*#__PURE__*/React.createElement("option", {
-      value: "Lowain"
-    }, "Lowain"), /*#__PURE__*/React.createElement("option", {
-      value: "Metera"
-    }, "Metera"), /*#__PURE__*/React.createElement("option", {
-      value: "Narmaya"
-    }, "Narmaya"), /*#__PURE__*/React.createElement("option", {
-      value: "Percival"
-    }, "Percival"), /*#__PURE__*/React.createElement("option", {
-      value: "Soriz"
-    }, "Soriz"), /*#__PURE__*/React.createElement("option", {
-      value: "Vaseraga"
-    }, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
-      value: "Zeta"
-    }, "Zeta"));
+    charSelection = gbvsChar1;
+    char2Selection = gbvsChar2;
   } else if ($('#searchForm').find('#gameSearch').find(":selected").text() === 'UNICLR') {
-    charSelection = /*#__PURE__*/React.createElement("select", {
-      id: "char1",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 1"), /*#__PURE__*/React.createElement("option", {
-      value: "Akatsuki"
-    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
-      value: "Byakuya"
-    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
-      value: "Carmine"
-    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
-      value: "Chaos"
-    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
-      value: "Eltnum"
-    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
-      value: "Enkidu"
-    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
-      value: "Gordeau"
-    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
-      value: "Hilda"
-    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
-      value: "Hyde"
-    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
-      value: "Linne"
-    }, "Linne"), /*#__PURE__*/React.createElement("option", {
-      value: "Londrekia"
-    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
-      value: "Merkava"
-    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
-      value: "Phonon"
-    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
-      value: "Seth"
-    }, "Seth"), /*#__PURE__*/React.createElement("option", {
-      value: "Vatista"
-    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
-      value: "Wagner"
-    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
-      value: "Waldstein"
-    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
-      value: "Yuzuriha"
-    }, "Yuzuriha"));
-    char2Selection = /*#__PURE__*/React.createElement("select", {
-      id: "char2",
-      className: "form-control"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "",
-      disabled: true,
-      selected: true,
-      hidden: true
-    }, "Character 2"), /*#__PURE__*/React.createElement("option", {
-      value: "Akatsuki"
-    }, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
-      value: "Byakuya"
-    }, "Byakuya"), /*#__PURE__*/React.createElement("option", {
-      value: "Carmine"
-    }, "Carmine"), /*#__PURE__*/React.createElement("option", {
-      value: "Chaos"
-    }, "Chaos"), /*#__PURE__*/React.createElement("option", {
-      value: "Eltnum"
-    }, "Eltnum"), /*#__PURE__*/React.createElement("option", {
-      value: "Enkidu"
-    }, "Enkidu"), /*#__PURE__*/React.createElement("option", {
-      value: "Gordeau"
-    }, "Gordeau"), /*#__PURE__*/React.createElement("option", {
-      value: "Hilda"
-    }, "Hilda"), /*#__PURE__*/React.createElement("option", {
-      value: "Hyde"
-    }, "Hyde"), /*#__PURE__*/React.createElement("option", {
-      value: "Linne"
-    }, "Linne"), /*#__PURE__*/React.createElement("option", {
-      value: "Londrekia"
-    }, "Londrekia"), /*#__PURE__*/React.createElement("option", {
-      value: "Merkava"
-    }, "Merkava"), /*#__PURE__*/React.createElement("option", {
-      value: "Phonon"
-    }, "Phonon"), /*#__PURE__*/React.createElement("option", {
-      value: "Seth"
-    }, "Seth"), /*#__PURE__*/React.createElement("option", {
-      value: "Vatista"
-    }, "Vatista"), /*#__PURE__*/React.createElement("option", {
-      value: "Wagner"
-    }, "Wagner"), /*#__PURE__*/React.createElement("option", {
-      value: "Waldstein"
-    }, "Waldstein"), /*#__PURE__*/React.createElement("option", {
-      value: "Yuzuriha"
-    }, "Yuzuriha"));
+    charSelection = uniChar1;
+    char2Selection = uniChar2;
   }
 
   return /*#__PURE__*/React.createElement("form", {
@@ -651,7 +327,338 @@ var getToken = function getToken() {
 
 $(document).ready(function () {
   getToken();
-});
+}); //#region Character Forms
+
+var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
+  id: "char1",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Amane"
+}, "Amane"), /*#__PURE__*/React.createElement("option", {
+  value: "Arakune"
+}, "Arakune"), /*#__PURE__*/React.createElement("option", {
+  value: "Azrael"
+}, "Azrael"), /*#__PURE__*/React.createElement("option", {
+  value: "Bang"
+}, "Bang"), /*#__PURE__*/React.createElement("option", {
+  value: "Bullet"
+}, "Bullet"), /*#__PURE__*/React.createElement("option", {
+  value: "Carl"
+}, "Carl"), /*#__PURE__*/React.createElement("option", {
+  value: "Celica"
+}, "Celica"), /*#__PURE__*/React.createElement("option", {
+  value: "Es"
+}, "Es"), /*#__PURE__*/React.createElement("option", {
+  value: "Hakumen"
+}, "Hakumen"), /*#__PURE__*/React.createElement("option", {
+  value: "Hazama"
+}, "Hazama"), /*#__PURE__*/React.createElement("option", {
+  value: "Hibiki"
+}, "Hibiki"), /*#__PURE__*/React.createElement("option", {
+  value: "Izanami"
+}, "Izanami"), /*#__PURE__*/React.createElement("option", {
+  value: "Izayoi"
+}, "Izayoi"), /*#__PURE__*/React.createElement("option", {
+  value: "Jin"
+}, "Jin"), /*#__PURE__*/React.createElement("option", {
+  value: "Jubei"
+}, "Jubei"), /*#__PURE__*/React.createElement("option", {
+  value: "Kagura"
+}, "Kagura"), /*#__PURE__*/React.createElement("option", {
+  value: "Kokonoe"
+}, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
+  value: "Litchi"
+}, "Litchi"), /*#__PURE__*/React.createElement("option", {
+  value: "Makoto"
+}, "Makoto"), /*#__PURE__*/React.createElement("option", {
+  value: "Mai"
+}, "Mai"), /*#__PURE__*/React.createElement("option", {
+  value: "Naoto"
+}, "Naoto"), /*#__PURE__*/React.createElement("option", {
+  value: "Nine"
+}, "Nine"), /*#__PURE__*/React.createElement("option", {
+  value: "Noel"
+}, "Noel"), /*#__PURE__*/React.createElement("option", {
+  value: "Platinum"
+}, "Platinum"), /*#__PURE__*/React.createElement("option", {
+  value: "Rachel"
+}, "Rachel"), /*#__PURE__*/React.createElement("option", {
+  value: "Ragna"
+}, "Ragna"), /*#__PURE__*/React.createElement("option", {
+  value: "Relius"
+}, "Relius"), /*#__PURE__*/React.createElement("option", {
+  value: "Susanoo"
+}, "Susanoo"), /*#__PURE__*/React.createElement("option", {
+  value: "Tager"
+}, "Tager"), /*#__PURE__*/React.createElement("option", {
+  value: "Taokaka"
+}, "Taokaka"), /*#__PURE__*/React.createElement("option", {
+  value: "Tsubaki"
+}, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
+  value: "Terumi"
+}, "Terumi"), /*#__PURE__*/React.createElement("option", {
+  value: "Valkenhayn"
+}, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
+  value: "Lambda-11"
+}, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
+  value: "Mu-12"
+}, "Mu-12"), /*#__PURE__*/React.createElement("option", {
+  value: "Nu-13"
+}, "Nu-13"));
+var bbcfChar2 = /*#__PURE__*/React.createElement("select", {
+  id: "char2",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 2"), /*#__PURE__*/React.createElement("option", {
+  value: "Amane"
+}, "Amane"), /*#__PURE__*/React.createElement("option", {
+  value: "Arakune"
+}, "Arakune"), /*#__PURE__*/React.createElement("option", {
+  value: "Azrael"
+}, "Azrael"), /*#__PURE__*/React.createElement("option", {
+  value: "Bang"
+}, "Bang"), /*#__PURE__*/React.createElement("option", {
+  value: "Bullet"
+}, "Bullet"), /*#__PURE__*/React.createElement("option", {
+  value: "Carl"
+}, "Carl"), /*#__PURE__*/React.createElement("option", {
+  value: "Celica"
+}, "Celica"), /*#__PURE__*/React.createElement("option", {
+  value: "Es"
+}, "Es"), /*#__PURE__*/React.createElement("option", {
+  value: "Hakumen"
+}, "Hakumen"), /*#__PURE__*/React.createElement("option", {
+  value: "Hazama"
+}, "Hazama"), /*#__PURE__*/React.createElement("option", {
+  value: "Hibiki"
+}, "Hibiki"), /*#__PURE__*/React.createElement("option", {
+  value: "Izanami"
+}, "Izanami"), /*#__PURE__*/React.createElement("option", {
+  value: "Izayoi"
+}, "Izayoi"), /*#__PURE__*/React.createElement("option", {
+  value: "Jin"
+}, "Jin"), /*#__PURE__*/React.createElement("option", {
+  value: "Jubei"
+}, "Jubei"), /*#__PURE__*/React.createElement("option", {
+  value: "Kagura"
+}, "Kagura"), /*#__PURE__*/React.createElement("option", {
+  value: "Kokonoe"
+}, "Kokonoe"), /*#__PURE__*/React.createElement("option", {
+  value: "Litchi"
+}, "Litchi"), /*#__PURE__*/React.createElement("option", {
+  value: "Makoto"
+}, "Makoto"), /*#__PURE__*/React.createElement("option", {
+  value: "Mai"
+}, "Mai"), /*#__PURE__*/React.createElement("option", {
+  value: "Naoto"
+}, "Naoto"), /*#__PURE__*/React.createElement("option", {
+  value: "Nine"
+}, "Nine"), /*#__PURE__*/React.createElement("option", {
+  value: "Noel"
+}, "Noel"), /*#__PURE__*/React.createElement("option", {
+  value: "Platinum"
+}, "Platinum"), /*#__PURE__*/React.createElement("option", {
+  value: "Rachel"
+}, "Rachel"), /*#__PURE__*/React.createElement("option", {
+  value: "Ragna"
+}, "Ragna"), /*#__PURE__*/React.createElement("option", {
+  value: "Relius"
+}, "Relius"), /*#__PURE__*/React.createElement("option", {
+  value: "Susanoo"
+}, "Susanoo"), /*#__PURE__*/React.createElement("option", {
+  value: "Tager"
+}, "Tager"), /*#__PURE__*/React.createElement("option", {
+  value: "Taokaka"
+}, "Taokaka"), /*#__PURE__*/React.createElement("option", {
+  value: "Tsubaki"
+}, "Tsubaki"), /*#__PURE__*/React.createElement("option", {
+  value: "Terumi"
+}, "Terumi"), /*#__PURE__*/React.createElement("option", {
+  value: "Valkenhayn"
+}, "Valkenhayn"), /*#__PURE__*/React.createElement("option", {
+  value: "Lambda-11"
+}, "Lambda-11"), /*#__PURE__*/React.createElement("option", {
+  value: "Mu-12"
+}, "Mu-12"), /*#__PURE__*/React.createElement("option", {
+  value: "Nu-13"
+}, "Nu-13"));
+var gbvsChar1 = /*#__PURE__*/React.createElement("select", {
+  id: "char1",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Beezlebub"
+}, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
+  value: "Charlotta"
+}, "Charlotta"), /*#__PURE__*/React.createElement("option", {
+  value: "Djeeta"
+}, "Djeeta"), /*#__PURE__*/React.createElement("option", {
+  value: "Ferry"
+}, "Ferry"), /*#__PURE__*/React.createElement("option", {
+  value: "Gran"
+}, "Gran"), /*#__PURE__*/React.createElement("option", {
+  value: "Katalina"
+}, "Katalina"), /*#__PURE__*/React.createElement("option", {
+  value: "Ladiva"
+}, "Ladiva"), /*#__PURE__*/React.createElement("option", {
+  value: "Lancelot"
+}, "Lancelot"), /*#__PURE__*/React.createElement("option", {
+  value: "Lowain"
+}, "Lowain"), /*#__PURE__*/React.createElement("option", {
+  value: "Metera"
+}, "Metera"), /*#__PURE__*/React.createElement("option", {
+  value: "Narmaya"
+}, "Narmaya"), /*#__PURE__*/React.createElement("option", {
+  value: "Percival"
+}, "Percival"), /*#__PURE__*/React.createElement("option", {
+  value: "Soriz"
+}, "Soriz"), /*#__PURE__*/React.createElement("option", {
+  value: "Vaseraga"
+}, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
+  value: "Zeta"
+}, "Zeta"));
+var gbvsChar2 = /*#__PURE__*/React.createElement("select", {
+  id: "char2",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Beezlebub"
+}, "Beezlebub"), /*#__PURE__*/React.createElement("option", {
+  value: "Charlotta"
+}, "Charlotta"), /*#__PURE__*/React.createElement("option", {
+  value: "Djeeta"
+}, "Djeeta"), /*#__PURE__*/React.createElement("option", {
+  value: "Ferry"
+}, "Ferry"), /*#__PURE__*/React.createElement("option", {
+  value: "Gran"
+}, "Gran"), /*#__PURE__*/React.createElement("option", {
+  value: "Katalina"
+}, "Katalina"), /*#__PURE__*/React.createElement("option", {
+  value: "Ladiva"
+}, "Ladiva"), /*#__PURE__*/React.createElement("option", {
+  value: "Lancelot"
+}, "Lancelot"), /*#__PURE__*/React.createElement("option", {
+  value: "Lowain"
+}, "Lowain"), /*#__PURE__*/React.createElement("option", {
+  value: "Metera"
+}, "Metera"), /*#__PURE__*/React.createElement("option", {
+  value: "Narmaya"
+}, "Narmaya"), /*#__PURE__*/React.createElement("option", {
+  value: "Percival"
+}, "Percival"), /*#__PURE__*/React.createElement("option", {
+  value: "Soriz"
+}, "Soriz"), /*#__PURE__*/React.createElement("option", {
+  value: "Vaseraga"
+}, "Vaseraga"), /*#__PURE__*/React.createElement("option", {
+  value: "Zeta"
+}, "Zeta"));
+var uniChar1 = /*#__PURE__*/React.createElement("select", {
+  id: "char1",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Akatsuki"
+}, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+  value: "Byakuya"
+}, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+  value: "Carmine"
+}, "Carmine"), /*#__PURE__*/React.createElement("option", {
+  value: "Chaos"
+}, "Chaos"), /*#__PURE__*/React.createElement("option", {
+  value: "Eltnum"
+}, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+  value: "Enkidu"
+}, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+  value: "Gordeau"
+}, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+  value: "Hilda"
+}, "Hilda"), /*#__PURE__*/React.createElement("option", {
+  value: "Hyde"
+}, "Hyde"), /*#__PURE__*/React.createElement("option", {
+  value: "Linne"
+}, "Linne"), /*#__PURE__*/React.createElement("option", {
+  value: "Londrekia"
+}, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+  value: "Merkava"
+}, "Merkava"), /*#__PURE__*/React.createElement("option", {
+  value: "Phonon"
+}, "Phonon"), /*#__PURE__*/React.createElement("option", {
+  value: "Seth"
+}, "Seth"), /*#__PURE__*/React.createElement("option", {
+  value: "Vatista"
+}, "Vatista"), /*#__PURE__*/React.createElement("option", {
+  value: "Wagner"
+}, "Wagner"), /*#__PURE__*/React.createElement("option", {
+  value: "Waldstein"
+}, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+  value: "Yuzuriha"
+}, "Yuzuriha"));
+var uniChar2 = /*#__PURE__*/React.createElement("select", {
+  id: "char2",
+  className: "form-control"
+}, /*#__PURE__*/React.createElement("option", {
+  value: "",
+  disabled: true,
+  selected: true,
+  hidden: true
+}, "Character 1"), /*#__PURE__*/React.createElement("option", {
+  value: "Akatsuki"
+}, "Akatsuki"), /*#__PURE__*/React.createElement("option", {
+  value: "Byakuya"
+}, "Byakuya"), /*#__PURE__*/React.createElement("option", {
+  value: "Carmine"
+}, "Carmine"), /*#__PURE__*/React.createElement("option", {
+  value: "Chaos"
+}, "Chaos"), /*#__PURE__*/React.createElement("option", {
+  value: "Eltnum"
+}, "Eltnum"), /*#__PURE__*/React.createElement("option", {
+  value: "Enkidu"
+}, "Enkidu"), /*#__PURE__*/React.createElement("option", {
+  value: "Gordeau"
+}, "Gordeau"), /*#__PURE__*/React.createElement("option", {
+  value: "Hilda"
+}, "Hilda"), /*#__PURE__*/React.createElement("option", {
+  value: "Hyde"
+}, "Hyde"), /*#__PURE__*/React.createElement("option", {
+  value: "Linne"
+}, "Linne"), /*#__PURE__*/React.createElement("option", {
+  value: "Londrekia"
+}, "Londrekia"), /*#__PURE__*/React.createElement("option", {
+  value: "Merkava"
+}, "Merkava"), /*#__PURE__*/React.createElement("option", {
+  value: "Phonon"
+}, "Phonon"), /*#__PURE__*/React.createElement("option", {
+  value: "Seth"
+}, "Seth"), /*#__PURE__*/React.createElement("option", {
+  value: "Vatista"
+}, "Vatista"), /*#__PURE__*/React.createElement("option", {
+  value: "Wagner"
+}, "Wagner"), /*#__PURE__*/React.createElement("option", {
+  value: "Waldstein"
+}, "Waldstein"), /*#__PURE__*/React.createElement("option", {
+  value: "Yuzuriha"
+}, "Yuzuriha")); //#endregion
 "use strict";
 
 // https://stackoverflow.com/questions/32704027/how-to-call-bootstrap-alert-with-jquery
