@@ -8,7 +8,7 @@ var _csrf; // Values to help not repeat methods
 
 var pageList = false;
 var loopNumber = 1;
-var videoKey = 0;
+var videoKey = 0; // ADDING A VIDEO
 
 var handleVideo = function handleVideo(e) {
   videoKey = 0;
@@ -114,7 +114,8 @@ var handleVideo = function handleVideo(e) {
     loadVideosFromServer();
   });
   return false;
-};
+}; // Handle deletion of a video
+
 
 var handleDelete = function handleDelete(e) {
   e.preventDefault();

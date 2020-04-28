@@ -1,3 +1,4 @@
+// Sending request to handle login
 const handleLogin = (e) => {
     e.preventDefault();
 
@@ -12,6 +13,7 @@ const handleLogin = (e) => {
     return false;
 };
 
+// Sending request to handle signing up
 const handleSignup = (e) => {
     e.preventDefault();
     if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() =='') {
@@ -132,6 +134,8 @@ const SearchForm = () => {
     )
 };
 
+
+// Render our login window
 const LoginWindow = (props) => {
     return ( 
     <form   id="loginForm"
@@ -149,6 +153,7 @@ const LoginWindow = (props) => {
     );
 };
 
+// Render our signup window
 const SignupWindow = (props) => {
     return ( 
     <form id="signupForm" name="signupForm"
@@ -240,14 +245,16 @@ const VideoList = function(props) {
     );
 };
 
+
+///
+/// Functions to render our data on the page depending on what we need ///
+///
 const loadAllVideosFromServer = () => {
     sendAjax('GET', '/getAllVideos', null, (data) => {
         ReactDOM.render(
             <VideoList videos={data.videos} />, document.querySelector("#content")
         );
     });
-
-    //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 //#endregion
 
@@ -258,8 +265,6 @@ const createLoginWindow = (csrf) => {
     );
 
     ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
-
-    //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 const createSignupWindow = (csrf) => {
@@ -269,7 +274,6 @@ const createSignupWindow = (csrf) => {
     );
 
     ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
-   // ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
 };
 
 const createSearchForm = () => {

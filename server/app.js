@@ -12,7 +12,6 @@ const RedisStore = require('connect-redis')(session);
 const url = require('url');
 const redis = require('redis');
 const csrf = require('csurf');
-// const YouTube = require('youtube-api');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 

@@ -6,6 +6,8 @@ let pageList = false;
 let loopNumber = 1;
 let videoKey = 0;
 
+
+// ADDING A VIDEO
 const handleVideo = (e) => {
     videoKey = 0;
     let modValue = 0;
@@ -130,6 +132,7 @@ const handleVideo = (e) => {
     return false;
 };
 
+// Handle deletion of a video
 const handleDelete = (e) => {
     e.preventDefault();
   

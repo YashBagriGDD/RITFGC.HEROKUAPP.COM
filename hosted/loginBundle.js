@@ -1,5 +1,6 @@
 "use strict";
 
+// Sending request to handle login
 var handleLogin = function handleLogin(e) {
   e.preventDefault();
 
@@ -10,7 +11,8 @@ var handleLogin = function handleLogin(e) {
 
   sendAjax('POST', $("#loginForm").attr("action"), $("#loginForm").serialize(), redirect);
   return false;
-};
+}; // Sending request to handle signing up
+
 
 var handleSignup = function handleSignup(e) {
   e.preventDefault();
@@ -133,7 +135,8 @@ var SearchForm = function SearchForm() {
     type: "reset",
     value: "Reset"
   }))))));
-};
+}; // Render our login window
+
 
 var LoginWindow = function LoginWindow(props) {
   return /*#__PURE__*/React.createElement("form", {
@@ -161,7 +164,8 @@ var LoginWindow = function LoginWindow(props) {
     type: "submit",
     value: "Sign In"
   }));
-};
+}; // Render our signup window
+
 
 var SignupWindow = function SignupWindow(props) {
   return /*#__PURE__*/React.createElement("form", {
@@ -276,14 +280,17 @@ var VideoList = function VideoList(props) {
   }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
     id: "adtwo"
   }, "Your Ad Here!"));
-};
+}; ///
+/// Functions to render our data on the page depending on what we need ///
+///
+
 
 var loadAllVideosFromServer = function loadAllVideosFromServer() {
   sendAjax('GET', '/getAllVideos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
     }), document.querySelector("#content"));
-  }); //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
+  });
 }; //#endregion
 
 
@@ -291,14 +298,14 @@ var createLoginWindow = function createLoginWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(LoginWindow, {
     csrf: csrf
   }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#search")); //ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
+  ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(SignupWindow, {
     csrf: csrf
   }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#search")); // ReactDOM.unmountComponentAtNode(document.querySelector("#content"));
+  ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
 };
 
 var createSearchForm = function createSearchForm() {
