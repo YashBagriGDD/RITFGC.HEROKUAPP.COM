@@ -31,17 +31,6 @@ const handleSignup = (e) => {
     return false;
 };
 
-// Reset the fields of the search bar
-const handleReset = (e) => {
-    e.preventDefault();
-
-    $("#player1Search").val() = "";
-    $("#player2Search").val() = "";
-    $("#gameSearch").val() = "";
-
-    return false;
-};
-
 // Handle the search
 const handleSearch = (e) => {
     e.preventDefault();
