@@ -151,7 +151,17 @@ var handleChange = function handleChange(e) {
 
   sendAjax('POST', $("#changeForm").attr("action"), $("#changeForm").serialize(), redirect);
   return false;
-}; // Handle the search
+}; //Sets the values of the players and game to null, then triggers a change to remove the char selects from the form
+
+
+var handleReset = function handleReset(e) {
+  e.preventDefault();
+  $("#player1Search").val("");
+  $("#player2Search").val("");
+  $("#gameSearch").val("").prop('selected', true).trigger("change");
+  return false;
+}; // Handles the search. Will check for each value in the inputs for the search form to see if they exist.
+// If they exist put them into the query string them send it to the server with the GET command
 
 
 var handleSearch = function handleSearch(e) {
@@ -186,6 +196,7 @@ var handleSearch = function handleSearch(e) {
     }), document.querySelector("#content"));
   });
 }; // Search form
+//Sets up the search form, will change the select for characters depending on the game selected
 
 
 var SearchForm = function SearchForm() {
@@ -206,6 +217,7 @@ var SearchForm = function SearchForm() {
   return /*#__PURE__*/React.createElement("form", {
     id: "searchForm",
     onChange: handleSearch,
+    onReset: handleReset,
     name: "searchForm",
     action: "/search",
     method: "GET",
@@ -244,8 +256,8 @@ var SearchForm = function SearchForm() {
   }, "UNICLR"))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
     className: "searchFormSubmit btn",
     id: "formSubmit",
-    type: "submit",
-    value: "Search"
+    type: "reset",
+    value: "Reset"
   }))))));
 }; /// FORM TO SUBMIT NEW DATA
 
@@ -508,7 +520,7 @@ var createAddWindow = function createAddWindow(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
     csrf: csrf
   }), document.querySelector("#content"));
-  ReactDOM.unmountComponentAtNode(document.querySelector("#search")); // If theh game changes, re-render
+  ReactDOM.unmountComponentAtNode(document.querySelector("#search")); // If the game changes, re-render
 
   $('#videoForm').find('#Game').on('change', function () {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoForm, {
@@ -527,7 +539,7 @@ var createAddWindow = function createAddWindow(csrf) {
 };
 
 var createSearchForm = function createSearchForm() {
-  ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#search")); // If theh game changes, re-render
+  ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#search")); // If the game changes, re-render
 
   $('#searchForm').find('select').on('change', function () {
     ReactDOM.render( /*#__PURE__*/React.createElement(SearchForm, null), document.querySelector("#search"));
@@ -576,6 +588,7 @@ var getToken = function getToken() {
 $(document).ready(function () {
   getToken();
 }); //#region Character Forms
+//Separated the character forms for ease of reference and readability in above code
 
 var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
   id: "char1Search",

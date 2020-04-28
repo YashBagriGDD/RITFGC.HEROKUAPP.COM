@@ -170,6 +170,7 @@ const handleChange = (e) => {
     return false;
 };
 
+//Sets the values of the players and game to null, then triggers a change to remove the char selects from the form
 const handleReset = (e) => {
     e.preventDefault();
 
@@ -180,7 +181,8 @@ const handleReset = (e) => {
     return false;
 } 
 
-// Handle the search
+// Handles the search. Will check for each value in the inputs for the search form to see if they exist.
+// If they exist put them into the query string them send it to the server with the GET command
 const handleSearch = (e) => {
     e.preventDefault();
 
@@ -218,6 +220,7 @@ const handleSearch = (e) => {
 };
 
 // Search form
+//Sets up the search form, will change the select for characters depending on the game selected
 const SearchForm = () => {
 
     let charSelection;
@@ -505,7 +508,7 @@ const createAddWindow = (csrf) => {
 
     ReactDOM.unmountComponentAtNode(document.querySelector("#search"));
 
-    // If theh game changes, re-render
+    // If the game changes, re-render
     $('#videoForm').find('#Game').on('change', function() {
         ReactDOM.render(
             <VideoForm csrf={csrf} />,
@@ -530,7 +533,7 @@ const createSearchForm = () => {
         <SearchForm />, document.querySelector("#search")  
     );
 
-    // If theh game changes, re-render
+    // If the game changes, re-render
     $('#searchForm').find('select').on('change', function() {
         ReactDOM.render(
             <SearchForm />,
@@ -588,6 +591,7 @@ $(document).ready(function() {
 });
 
 //#region Character Forms
+//Separated the character forms for ease of reference and readability in above code
 const bbcfChar1 = <select id = "char1Search" className="form-control">
     <option value="" disabled selected hidden>Character 1</option><option value="Anyone">Anyone</option>
     <option value="Amane">Amane</option><option value="Arakune">Arakune</option>

@@ -28,7 +28,8 @@ var handleSignup = function handleSignup(e) {
 
   sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
   return false;
-};
+}; //Sets the values of the players and game to null, then triggers a change to remove the char selects from the form
+
 
 var handleReset = function handleReset(e) {
   e.preventDefault();
@@ -36,7 +37,8 @@ var handleReset = function handleReset(e) {
   $("#player2Search").val("");
   $("#gameSearch").val("").prop('selected', true).trigger("change");
   return false;
-}; // Handle the search
+}; // Handles the search. Will check for each value in the inputs for the search form to see if they exist.
+// If they exist put them into the query string them send it to the server with the GET command
 
 
 var handleSearch = function handleSearch(e) {
@@ -71,6 +73,7 @@ var handleSearch = function handleSearch(e) {
     }), document.querySelector("#content"));
   });
 }; // Search form
+//Sets up the search form, will change the select for characters depending on the game selected
 
 
 var SearchForm = function SearchForm() {
@@ -343,6 +346,7 @@ var getToken = function getToken() {
 $(document).ready(function () {
   getToken();
 }); //#region Character Forms
+//Separated the character forms for ease of reference and readability in above code
 
 var bbcfChar1 = /*#__PURE__*/React.createElement("select", {
   id: "char1",

@@ -13,6 +13,7 @@ const mainPage = (req, res) => {
   });
 };
 
+// Sets up the object from the req.body then sends them to the database to be stored
 const makeVideo = (req, res) => {
   const promiseArray = [];
   const values = Object.values(req.body);
@@ -55,6 +56,7 @@ const makeVideo = (req, res) => {
   Promise.all(promiseArray).then(() => res.json({ redirect: '/main' }));
 };
 
+// Gets the videos that match the specific user
 const getVideos = (request, response) => {
   const req = request;
   const res = response;
@@ -69,6 +71,7 @@ const getVideos = (request, response) => {
   });
 };
 
+// Will automatically send an empty object into the find to get all data from the database
 const getAllVideos = (request, response) => {
   const res = response;
 
@@ -82,6 +85,7 @@ const getAllVideos = (request, response) => {
   });
 };
 
+// Gets the _id of the send obj then deletes it from the database.
 const deleteEntry = (request, response) => {
   const req = request;
   const res = response;
@@ -96,6 +100,8 @@ const deleteEntry = (request, response) => {
   });
 };
 
+// Gets the query string from the request,
+// checks to see which params exist then add them to the search object.
 const searchVideos = (request, response) => {
   const req = request;
   const res = response;
@@ -107,6 +113,9 @@ const searchVideos = (request, response) => {
     player1, player2, char1, char2, game,
   } = req.query;
   let i = 0; // keeps track of position in params.$and array
+
+  // If param exists, add it to the $and array with the
+  // $or syntax to check for name in either slot 1 or 2 for player/char
   if (player1) {
     params.$and[i] = { $or: [{ player1: `${player1}` }, { player2: `${player1}` }] };
     i++;
@@ -128,7 +137,7 @@ const searchVideos = (request, response) => {
     i++;
   }
 
-  if(i === 0) params = {}; //set params to empty object if no query params were sent
+  if (i === 0) params = {}; // set params to empty object if no query params were sent
 
   return Video.VideoModel.findSearch(params, (err, docs) => {
     if (err) {

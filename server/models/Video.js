@@ -73,6 +73,7 @@ VideoSchema.statics.toAPI = (doc) => ({
   link: doc.link,
 });
 
+// Converts the ownerId to be readable by the database then returns all of the users entries.
 VideoSchema.statics.findByOwner = (ownerId, callback) => {
   const search = {
     owner: convertId(ownerId),
@@ -81,8 +82,10 @@ VideoSchema.statics.findByOwner = (ownerId, callback) => {
   return VideoModel.find(search).select('player1 player2 char1 char2 game link').lean().exec(callback);
 };
 
+// Returns all entries in the database
 VideoSchema.statics.findAll = (callback) => VideoModel.find().select('player1 player2 char1 char2 game link').lean().exec(callback);
 
+// Will search for specified entries in the database based off the object in the search
 VideoSchema.statics.findSearch = (search, callback) => VideoModel.find(search).select('player1 player2 char1 char2 game link').lean().exec(callback);
 
 
