@@ -31,6 +31,16 @@ const handleSignup = (e) => {
     return false;
 };
 
+const handleReset = (e) => {
+    e.preventDefault();
+
+    $("#player1Search").val("");
+    $("#player2Search").val("");
+    $("#gameSearch").val("").prop('selected', true);
+
+    return false;
+} 
+
 // Handle the search
 const handleSearch = (e) => {
     e.preventDefault();
@@ -94,6 +104,7 @@ const SearchForm = () => {
         <form
             id="searchForm"
             onChange={handleSearch}
+            onReset={handleReset}
             name="searchForm"
             action="/search"
             method="GET"
@@ -116,7 +127,7 @@ const SearchForm = () => {
                                 <option value="uniclr">UNICLR</option>
                             </select>
                         </td>
-                        <td><input className="searchFormSubmit btn" id="formSubmit" type="submit" value="Search"/></td>
+                        <td><input className="searchFormSubmit btn" id="formSubmit" type="reset" value="Reset"/></td>
                     </tr>
                 </tbody>
             </table>

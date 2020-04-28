@@ -28,6 +28,14 @@ var handleSignup = function handleSignup(e) {
 
   sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
   return false;
+};
+
+var handleReset = function handleReset(e) {
+  e.preventDefault();
+  $("#player1Search").val("");
+  $("#player2Search").val("");
+  $("#gameSearch").val("").prop('selected', true);
+  return false;
 }; // Handle the search
 
 
@@ -83,6 +91,7 @@ var SearchForm = function SearchForm() {
   return /*#__PURE__*/React.createElement("form", {
     id: "searchForm",
     onChange: handleSearch,
+    onReset: handleReset,
     name: "searchForm",
     action: "/search",
     method: "GET",
@@ -121,8 +130,8 @@ var SearchForm = function SearchForm() {
   }, "UNICLR"))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
     className: "searchFormSubmit btn",
     id: "formSubmit",
-    type: "submit",
-    value: "Search"
+    type: "reset",
+    value: "Reset"
   }))))));
 };
 
