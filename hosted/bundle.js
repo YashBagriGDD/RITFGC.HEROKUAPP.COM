@@ -389,11 +389,7 @@ var VideoList = function VideoList(props) {
       className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
       className: "emptyVideo"
-    }, "No videos found!"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      id: "ad"
-    }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
-      id: "adtwo"
-    }, "Your Ad Here!")));
+    }, "No videos found!"));
   }
 
   var videoNodes = props.videos.map(function (video) {

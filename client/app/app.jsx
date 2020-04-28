@@ -372,10 +372,6 @@ const VideoList = function(props) {
         return (
             <div className="videoList">
                 <h3 className="emptyVideo">No videos found!</h3>
-                <div>
-                    <div id="ad">Your Ad Here!</div>
-                    <div id="adtwo">Your Ad Here!</div>
-                </div>
             </div>
         );
     }
