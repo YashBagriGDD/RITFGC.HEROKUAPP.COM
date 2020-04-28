@@ -36,7 +36,7 @@ const handleReset = (e) => {
 
     $("#player1Search").val("");
     $("#player2Search").val("");
-    $("#gameSearch").val("").prop('selected', true);
+    $("#gameSearch").val("").prop('selected', true).trigger("change");
 
     return false;
 } 
