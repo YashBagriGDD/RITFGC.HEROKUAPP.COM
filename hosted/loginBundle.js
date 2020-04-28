@@ -83,7 +83,6 @@ var SearchForm = function SearchForm() {
   return /*#__PURE__*/React.createElement("form", {
     id: "searchForm",
     onChange: handleSearch,
-    onReset: handleReset,
     name: "searchForm",
     action: "/search",
     method: "GET",
@@ -122,8 +121,8 @@ var SearchForm = function SearchForm() {
   }, "UNICLR"))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
     className: "searchFormSubmit btn",
     id: "formSubmit",
-    type: "reset",
-    value: "Reset"
+    type: "submit",
+    value: "Search"
   }))))));
 };
 
@@ -138,12 +137,12 @@ var LoginWindow = function LoginWindow(props) {
     id: "user",
     type: "text",
     name: "username",
-    placeholder: "Username"
+    placeholder: "username"
   }), /*#__PURE__*/React.createElement("input", {
     id: "pass",
     type: "password",
     name: "pass",
-    placeholder: "Password"
+    placeholder: "password"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
@@ -167,17 +166,17 @@ var SignupWindow = function SignupWindow(props) {
     id: "user",
     type: "text",
     name: "username",
-    placeholder: "Username"
+    placeholder: "username"
   }), /*#__PURE__*/React.createElement("input", {
     id: "pass",
     type: "password",
     name: "pass",
-    placeholder: "Password"
+    placeholder: "password"
   }), /*#__PURE__*/React.createElement("input", {
     id: "pass2",
     type: "password",
     name: "pass2",
-    placeholder: "Confirm Password"
+    placeholder: "retype password"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
@@ -196,7 +195,11 @@ var VideoList = function VideoList(props) {
       className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
       className: "emptyVideo"
-    }, "No videos found!"));
+    }, "No videos found!"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      id: "ad"
+    }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
+      id: "adtwo"
+    }, "Your Ad Here!")));
   }
 
   var videoNodes = props.videos.map(function (video) {

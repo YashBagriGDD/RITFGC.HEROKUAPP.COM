@@ -94,7 +94,6 @@ const SearchForm = () => {
         <form
             id="searchForm"
             onChange={handleSearch}
-            onReset={handleReset}
             name="searchForm"
             action="/search"
             method="GET"
@@ -117,7 +116,7 @@ const SearchForm = () => {
                                 <option value="uniclr">UNICLR</option>
                             </select>
                         </td>
-                        <td><input className="searchFormSubmit btn" id="formSubmit" type="reset" value="Reset"/></td>
+                        <td><input className="searchFormSubmit btn" id="formSubmit" type="submit" value="Search"/></td>
                     </tr>
                 </tbody>
             </table>
@@ -127,18 +126,18 @@ const SearchForm = () => {
 
 const LoginWindow = (props) => {
     return ( 
-        <form   id="loginForm"
-                className="mainForm"
-                onSubmit={handleLogin}
-                action="/login"
-                method="POST"
-            >
-            <input id="user" type="text" name="username" placeholder="Username"/>
-            <input id="pass" type="password" name="pass" placeholder="Password"/>
-            <input type="hidden" name="_csrf" value={props.csrf}/>
-            <input className="formSubmit btn" type="submit" value="Sign In"/>
+    <form   id="loginForm"
+            className="mainForm"
+            onSubmit={handleLogin}
+            action="/login"
+            method="POST"
+        >
+        <input id="user" type="text" name="username" placeholder="username"/>
+        <input id="pass" type="password" name="pass" placeholder="password"/>
+        <input type="hidden" name="_csrf" value={props.csrf}/>
+        <input className="formSubmit btn" type="submit" value="Sign In"/>
 
-        </form>
+    </form>
     );
 };
 
@@ -150,9 +149,9 @@ const SignupWindow = (props) => {
             method="POST"
             className="mainForm"
         >
-        <input id="user" type="text" name="username" placeholder="Username"/>
-        <input id="pass" type="password" name="pass" placeholder="Password"/>
-        <input id="pass2" type="password" name="pass2" placeholder="Confirm Password"/>
+        <input id="user" type="text" name="username" placeholder="username"/>
+        <input id="pass" type="password" name="pass" placeholder="password"/>
+        <input id="pass2" type="password" name="pass2" placeholder="retype password"/>
         <input type="hidden" name="_csrf" value={props.csrf}/>
         <input className="formSubmit btn" type="submit" value="Sign Up"/>
 
@@ -166,6 +165,10 @@ const VideoList = function(props) {
         return (
             <div className="videoList">
                 <h3 className="emptyVideo">No videos found!</h3>
+                <div>
+                    <div id="ad">Your Ad Here!</div>
+                    <div id="adtwo">Your Ad Here!</div>
+                </div>
             </div>
         );
     }
