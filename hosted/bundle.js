@@ -13,7 +13,6 @@ var videoKey = 0;
 var handleVideo = function handleVideo(e) {
   videoKey = 0;
   var modValue = 0;
-  var charVideoKey = 0;
   var charModValue = 0;
   e.preventDefault(); // Create a video object to send to the server
 
@@ -108,8 +107,7 @@ var handleVideo = function handleVideo(e) {
     if (this.type === 'hidden') {
       videoObj._csrf = this.value;
     }
-  });
-  console.log(videoObj); // Uncomment this to send data
+  }); // Uncomment this to send data
   // Send the object! :diaYay:
 
   sendAjax('POST', $("#videoForm").attr("action"), videoObj, function () {
@@ -188,8 +186,6 @@ var handleSearch = function handleSearch(e) {
     queryString += "&game=".concat($("#gameSearch").val());
   }
 
-  console.log($('#searchForm').find('#char1Search').find(":selected").text());
-  console.log(queryString);
   sendAjax('GET', queryString, null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos
@@ -270,7 +266,6 @@ var VideoForm = function VideoForm(props) {
   var rows = [];
   var charSelection;
   var char2Selection;
-  console.log($('#videoForm').find('#Game').find(":selected").text());
 
   if ($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' || $('#videoForm').find('#Game').find(":selected").text() === 'Game' || $('#videoForm').find('#Game').find(":selected").text() === '') {
     charSelection = bbcfChar1Select;
@@ -394,14 +389,17 @@ var VideoList = function VideoList(props) {
   // Do we need to show deletion or not
   var deleteButton;
   var adSpace;
-  console.log(props.videos.length);
 
   if (props.videos.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
       className: "videoList"
     }, /*#__PURE__*/React.createElement("h3", {
       className: "emptyVideo"
-    }, "No videos found!"));
+    }, "No videos found!"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      id: "ad"
+    }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
+      id: "adtwo"
+    }, "Your Ad Here!")));
   }
 
   var videoNodes = props.videos.map(function (video) {
@@ -414,14 +412,8 @@ var VideoList = function VideoList(props) {
       }, /*#__PURE__*/React.createElement("i", {
         className: "fas fa-trash"
       })));
-      adSpace = null;
     } else {
       deleteButton = null;
-      adSpace = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-        id: "ad"
-      }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
-        id: "adtwo"
-      }, "Your Ad Here!"));
     }
 
     var char1Src;
@@ -483,7 +475,11 @@ var VideoList = function VideoList(props) {
     id: "pageContainer"
   }, /*#__PURE__*/React.createElement("table", {
     className: "table table-sm table-dark"
-  }, videoNodes), adSpace);
+  }, videoNodes), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    id: "ad"
+  }, "Your Ad Here!"), /*#__PURE__*/React.createElement("div", {
+    id: "adtwo"
+  }, "Your Ad Here!")));
 };
 
 var loadVideosFromServer = function loadVideosFromServer() {

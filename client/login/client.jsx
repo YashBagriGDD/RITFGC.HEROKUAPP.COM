@@ -7,8 +7,6 @@ const handleLogin = (e) => {
         return false;
     }
 
-    console.log($("input[name=_csrf]").val());
-
     sendAjax('POST', $("#loginForm").attr("action"), $("#loginForm").serialize(), redirect);
 
     return false;
@@ -67,10 +65,6 @@ const handleSearch = (e) => {
     if($("#gameSearch").val()){
         queryString += `&game=${$("#gameSearch").val()}`
     }
-
-    console.log($('#searchForm').find('#char1').find(":selected").text());
-
-    console.log(queryString)
 
     sendAjax('GET', queryString , null, (data) =>{
 

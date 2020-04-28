@@ -10,7 +10,6 @@ const handleVideo = (e) => {
     videoKey = 0;
     let modValue = 0;
 
-    let charVideoKey = 0;
     let charModValue = 0;
     e.preventDefault();
 
@@ -121,8 +120,6 @@ const handleVideo = (e) => {
         }
     });
 
-    console.log(videoObj);
-
 
     // Uncomment this to send data
     // Send the object! :diaYay:
@@ -207,10 +204,6 @@ const handleSearch = (e) => {
         queryString += `&game=${$("#gameSearch").val()}`
     }
 
-    console.log($('#searchForm').find('#char1Search').find(":selected").text());
-
-    console.log(queryString)
-
     sendAjax('GET', queryString , null, (data) =>{
 
         ReactDOM.render(
@@ -285,8 +278,6 @@ const VideoForm = (props) => {
     let rows = [];
     let charSelection;
     let char2Selection;
-
-    console.log($('#videoForm').find('#Game').find(":selected").text());
 
     if($('#videoForm').find('#Game').find(":selected").text() === 'BBCF' ||
     $('#videoForm').find('#Game').find(":selected").text() === 'Game' ||
@@ -380,12 +371,14 @@ const VideoList = function(props) {
     let deleteButton;
     let adSpace;
 
-    console.log(props.videos.length);
-
     if(props.videos.length === 0) {
         return (
             <div className="videoList">
                 <h3 className="emptyVideo">No videos found!</h3>
+                <div>
+                    <div id="ad">Your Ad Here!</div>
+                    <div id="adtwo">Your Ad Here!</div>
+                </div>
             </div>
         );
     }
@@ -400,13 +393,8 @@ const VideoList = function(props) {
                                 <i className="fas fa-trash"></i>
                             </button>
                            </td>;
-            adSpace = null;
         } else {
             deleteButton = null;
-            adSpace = <div>
-                      <div id="ad">Your Ad Here!</div>
-                      <div id="adtwo">Your Ad Here!</div>
-                      </div>;
         }
 
         let char1Src;
@@ -462,7 +450,10 @@ const VideoList = function(props) {
             <table className="table table-sm table-dark">
                 {videoNodes}
             </table>
-            {adSpace}
+            <div>
+                <div id="ad">Your Ad Here!</div>
+                <div id="adtwo">Your Ad Here!</div>
+            </div>
         </div>
     );
 };

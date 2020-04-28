@@ -8,7 +8,6 @@ var handleLogin = function handleLogin(e) {
     return false;
   }
 
-  console.log($("input[name=_csrf]").val());
   sendAjax('POST', $("#loginForm").attr("action"), $("#loginForm").serialize(), redirect);
   return false;
 };
@@ -65,8 +64,6 @@ var handleSearch = function handleSearch(e) {
     queryString += "&game=".concat($("#gameSearch").val());
   }
 
-  console.log($('#searchForm').find('#char1').find(":selected").text());
-  console.log(queryString);
   sendAjax('GET', queryString, null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(VideoList, {
       videos: data.videos

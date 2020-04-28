@@ -20,7 +20,6 @@ const makeVideo = (req, res) => {
 
   for (let i = 0; i < values.length - 2; i++) {
     // Check if all data fields were entered
-    console.dir(values[i]);
     // For some reason, this always throws regardless. I think we should stick
     // to the client side error check for emptiness.
     /* if (!values[i].player1 || !values[i].player2 || !values[i].char1
